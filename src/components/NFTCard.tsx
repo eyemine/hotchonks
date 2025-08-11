@@ -1,0 +1,171 @@
+
+import { Card } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
+import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
+import { ExternalLink, ChevronDown } from "lucide-react";
+import { useState } from "react";
+
+interface NestedNFT {
+  id: string;
+  name: string;
+  image: string;
+  collection: string;
+  zoraUrl?: string;
+  openSeaUrl?: string;
+}
+
+interface NFT {
+  id: string;
+  name: string;
+  image: string;
+  collection: string;
+  price: string;
+  chain: "Base" | "Zora";
+  description: string;
+  nestedNFTs: NestedNFT[];
+  carbonOffset: string;
+  openSeaUrl?: string;
+  zoraUrl?: string;
+  sold?: boolean;
+}
+
+interface NFTCardProps {
+  nft: NFT;
+}
+
+export const NFTCard = ({ nft }: NFTCardProps) => {
+  const [isOpen, setIsOpen] = useState(false);
+
+  return (
+    <Card className="group bg-card border-border hover:border-bio-green/40 transition-all duration-500 hover:shadow-bio">
+      <div className="p-6">
+        {/* Main NFT Image - Square and Larger */}
+        <div className="relative mb-4 overflow-hidden rounded-lg">
+          <img 
+            src={nft.image} 
+            alt={nft.name}
+            className="w-full h-80 object-cover transition-transform duration-500 group-hover:scale-105"
+          />
+          {/* Semi-transparent overlay for sold items */}
+          {nft.sold && (
+            <div className="absolute inset-0 bg-black/50" />
+          )}
+          {nft.sold && (
+            <div className="absolute top-2 left-2 z-10">
+              <Badge className="bg-destructive text-destructive-foreground border-0">
+                SOLD
+              </Badge>
+            </div>
+          )}
+        </div>
+
+        {/* NFT Info */}
+        <div className="space-y-3">
+          <div>
+            <h3 className="font-semibold text-lg text-foreground">{nft.name}</h3>
+          </div>
+
+          {/* Price - only show if not sold and not coming soon */}
+          {!nft.sold && nft.price !== 'Coming Soon' && nft.price !== 'SOLD' && (
+            <div className="pt-2">
+              <span className="text-lg font-bold text-foreground">
+                {nft.price} ETH
+              </span>
+            </div>
+          )}
+
+          {/* Coming Soon or Sold status */}
+          {(nft.sold || nft.price === 'Coming Soon') && (
+            <div className="pt-2">
+              <span className="text-lg font-bold text-foreground">
+                {nft.sold ? (
+                  <span className="text-destructive">SOLD</span>
+                ) : (
+                  <span className="text-muted-foreground">Coming Soon</span>
+                )}
+              </span>
+            </div>
+          )}
+        </div>
+      </div>
+
+      {/* Nested NFTs Collapsible */}
+      {nft.nestedNFTs.length > 0 && (
+        <Collapsible open={isOpen} onOpenChange={setIsOpen}>
+          <div className="border-t border-border bg-carbon-medium/30">
+            <CollapsibleTrigger asChild>
+              <Button 
+                variant="ghost" 
+                className="w-full p-4 justify-between text-bio-light hover:text-bio-glow hover:bg-bio-green/10 transition-colors"
+              >
+                <span className="font-medium">Look in the backpack! 🎒</span>
+                <ChevronDown className={`h-4 w-4 transition-transform duration-200 ${isOpen ? 'rotate-180' : ''}`} />
+              </Button>
+            </CollapsibleTrigger>
+            <CollapsibleContent>
+              <div className="px-4 pb-4">
+                <div className="grid grid-cols-2 gap-3">
+                  {nft.nestedNFTs.map((nested) => (
+                    <div key={nested.id} className="bg-card rounded-lg p-3 border border-border hover:border-bio-green/30 transition-all duration-300 hover:scale-110 cursor-pointer group/nested overflow-hidden">
+                      <div className="overflow-hidden rounded mb-2">
+                        <img 
+                          src={nested.image} 
+                          alt={nested.name}
+                          className="w-full aspect-square object-cover transition-transform duration-500 group-hover/nested:scale-125"
+                        />
+                      </div>
+                      <p className="text-xs font-medium text-foreground truncate">{nested.name}</p>
+                      {nested.zoraUrl && (
+                        <Button 
+                          variant="ghost" 
+                          size="sm" 
+                          asChild
+                          className="mt-1 p-0 h-auto text-xs text-bio-light hover:text-bio-glow"
+                        >
+                          <a href={nested.zoraUrl} target="_blank" rel="noopener noreferrer">
+                            <ExternalLink size={12} className="mr-1" />
+                            View on Zora
+                          </a>
+                        </Button>
+                      )}
+                      {nested.openSeaUrl && (
+                        <Button 
+                          variant="ghost" 
+                          size="sm" 
+                          asChild
+                          className="mt-1 p-0 h-auto text-xs text-bio-light hover:text-bio-glow"
+                        >
+                          <a href={nested.openSeaUrl} target="_blank" rel="noopener noreferrer">
+                            <ExternalLink size={12} className="mr-1" />
+                            View on OpenSea
+                          </a>
+                        </Button>
+                      )}
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </CollapsibleContent>
+          </div>
+        </Collapsible>
+      )}
+
+      {/* OpenSea Button */}
+      {nft.openSeaUrl && (
+        <div className="p-4 border-t border-border">
+          <Button 
+            variant="default" 
+            size="sm" 
+            asChild
+            className="w-full bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-700 hover:to-blue-700 text-white border-0"
+          >
+            <a href={nft.openSeaUrl} target="_blank" rel="noopener noreferrer">
+              Buy on OpenSea
+            </a>
+          </Button>
+        </div>
+      )}
+    </Card>
+  );
+};

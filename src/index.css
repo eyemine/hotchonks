@@ -1,0 +1,134 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
+All colors MUST be HSL.
+*/
+
+@layer base {
+  :root {
+    /* Dark climate-focused theme inspired by carbon markets and ReFi */
+    --background: 220 15% 8%;
+    --foreground: 120 20% 95%;
+
+    --card: 220 15% 10%;
+    --card-foreground: 120 20% 95%;
+
+    --popover: 220 15% 12%;
+    --popover-foreground: 120 20% 95%;
+
+    --primary: 150 100% 35%;
+    --primary-foreground: 220 15% 8%;
+
+    --secondary: 220 15% 15%;
+    --secondary-foreground: 120 20% 85%;
+
+    --muted: 220 15% 15%;
+    --muted-foreground: 120 10% 65%;
+
+    --accent: 160 80% 45%;
+    --accent-foreground: 220 15% 8%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 220 15% 20%;
+    --input: 220 15% 18%;
+    --ring: 150 100% 35%;
+
+    /* Climate-themed design tokens */
+    --carbon-dark: 220 15% 8%;
+    --carbon-medium: 220 15% 12%;
+    --carbon-light: 220 15% 18%;
+    
+    --bio-green: 150 100% 35%;
+    --bio-light: 160 80% 45%;
+    --bio-glow: 140 100% 60%;
+    
+    --earth-brown: 30 25% 20%;
+    --earth-gold: 45 70% 45%;
+    
+    /* Gradients for organic flows */
+    --gradient-carbon: linear-gradient(135deg, hsl(var(--carbon-dark)), hsl(var(--carbon-medium)));
+    --gradient-bio: linear-gradient(135deg, hsl(var(--bio-green)), hsl(var(--bio-light)));
+    --gradient-flow: linear-gradient(90deg, hsl(var(--bio-green)) 0%, hsl(var(--bio-light)) 50%, hsl(var(--bio-glow)) 100%);
+    --gradient-mesh: radial-gradient(circle at 50% 50%, hsl(var(--bio-green) / 0.1) 0%, transparent 70%);
+    
+    /* Organic shadows */
+    --shadow-bio: 0 8px 32px hsl(var(--bio-green) / 0.2);
+    --shadow-glow: 0 0 40px hsl(var(--bio-glow) / 0.3);
+    --shadow-card: 0 4px 20px hsl(var(--carbon-dark) / 0.4);
+    
+    /* Smooth transitions */
+    --transition-organic: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    --transition-glow: all 0.3s ease-out;
+
+    --radius: 0.5rem;
+
+    --sidebar-background: 0 0% 98%;
+
+    --sidebar-foreground: 240 5.3% 26.1%;
+
+    --sidebar-primary: 240 5.9% 10%;
+
+    --sidebar-primary-foreground: 0 0% 98%;
+
+    --sidebar-accent: 240 4.8% 95.9%;
+
+    --sidebar-accent-foreground: 240 5.9% 10%;
+
+    --sidebar-border: 220 13% 91%;
+
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+
+  .light {
+    /* Light mode with earth tones */
+    --background: 120 20% 98%;
+    --foreground: 220 15% 15%;
+
+    --card: 120 10% 96%;
+    --card-foreground: 220 15% 15%;
+
+    --popover: 120 10% 98%;
+    --popover-foreground: 220 15% 15%;
+
+    --primary: 150 60% 25%;
+    --primary-foreground: 120 20% 98%;
+
+    --secondary: 120 10% 90%;
+    --secondary-foreground: 220 15% 25%;
+
+    --muted: 120 10% 90%;
+    --muted-foreground: 220 10% 45%;
+
+    --accent: 160 50% 35%;
+    --accent-foreground: 120 20% 98%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 120 10% 85%;
+    --input: 120 10% 88%;
+    --ring: 150 60% 25%;
+    --sidebar-background: 240 5.9% 10%;
+    --sidebar-foreground: 240 4.8% 95.9%;
+    --sidebar-primary: 224.3 76.3% 48%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 240 3.7% 15.9%;
+    --sidebar-accent-foreground: 240 4.8% 95.9%;
+    --sidebar-border: 240 3.7% 15.9%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+  }
+}
