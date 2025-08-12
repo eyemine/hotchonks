@@ -17,5 +17,7 @@ export interface ChonkNFT {
     image: string;
     collection: string;
     zoraUrl?: string;
+    openSeaUrl?: string;
+    price?: string;
   }[];
 }

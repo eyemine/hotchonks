@@ -5,6 +5,8 @@ import { Badge } from "@/components/ui/badge";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
 import { ExternalLink, ChevronDown } from "lucide-react";
 import { useState } from "react";
+import { useZoraPrices } from "@/hooks/useZoraPrices";
+import { extractContractFromZoraUrl } from "@/utils/zoraApi";
 
 interface NestedNFT {
   id: string;
@@ -36,6 +38,7 @@ interface NFTCardProps {
 
 export const NFTCard = ({ nft }: NFTCardProps) => {
   const [isOpen, setIsOpen] = useState(false);
+  const { prices, loading: pricesLoading } = useZoraPrices(nft.nestedNFTs);
 
   return (
     <Card className="group bg-card border-border hover:border-bio-green/40 transition-all duration-500 hover:shadow-bio">
@@ -106,7 +109,11 @@ export const NFTCard = ({ nft }: NFTCardProps) => {
             <CollapsibleContent>
               <div className="px-4 pb-4">
                 <div className="grid grid-cols-2 gap-3">
-                  {nft.nestedNFTs.map((nested) => (
+                  {nft.nestedNFTs.map((nested) => {
+                    const contractAddress = nested.zoraUrl ? extractContractFromZoraUrl(nested.zoraUrl) : null;
+                    const price = contractAddress ? prices[contractAddress] : null;
+                    
+                    return (
                     <div key={nested.id} className="bg-card rounded-lg p-3 border border-border hover:border-bio-green/30 transition-all duration-300 hover:scale-110 cursor-pointer group/nested overflow-hidden">
                       <div className="overflow-hidden rounded mb-2">
                         <img 
@@ -116,6 +123,12 @@ export const NFTCard = ({ nft }: NFTCardProps) => {
                         />
                       </div>
                       <p className="text-xs font-medium text-foreground truncate">{nested.name}</p>
+                      {price && !pricesLoading && (
+                        <p className="text-xs font-bold text-bio-green mt-1">{price} ETH</p>
+                      )}
+                      {pricesLoading && nested.zoraUrl && (
+                        <p className="text-xs text-muted-foreground mt-1">Loading price...</p>
+                      )}
                       {nested.zoraUrl && (
                         <Button 
                           variant="ghost" 
@@ -143,7 +156,8 @@ export const NFTCard = ({ nft }: NFTCardProps) => {
                         </Button>
                       )}
                     </div>
-                  ))}
+                    );
+                  })}
                 </div>
               </div>
             </CollapsibleContent>

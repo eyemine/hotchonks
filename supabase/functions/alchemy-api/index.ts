@@ -14,12 +14,13 @@ serve(async (req) => {
   try {
     const alchemyApiKey = Deno.env.get('ALCHEMY_API_KEY');
     const openSeaApiKey = Deno.env.get('OPENSEA_API_KEY');
+    const zoraApiKey = Deno.env.get('ZORA_API_KEY');
     
     if (!alchemyApiKey) {
       throw new Error('Alchemy API key not configured');
     }
 
-    const { action, contractAddress, tokenIds, chain = 'base' } = await req.json();
+    const { action, contractAddress, tokenIds, chain = 'base', contractAddresses } = await req.json();
     
     console.log(`NFT API call: ${action}`, { contractAddress, tokenIds, chain });
 
@@ -80,6 +81,68 @@ serve(async (req) => {
       
       return new Response(
         JSON.stringify({ success: true, data: nftData }),
+        {
+          headers: { 
+            ...corsHeaders, 
+            'Content-Type': 'application/json' 
+          },
+        },
+      );
+    }
+    
+    if (action === 'getZoraPrices' && zoraApiKey) {
+      // Fetch Zora creator coin prices
+      const pricePromises = contractAddresses.map(async (contractAddr: string) => {
+        try {
+          const zoraUrl = `https://api.zora.co/discover/tokens/${contractAddr}`;
+          const response = await fetch(zoraUrl, {
+            headers: {
+              'Authorization': `Bearer ${zoraApiKey}`,
+              'Accept': 'application/json'
+            }
+          });
+          
+          if (response.ok) {
+            const data = await response.json();
+            return {
+              contractAddress: contractAddr,
+              price: data.token?.market?.price || null,
+              success: true
+            };
+          } else {
+            // Try alternative endpoint
+            const altUrl = `https://api.zora.co/v1/tokens/${contractAddr}`;
+            const altResponse = await fetch(altUrl, {
+              headers: {
+                'X-API-KEY': zoraApiKey,
+                'Accept': 'application/json'
+              }
+            });
+            
+            if (altResponse.ok) {
+              const altData = await altResponse.json();
+              return {
+                contractAddress: contractAddr,
+                price: altData.price || null,
+                success: true
+              };
+            }
+          }
+        } catch (error) {
+          console.error(`Error fetching Zora price for ${contractAddr}:`, error);
+        }
+        
+        return {
+          contractAddress: contractAddr,
+          price: null,
+          success: false
+        };
+      });
+      
+      const priceData = await Promise.all(pricePromises);
+      
+      return new Response(
+        JSON.stringify({ success: true, data: priceData }),
         {
           headers: { 
             ...corsHeaders, 
