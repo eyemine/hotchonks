@@ -11,6 +11,7 @@ export interface ChonkNFT {
   openSeaUrl: string;
   zoraUrl: string;
   sold?: boolean;
+  primaryCoinContract?: string;
   nestedNFTs: {
     id: string;
     name: string;
@@ -19,5 +20,6 @@ export interface ChonkNFT {
     zoraUrl?: string;
     openSeaUrl?: string;
     price?: string;
+    contractAddress?: string;
   }[];
 }

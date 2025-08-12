@@ -19,7 +19,7 @@ export const Header = () => {
               KlimaDAO
             </a>
             <a href="#gallery" className="text-muted-foreground hover:text-bio-light transition-colors">
-              NFT Shop
+              Bundle Shop
             </a>
             <a href="#game" className="text-muted-foreground hover:text-bio-light transition-colors">
               Chonks Playground

@@ -48,7 +48,8 @@ export const processAPIData = (apiResult: any): ChonkNFT[] => {
         openSeaUrl: `https://opensea.io/item/base/${CHONKS_CONTRACT}/${tokenId}`,
         zoraUrl: `https://zora.co/collect/base:${CHONKS_CONTRACT}/${tokenId}`,
         sold: sold,
-        nestedNFTs: nestedNFTs
+        nestedNFTs: nestedNFTs,
+        ...(tokenId === 585 ? { primaryCoinContract: '0xa056f3488947f2e625a1d800f24c531787cd7062' } : {})
       });
     });
   }

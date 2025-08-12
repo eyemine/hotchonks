@@ -15,6 +15,7 @@ interface NestedNFT {
   collection: string;
   zoraUrl?: string;
   openSeaUrl?: string;
+  contractAddress?: string;
 }
 
 interface NFT {
@@ -30,6 +31,7 @@ interface NFT {
   openSeaUrl?: string;
   zoraUrl?: string;
   sold?: boolean;
+  primaryCoinContract?: string;
 }
 
 interface NFTCardProps {
@@ -38,7 +40,12 @@ interface NFTCardProps {
 
 export const NFTCard = ({ nft }: NFTCardProps) => {
   const [isOpen, setIsOpen] = useState(false);
-  const { prices, marketCaps, loading: pricesLoading } = useZoraPrices(nft.nestedNFTs);
+  const { prices, marketCaps, loading: pricesLoading } = useZoraPrices([
+    ...nft.nestedNFTs,
+    ...(nft.primaryCoinContract
+      ? [{ id: 'primary', name: 'Primary', image: '', collection: 'Zora Coin', contractAddress: nft.primaryCoinContract }]
+      : [])
+  ]);
 
   return (
     <Card className="group bg-card border-border hover:border-bio-green/40 transition-all duration-500 hover:shadow-bio">
@@ -71,10 +78,17 @@ export const NFTCard = ({ nft }: NFTCardProps) => {
 
           {/* Price - only show if not sold and not coming soon */}
           {!nft.sold && nft.price !== 'Coming Soon' && nft.price !== 'SOLD' && (
-            <div className="pt-2">
+            <div className="pt-2 space-y-1">
               <span className="text-lg font-bold text-foreground">
                 {nft.price} ETH
               </span>
+              {nft.primaryCoinContract && (
+                <div className="text-xs text-muted-foreground">
+                  {marketCaps[nft.primaryCoinContract]
+                    ? <span className="text-bio-green font-semibold">${marketCaps[nft.primaryCoinContract]} market cap</span>
+                    : pricesLoading ? 'Loading market cap…' : 'Market cap unavailable'}
+                </div>
+              )}
             </div>
           )}
 
@@ -110,7 +124,7 @@ export const NFTCard = ({ nft }: NFTCardProps) => {
               <div className="px-4 pb-4">
                 <div className="grid grid-cols-1 gap-3">
                   {nft.nestedNFTs.map((nested) => {
-                    const contractAddress = nested.zoraUrl ? extractContractFromZoraUrl(nested.zoraUrl) : null;
+                    const contractAddress = nested.contractAddress || (nested.zoraUrl ? extractContractFromZoraUrl(nested.zoraUrl) : null);
                     const price = contractAddress ? prices[contractAddress] : null;
                     const marketCap = contractAddress ? marketCaps[contractAddress] : null;
                     

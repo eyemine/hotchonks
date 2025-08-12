@@ -12,8 +12,8 @@ export const useZoraPrices = (nestedNFTs: any[]) => {
         // Prefer explicit contractAddress on items; fallback to URL extraction
         const contractAddresses = Array.from(new Set(
           nestedNFTs
-            .filter(nft => nft.zoraUrl)
-            .map(nft => nft.contractAddress || extractContractFromZoraUrl(nft.zoraUrl))
+            .filter((nft: any) => nft.contractAddress || nft.zoraUrl)
+            .map((nft: any) => nft.contractAddress || extractContractFromZoraUrl(nft.zoraUrl))
             .filter(Boolean) as string[]
         ));
 
