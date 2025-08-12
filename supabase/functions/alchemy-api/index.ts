@@ -94,31 +94,39 @@ serve(async (req) => {
       );
     }
     
-    if (action === 'getZoraPrices' && zoraApiKey) {
+    if (action === 'getZoraPrices') {
       // Fetch Zora creator coin prices and market caps
       const pricePromises = contractAddresses.map(async (contractAddr: string) => {
         try {
-          // Try different Zora API endpoints for creator coins
+          // Try different Zora API endpoints for creator coins (without auth first)
           const endpoints = [
+            `https://api.zora.co/discover/tokens/zora:${contractAddr}`,
             `https://api.zora.co/discover/tokens/base:${contractAddr}`,
+            `https://zora.co/api/tokens/zora/${contractAddr}`,
+            `https://zora.co/api/tokens/base/${contractAddr}`,
             `https://api.zora.co/v1/tokens/base:${contractAddr}`,
             `https://api.zora.co/tokens/base/${contractAddr}`
           ];
           
           for (const endpoint of endpoints) {
             try {
-              const response = await fetch(endpoint, {
-                headers: {
-                  'Authorization': `Bearer ${zoraApiKey}`,
-                  'Accept': 'application/json'
-                }
-              });
+              const headers: Record<string, string> = {
+                'Accept': 'application/json'
+              };
+              if (zoraApiKey) {
+                headers['Authorization'] = `Bearer ${zoraApiKey}`;
+              }
+              
+              const response = await fetch(endpoint, { headers });
               
               if (response.ok) {
                 const data = await response.json();
+                console.log(`Zora API response for ${contractAddr}:`, JSON.stringify(data, null, 2));
                 // Attempt to extract price and market cap across possible shapes
                 const price = data.token?.market?.price || data.price || data.current_price || null;
-                const marketCap = data.token?.market?.market_cap || data.market_cap || data.marketCap || null;
+                const marketCap = data.token?.market?.market_cap || data.market_cap || data.marketCap || 
+                                data.token?.marketCap || data.token?.market_cap || null;
+                console.log(`Extracted for ${contractAddr}: price=${price}, marketCap=${marketCap}`);
                 return {
                   contractAddress: contractAddr,
                   price,
