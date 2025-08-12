@@ -142,20 +142,27 @@ export const NFTCard = ({ nft }: NFTCardProps) => {
 
                           {/* Market cap or collection */}
                           {nested.zoraUrl ? (
-                            <p className="text-xs text-muted-foreground mb-1">
-                              {marketCap ? `$${marketCap} market cap` : 'Loading market cap...'}
-                            </p>
+                            <p className="text-xs text-muted-foreground mb-1">Creator Coin</p>
                           ) : (
                             <p className="text-xs text-muted-foreground mb-1">{nested.collection}</p>
                           )}
 
-                          {/* Price and links in same row */}
+                          {/* Market cap as big number for Gone Green, price for others */}
                           <div className="flex items-center justify-between">
-                            {price && !pricesLoading && (
-                              <p className="text-sm font-bold text-bio-green">{price} ETH</p>
-                            )}
-                            {pricesLoading && nested.zoraUrl && (
-                              <p className="text-xs text-muted-foreground">Loading...</p>
+                            {isGoneGreen ? (
+                              // Show market cap as the big green number for Gone Green
+                              marketCap && !pricesLoading ? (
+                                <p className="text-sm font-bold text-bio-green">${marketCap} market cap</p>
+                              ) : pricesLoading ? (
+                                <p className="text-xs text-muted-foreground">Loading...</p>
+                              ) : null
+                            ) : (
+                              // Show price for non-Gone Green items
+                              price && !pricesLoading ? (
+                                <p className="text-sm font-bold text-bio-green">{price} ETH</p>
+                              ) : pricesLoading && nested.zoraUrl ? (
+                                <p className="text-xs text-muted-foreground">Loading...</p>
+                              ) : null
                             )}
                             
                             <div className="flex gap-1">
