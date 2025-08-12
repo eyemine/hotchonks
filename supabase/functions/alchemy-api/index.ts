@@ -44,20 +44,55 @@ serve(async (req) => {
           const response = await fetch(metadataUrl);
           const metadata = await response.json();
           
-          // Get OpenSea pricing data if API key is available
-          let pricingData = null;
+          // Get OpenSea pricing (listed price) if API key is available
+          let pricingData: any = null;
           if (openSeaApiKey) {
             try {
-              const openSeaUrl = `https://api.opensea.io/api/v2/chain/${chain}/contract/${contractAddress}/nfts/${tokenId}`;
-              const osResponse = await fetch(openSeaUrl, {
+              // Fetch the lowest Seaport listing for this token (v2 Orders API)
+              const listingsUrl = `https://api.opensea.io/api/v2/orders/${chain}/seaport/listings?asset_contract_address=${contractAddress}&token_ids=${tokenId}&order_by=eth_price&order_direction=asc&limit=1`;
+              const lsResponse = await fetch(listingsUrl, {
                 headers: {
                   'X-API-KEY': openSeaApiKey,
                   'Accept': 'application/json'
                 }
               });
-              
-              if (osResponse.ok) {
-                pricingData = await osResponse.json();
+
+              if (lsResponse.ok) {
+                const lsJson = await lsResponse.json();
+                const order = lsJson?.orders?.[0] || lsJson?.listings?.[0] || null;
+
+                const extractDecimal = (o: any): number | null => {
+                  if (!o) return null;
+                  // Common v2 shapes
+                  if (o.price?.decimal != null) return Number(o.price.decimal);
+                  if (o.price?.amount?.decimal != null) return Number(o.price.amount.decimal);
+                  // Older shapes
+                  if (o.current_price) {
+                    const n = Number(o.current_price);
+                    return isFinite(n) ? n / 1e18 : null;
+                  }
+                  if (typeof o.price === 'string') {
+                    const n = Number(o.price);
+                    return isFinite(n) ? n : null;
+                  }
+                  return null;
+                };
+
+                const decimal = extractDecimal(order);
+                const currency = order?.price?.currency || order?.price?.currency_address || order?.maker_asset_bundle?.assets?.[0]?.name || 'ETH';
+
+                if (decimal != null) {
+                  pricingData = {
+                    best_listing: {
+                      price: {
+                        decimal,
+                        currency
+                      }
+                    },
+                    source: 'opensea-v2',
+                    raw: order
+                  };
+                }
               }
             } catch (e) {
               console.log(`OpenSea API error for token ${tokenId}:`, e);

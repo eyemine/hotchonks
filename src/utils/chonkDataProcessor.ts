@@ -19,11 +19,14 @@ export const processAPIData = (apiResult: any): ChonkNFT[] => {
       if (tokenId === 596) {
         price = 'SOLD';
         sold = true;
-      } else if (pricing?.best_listing?.price?.decimal) {
-        // Use OpenSea v2 API structure
-        price = pricing.best_listing.price.decimal;
+      } else if (typeof pricing?.best_listing?.price?.decimal === 'number') {
+        // OpenSea v2 Orders parsed by our edge function
+        price = (pricing.best_listing.price.decimal as number).toFixed(4);
+      } else if (typeof pricing?.best_listing?.price?.decimal === 'string') {
+        const dec = parseFloat(pricing.best_listing.price.decimal as string);
+        if (!isNaN(dec)) price = dec.toFixed(4);
       } else if (pricing?.orders && pricing.orders.length > 0) {
-        // Fallback to old structure if available
+        // Fallback to older OS shapes if available
         const lowestPrice = pricing.orders
           .filter((order: any) => order.order_type === 'listing')
           .sort((a: any, b: any) => parseFloat(a.current_price) - parseFloat(b.current_price))[0];
