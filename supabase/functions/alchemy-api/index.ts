@@ -98,91 +98,96 @@ serve(async (req) => {
     }
     
     if (action === 'getZoraPrices') {
-      // Web scraping approach for Zora creator coin market caps
+      // Use Zora official API for creator coin prices/market caps
       const pricePromises = contractAddresses.map(async (contractAddr: string) => {
         try {
-          console.log(`Scraping market data for contract ${contractAddr}`);
-          
-          const pageUrl = `https://zora.co/coin/base:${contractAddr}`;
-          const pageResponse = await fetch(pageUrl, {
-            headers: {
-              'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36',
-              'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
-              'Accept-Language': 'en-US,en;q=0.5',
-              'Accept-Encoding': 'gzip, deflate, br',
-              'Connection': 'keep-alive',
-              'Upgrade-Insecure-Requests': '1'
-            }
-          });
-          
-          if (pageResponse.ok) {
-            const html = await pageResponse.text();
-            console.log(`Scraped ${html.length} characters for ${contractAddr}`);
-            
-            // Multiple patterns to find market cap
-            const patterns = [
-              /Market Cap[^$]*\$([0-9,]+\.?[0-9]*)/i,
-              /\$([0-9,]+\.?[0-9]*)[^0-9]*market cap/i,
-              /"marketCap"\s*:\s*"?([0-9,]+\.?[0-9]*)"?/i,
-              /market[^$]*cap[^$]*\$([0-9,]+\.?[0-9]*)/i,
-              /\$([0-9,]+\.?[0-9]*)[^0-9]*Market/i
-            ];
-            
-            let marketCap = null;
-            for (const pattern of patterns) {
-              const match = html.match(pattern);
-              if (match) {
-                marketCap = match[1].replace(/,/g, '');
-                console.log(`Found market cap for ${contractAddr}: $${marketCap} using pattern`);
-                break;
+          let price: string | null = null;
+          let marketCap: string | null = null;
+
+          // 1) Try REST Coins API
+          try {
+            const restUrl = `https://api.zora.co/coin/v1/coins/base:${contractAddr}`;
+            const restResp = await fetch(restUrl, {
+              headers: {
+                'X-API-KEY': zoraApiKey || '',
+                'Accept': 'application/json'
               }
-            }
-            
-            // Also try to find price patterns
-            const pricePatterns = [
-              /price[^$]*\$([0-9,]+\.?[0-9]*)/i,
-              /"price"\s*:\s*"?([0-9,]+\.?[0-9]*)"?/i
-            ];
-            
-            let price = null;
-            for (const pattern of pricePatterns) {
-              const match = html.match(pattern);
-              if (match) {
-                price = match[1].replace(/,/g, '');
-                console.log(`Found price for ${contractAddr}: $${price}`);
-                break;
-              }
-            }
-            
-            if (marketCap || price) {
-              return {
-                contractAddress: contractAddr,
-                price: price,
-                marketCap: marketCap,
-                success: true
-              };
+            });
+
+            if (restResp.ok) {
+              const j = await restResp.json();
+              const pick = (v: any) => (v === 0 || v) ? String(v) : null;
+              // Attempt common fields
+              price = pick(j?.data?.price?.usd) || pick(j?.data?.priceUsd) || pick(j?.priceUsd) || pick(j?.priceUSD) || pick(j?.price?.usd) || price;
+              marketCap = pick(j?.data?.marketCap?.usd) || pick(j?.data?.marketCapUsd) || pick(j?.marketCapUsd) || pick(j?.marketCapUSD) || pick(j?.marketCap?.usd) || marketCap;
             } else {
-              console.log(`No market data found in HTML for ${contractAddr}`);
+              console.log(`Zora REST returned ${restResp.status} for ${contractAddr}`);
             }
-          } else {
-            console.log(`Failed to fetch page for ${contractAddr}: ${pageResponse.status}`);
+          } catch (e) {
+            console.log(`Zora REST error for ${contractAddr}:`, e);
           }
-          
+
+          // 2) Fallback to GraphQL if needed
+          if (!price && !marketCap) {
+            try {
+              const gqlUrl = 'https://api.zora.co/graphql';
+              const gqlQuery = `
+                query CoinData($address: String!, $network: Network!) {
+                  coin(address: $address, network: $network) {
+                    price { usd }
+                    marketCap { usd }
+                  }
+                }
+              `;
+              const gqlBody = {
+                query: gqlQuery,
+                variables: { address: contractAddr, network: 'BASE' }
+              };
+
+              const gqlResp = await fetch(gqlUrl, {
+                method: 'POST',
+                headers: {
+                  'X-API-KEY': zoraApiKey || '',
+                  'Content-Type': 'application/json',
+                  'Accept': 'application/json'
+                },
+                body: JSON.stringify(gqlBody)
+              });
+
+              if (gqlResp.ok) {
+                const gj = await gqlResp.json();
+                const coin = gj?.data?.coin;
+                if (coin) {
+                  price = coin?.price?.usd != null ? String(coin.price.usd) : price;
+                  marketCap = coin?.marketCap?.usd != null ? String(coin.marketCap.usd) : marketCap;
+                }
+              } else {
+                console.log(`Zora GraphQL returned ${gqlResp.status} for ${contractAddr}`);
+              }
+            } catch (e) {
+              console.log(`Zora GraphQL error for ${contractAddr}:`, e);
+            }
+          }
+
+          return {
+            contractAddress: contractAddr,
+            price,
+            marketCap,
+            success: !!(price || marketCap)
+          };
         } catch (error) {
-          console.error(`Error scraping data for ${contractAddr}:`, error);
+          console.error(`Error fetching market data for ${contractAddr}:`, error);
+          return {
+            contractAddress: contractAddr,
+            price: null,
+            marketCap: null,
+            success: false
+          };
         }
-        
-        // Return null data if scraping fails
-        return {
-          contractAddress: contractAddr,
-          price: null,
-          marketCap: null,
-          success: false
-        };
       });
-      
+
       const priceData = await Promise.all(pricePromises);
-      console.log('Final scraped price data:', priceData);
+      console.log('Final Zora price data:', priceData);
       
       return new Response(
         JSON.stringify({ success: true, data: priceData }),
