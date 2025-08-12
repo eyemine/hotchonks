@@ -185,6 +185,24 @@ export const getNestedNFTs = (tokenId: number) => {
         zoraUrl: 'https://zora.co/@chonk681'
       }
     ],
+    693: [
+      {
+        id: 'gone-green-693',
+        name: 'Gone Green #693',
+        image: '/lovable-uploads/6ae587b6-de3a-43e1-ac42-5b76f0076c44.png',
+        collection: 'Gone Green',
+        zoraUrl: 'https://zora.co/@chonk693'
+      }
+    ],
+    700: [
+      {
+        id: 'gone-green-700',
+        name: 'Gone Green #700',
+        image: '/lovable-uploads/3c37a26e-18da-4f5d-971d-bfb366969143.png',
+        collection: 'Gone Green',
+        zoraUrl: 'https://zora.co/@chonk700'
+      }
+    ],
     697: [
       {
         id: 'gone-green-697',
@@ -199,6 +217,15 @@ export const getNestedNFTs = (tokenId: number) => {
         image: '/lovable-uploads/9546ef85-5991-4c07-9718-b259b3c74e33.png',
         collection: 'Klima DAO',
         openSeaUrl: 'https://opensea.io/item/base/0x2530ffff980ae3400b0e4c1dc222f1536972077e/4'
+      }
+    ],
+    972: [
+      {
+        id: 'gone-green-972',
+        name: 'Gone Green #972',
+        image: '/lovable-uploads/e45c4634-41b3-4743-a429-c03e46aef48e.png',
+        collection: 'Gone Green',
+        zoraUrl: 'https://zora.co/@chonk972'
       }
     ],
     9534: [
