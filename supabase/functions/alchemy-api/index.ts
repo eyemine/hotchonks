@@ -169,28 +169,12 @@ serve(async (req) => {
           console.error(`Error fetching Zora data for ${contractAddr}:`, error);
         }
         
-        // If all API calls fail, return hardcoded data for testing
-        const hardcodedData: Record<string, any> = {
-          '0x8bc6e5e303344f5526057df842316ff4c347efd7': { price: '0.001234', marketCap: '686.44' },
-          '0xcbe47fa36e99d11125660262611a1fc998f330b5': { price: '0.001156', marketCap: '542.33' },
-          '0x021594a8005aec083f04b53edf2e57e941086d5e': { price: '0.001089', marketCap: '478.12' },
-          '0x09d5b3297545f69a8893bb7a610132354117b66e': { price: '0.001267', marketCap: '623.45' },
-          '0xe995b8f87c76614fd094acc971d1651ab82f6a2a': { price: '0.001334', marketCap: '712.89' },
-          '0xd0c95dca0101eca9725aed891bda0a2b1a394e38': { price: '0.001445', marketCap: '834.56' },
-          '0xdf042a1398377f9ae2d3b482bb2e1aba9bb8da01': { price: '0.001523', marketCap: '945.67' },
-          '0xbef0550be11c727cdf0ee6a9b4c6616b0aaff334': { price: '0.001678', marketCap: '1023.78' },
-          '0x12ea7232bb05e031a0ac588662fac0b2d2a93dbe': { price: '0.001789', marketCap: '1134.89' },
-          '0xc32913cebf6d266a86e4b613927743171ccd174b': { price: '0.001890', marketCap: '1245.90' }
-        };
-        
-        const fallback = hardcodedData[contractAddr.toLowerCase()];
-        console.log(`Using fallback data for ${contractAddr}:`, fallback);
-        
+        // Return null data if API calls fail
         return {
           contractAddress: contractAddr,
-          price: fallback?.price || null,
-          marketCap: fallback?.marketCap || null,
-          success: !!fallback
+          price: null,
+          marketCap: null,
+          success: false
         };
       });
       
