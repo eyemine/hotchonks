@@ -18,7 +18,7 @@ export const KlimaSection = () => {
           </h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
             Every Green Chonk NFT is backed by real carbon offset certificates through KlimaDAO's 
-            decentralized carbon market infrastructure. They are also holding $KLIMA which is staking for September's TGE. They average 3 carbon tonnes retired and 99 $KLIMA each at a purchase cost of around $20 USD.
+            decentralized carbon market infrastructure. They are also holding $KLIMA which is staking for September's TGE. They average 7.75 carbon tonnes retired and 100 $KLIMA each.
           </p>
         </div>
 
@@ -29,7 +29,7 @@ export const KlimaSection = () => {
               <div className="w-12 h-12 bg-bio-green/20 rounded-full flex items-center justify-center mx-auto mb-4">
                 <Leaf className="w-6 h-6 text-bio-light" />
               </div>
-              <h3 className="text-2xl font-bold text-foreground mb-2">2,847</h3>
+              <h3 className="text-2xl font-bold text-foreground mb-2">155</h3>
               <p className="text-muted-foreground">Tons CO₂ Offset</p>
             </CardContent>
           </Card>
@@ -39,7 +39,7 @@ export const KlimaSection = () => {
               <div className="w-12 h-12 bg-bio-green/20 rounded-full flex items-center justify-center mx-auto mb-4">
                 <Leaf className="w-6 h-6 text-bio-light" />
               </div>
-              <h3 className="text-2xl font-bold text-foreground mb-2">15,923</h3>
+              <h3 className="text-2xl font-bold text-foreground mb-2">1,999</h3>
               <p className="text-muted-foreground">KLIMA Tokens Staked</p>
             </CardContent>
           </Card>
@@ -49,8 +49,8 @@ export const KlimaSection = () => {
               <div className="w-12 h-12 bg-bio-green/20 rounded-full flex items-center justify-center mx-auto mb-4">
                 <Leaf className="w-6 h-6 text-bio-light" />
               </div>
-              <h3 className="text-2xl font-bold text-foreground mb-2">$127k</h3>
-              <p className="text-muted-foreground">Total Climate Impact</p>
+              <h3 className="text-2xl font-bold text-foreground mb-2">5,968</h3>
+              <p className="text-muted-foreground">Trees Equivalent</p>
             </CardContent>
           </Card>
         </div>
