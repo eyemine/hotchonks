@@ -1,20 +1,18 @@
+import { supabase } from "@/integrations/supabase/client";
+
 export const fetchZoraPrices = async (contractAddresses: string[]) => {
-  const response = await fetch('https://zxbmbnfpgnkcrjacxegi.supabase.co/functions/v1/alchemy-api', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({
+  const { data, error } = await supabase.functions.invoke('alchemy-api', {
+    body: {
       action: 'getZoraPrices',
-      contractAddresses: contractAddresses
-    })
+      contractAddresses,
+    }
   });
-  
-  if (!response.ok) {
-    throw new Error('Zora API failed');
+
+  if (error) {
+    throw new Error(error.message || 'Zora API failed');
   }
-  
-  return await response.json();
+
+  return data;
 };
 
 export const extractContractFromZoraUrl = (zoraUrl: string): string | null => {

@@ -108,7 +108,7 @@ export const NFTCard = ({ nft }: NFTCardProps) => {
             </CollapsibleTrigger>
             <CollapsibleContent>
               <div className="px-4 pb-4">
-                <div className="grid grid-cols-1 gap-4">{/* Changed from grid-cols-2 to grid-cols-1 for larger items */}
+                <div className="grid grid-cols-1 gap-4">{/* Larger nested items */}
                   {nft.nestedNFTs.map((nested) => {
                     const contractAddress = nested.zoraUrl ? extractContractFromZoraUrl(nested.zoraUrl) : null;
                     const price = contractAddress ? prices[contractAddress] : null;
@@ -116,7 +116,7 @@ export const NFTCard = ({ nft }: NFTCardProps) => {
                     return (
                     <div key={nested.id} className="bg-card rounded-lg p-4 border border-border hover:border-bio-green/30 transition-all duration-300 hover:scale-105 cursor-pointer group/nested overflow-hidden">
                       <div className="flex gap-4">
-                        <div className="flex-shrink-0 w-24 h-24 overflow-hidden rounded">
+                        <div className="flex-shrink-0 w-32 h-32 md:w-36 md:h-36 overflow-hidden rounded">
                           <img 
                             src={nested.image} 
                             alt={nested.name}
@@ -124,10 +124,10 @@ export const NFTCard = ({ nft }: NFTCardProps) => {
                           />
                         </div>
                         <div className="flex-1 min-w-0">
-                          <p className="text-sm font-medium text-foreground truncate">{nested.name}</p>
-                          <p className="text-xs text-muted-foreground mb-2">{nested.collection}</p>
+                          <p className="text-base md:text-lg font-semibold text-foreground truncate">{nested.name}</p>
+                          <p className="text-sm text-muted-foreground mb-2">{nested.collection}</p>
                           {price && !pricesLoading && (
-                            <p className="text-sm font-bold text-bio-green">{price} ETH</p>
+                            <p className="text-base md:text-lg font-bold text-bio-green">{price} ETH</p>
                           )}
                           {pricesLoading && nested.zoraUrl && (
                             <p className="text-xs text-muted-foreground">Loading price...</p>

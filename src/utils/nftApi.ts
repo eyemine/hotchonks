@@ -1,23 +1,20 @@
 
 import { CHONKS_CONTRACT } from "@/constants/chonks";
+import { supabase } from "@/integrations/supabase/client";
 
 export const fetchNFTDataFromAPI = async (tokenIds: number[]) => {
-  const response = await fetch('https://zxbmbnfpgnkcrjacxegi.supabase.co/functions/v1/alchemy-api', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({
+  const { data, error } = await supabase.functions.invoke('alchemy-api', {
+    body: {
       action: 'getNFTMetadata',
       contractAddress: CHONKS_CONTRACT,
       tokenIds: tokenIds.map(id => id.toString()),
       chain: 'base'
-    })
+    }
   });
-  
-  if (!response.ok) {
-    throw new Error('API failed');
+
+  if (error) {
+    throw new Error(error.message || 'API failed');
   }
-  
-  return await response.json();
+
+  return data;
 };
