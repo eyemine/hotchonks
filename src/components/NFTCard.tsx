@@ -142,7 +142,7 @@ export const NFTCard = ({ nft }: NFTCardProps) => {
                           {/* Market cap or collection */}
                           {nested.zoraUrl ? (
                             <p className="text-sm text-muted-foreground mb-2">
-                              {marketCap ? `${marketCap} ETH market cap` : '—'}
+                              {marketCap ? `$${marketCap} market cap` : 'Loading market cap...'}
                             </p>
                           ) : (
                             <p className="text-xs text-muted-foreground mb-2">{nested.collection}</p>

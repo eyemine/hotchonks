@@ -28,9 +28,16 @@ export const useZoraPrices = (nestedNFTs: any[]) => {
           result.data.forEach((item: any) => {
             const normalize = (val: any) => {
               if (val == null) return null;
-              if (typeof val === 'string' && /^(\d{11,})$/.test(val)) {
-                const eth = (parseFloat(val) / 1e18).toFixed(6);
-                return eth;
+              if (typeof val === 'string') {
+                // Handle USD market cap values like "686.44"
+                if (val.includes('$') || !val.includes('.')) {
+                  return val.replace('$', ''); // Remove $ sign but keep as is
+                }
+                // Handle ETH values in wei
+                if (/^(\d{11,})$/.test(val)) {
+                  return (parseFloat(val) / 1e18).toFixed(6);
+                }
+                return val;
               }
               if (typeof val === 'number') return val.toFixed(6);
               return String(val);
