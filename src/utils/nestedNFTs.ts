@@ -234,7 +234,8 @@ export const getNestedNFTs = (tokenId: number) => {
         name: 'Gone Green #972',
         image: '/lovable-uploads/e45c4634-41b3-4743-a429-c03e46aef48e.png',
         collection: 'Gone Green',
-        zoraUrl: 'https://zora.co/@chonk972'
+        zoraUrl: 'https://zora.co/coin/base:0x8056d4b41db338c6c4e792527f80e73ef54cb094',
+        contractAddress: '0x8056d4b41db338c6c4e792527f80e73ef54cb094'
       }
     ],
     9534: [
