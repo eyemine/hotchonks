@@ -95,7 +95,7 @@ serve(async (req) => {
     }
     
     if (action === 'getZoraPrices' && zoraApiKey) {
-      // Fetch Zora creator coin prices
+      // Fetch Zora creator coin prices and market caps
       const pricePromises = contractAddresses.map(async (contractAddr: string) => {
         try {
           // Try different Zora API endpoints for creator coins
@@ -116,10 +116,13 @@ serve(async (req) => {
               
               if (response.ok) {
                 const data = await response.json();
+                // Attempt to extract price and market cap across possible shapes
                 const price = data.token?.market?.price || data.price || data.current_price || null;
+                const marketCap = data.token?.market?.market_cap || data.market_cap || data.marketCap || null;
                 return {
                   contractAddress: contractAddr,
-                  price: price,
+                  price,
+                  marketCap,
                   success: true
                 };
               }
@@ -134,6 +137,7 @@ serve(async (req) => {
         return {
           contractAddress: contractAddr,
           price: null,
+          marketCap: null,
           success: false
         };
       });

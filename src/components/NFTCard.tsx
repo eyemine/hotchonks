@@ -38,7 +38,7 @@ interface NFTCardProps {
 
 export const NFTCard = ({ nft }: NFTCardProps) => {
   const [isOpen, setIsOpen] = useState(false);
-  const { prices, loading: pricesLoading } = useZoraPrices(nft.nestedNFTs);
+  const { prices, marketCaps, loading: pricesLoading } = useZoraPrices(nft.nestedNFTs);
 
   return (
     <Card className="group bg-card border-border hover:border-bio-green/40 transition-all duration-500 hover:shadow-bio">
@@ -112,6 +112,10 @@ export const NFTCard = ({ nft }: NFTCardProps) => {
                   {nft.nestedNFTs.map((nested) => {
                     const contractAddress = nested.zoraUrl ? extractContractFromZoraUrl(nested.zoraUrl) : null;
                     const price = contractAddress ? prices[contractAddress] : null;
+                    const marketCap = contractAddress ? marketCaps[contractAddress] : null;
+                    
+                    const isGoneGreen = nested.collection === 'Gone Green' || /Gone\s+Green/i.test(nested.name);
+                    const numberTag = nested.name.match(/#\d+/)?.[0] || '';
                     
                     return (
                     <div key={nested.id} className="bg-card rounded-lg p-4 border border-border hover:border-bio-green/30 transition-all duration-300 hover:scale-105 cursor-pointer group/nested overflow-hidden">
@@ -124,8 +128,26 @@ export const NFTCard = ({ nft }: NFTCardProps) => {
                           />
                         </div>
                         <div className="flex-1 min-w-0">
-                          <p className="text-base md:text-lg font-semibold text-foreground truncate">{nested.name}</p>
-                          <p className="text-sm text-muted-foreground mb-2">{nested.collection}</p>
+                          {/* Name formatting */}
+                          {isGoneGreen ? (
+                            <p className="text-base md:text-lg font-semibold text-foreground leading-tight">
+                              <span className="block">Gone</span>
+                              <span className="block">Green</span>
+                              <span className="block">{numberTag}</span>
+                            </p>
+                          ) : (
+                            <p className="text-sm font-medium text-foreground truncate">{nested.name}</p>
+                          )}
+
+                          {/* Market cap or collection */}
+                          {nested.zoraUrl ? (
+                            <p className="text-sm text-muted-foreground mb-2">
+                              {marketCap ? `${marketCap} ETH market cap` : '—'}
+                            </p>
+                          ) : (
+                            <p className="text-xs text-muted-foreground mb-2">{nested.collection}</p>
+                          )}
+
                           {price && !pricesLoading && (
                             <p className="text-base md:text-lg font-bold text-bio-green">{price} ETH</p>
                           )}

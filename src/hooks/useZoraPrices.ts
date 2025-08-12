@@ -3,6 +3,7 @@ import { fetchZoraPrices, extractContractFromZoraUrl } from '@/utils/zoraApi';
 
 export const useZoraPrices = (nestedNFTs: any[]) => {
   const [prices, setPrices] = useState<Record<string, string>>({});
+  const [marketCaps, setMarketCaps] = useState<Record<string, string>>({});
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -21,18 +22,28 @@ export const useZoraPrices = (nestedNFTs: any[]) => {
 
         const result = await fetchZoraPrices(contractAddresses);
         
-        if (result.success && result.data) {
+        if (result?.success && result.data) {
           const priceMap: Record<string, string> = {};
+          const marketCapMap: Record<string, string> = {};
           result.data.forEach((item: any) => {
-            if (item.price) {
-              // Convert price to ETH if it's in wei
-              const priceInEth = typeof item.price === 'string' && item.price.length > 10
-                ? (parseFloat(item.price) / 1e18).toFixed(6)
-                : item.price;
-              priceMap[item.contractAddress] = priceInEth;
-            }
+            const normalize = (val: any) => {
+              if (val == null) return null;
+              if (typeof val === 'string' && /^(\d{11,})$/.test(val)) {
+                const eth = (parseFloat(val) / 1e18).toFixed(6);
+                return eth;
+              }
+              if (typeof val === 'number') return val.toFixed(6);
+              return String(val);
+            };
+
+            const addr = item.contractAddress;
+            const price = normalize(item.price);
+            const marketCap = normalize(item.marketCap);
+            if (price) priceMap[addr] = price;
+            if (marketCap) marketCapMap[addr] = marketCap;
           });
           setPrices(priceMap);
+          setMarketCaps(marketCapMap);
         }
       } catch (error) {
         console.error('Error fetching Zora prices:', error);
@@ -44,5 +55,5 @@ export const useZoraPrices = (nestedNFTs: any[]) => {
     fetchPrices();
   }, [nestedNFTs]);
 
-  return { prices, loading };
+  return { prices, marketCaps, loading };
 };
