@@ -143,25 +143,21 @@ export const NFTCard = ({ nft }: NFTCardProps) => {
                             <p className="text-sm font-medium text-foreground truncate mb-1">{nested.name}</p>
                           )}
 
-                          {/* Market cap or collection */}
-                          {nested.zoraUrl ? (
-                            <p className="text-xs text-muted-foreground mb-1">Creator Coin</p>
-                          ) : (
+                          {/* Collection for non-Zora items only */}
+                          {!nested.zoraUrl && (
                             <p className="text-xs text-muted-foreground mb-1">{nested.collection}</p>
                           )}
 
                           {/* Market cap as big number for Gone Green, price for others */}
                           <div className="flex items-center justify-between">
                             {isGoneGreen ? (
-                              // Show market cap as the big green number for Gone Green
-                              !pricesLoading ? (
-                                marketCap ? (
-                                  <p className="text-sm font-bold text-bio-green">${marketCap} market cap</p>
-                                ) : (
-                                  <p className="text-sm font-bold text-bio-green">$686.44 market cap</p>
-                                )
-                              ) : (
+                              // Show market cap as the big green number for Gone Green (real API only)
+                              marketCap && !pricesLoading ? (
+                                <p className="text-sm font-bold text-bio-green">${marketCap} market cap</p>
+                              ) : pricesLoading ? (
                                 <p className="text-xs text-muted-foreground">Loading...</p>
+                              ) : (
+                                <p className="text-xs text-muted-foreground">Market cap unavailable</p>
                               )
                             ) : (
                               // Show price for non-Gone Green items
