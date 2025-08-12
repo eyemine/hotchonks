@@ -95,81 +95,81 @@ serve(async (req) => {
     }
     
     if (action === 'getZoraPrices') {
-      // Fetch real Zora creator coin data using contract addresses
+      // Web scraping approach for Zora creator coin market caps
       const pricePromises = contractAddresses.map(async (contractAddr: string) => {
         try {
-          // Try to fetch market data from Zora's API
-          const zoraUrl = `https://api.zora.co/discover/markets/base:${contractAddr}`;
+          console.log(`Scraping market data for contract ${contractAddr}`);
           
-          console.log(`Fetching market data for ${contractAddr} from: ${zoraUrl}`);
+          const pageUrl = `https://zora.co/coin/base:${contractAddr}`;
+          const pageResponse = await fetch(pageUrl, {
+            headers: {
+              'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36',
+              'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
+              'Accept-Language': 'en-US,en;q=0.5',
+              'Accept-Encoding': 'gzip, deflate, br',
+              'Connection': 'keep-alive',
+              'Upgrade-Insecure-Requests': '1'
+            }
+          });
           
-          const headers: Record<string, string> = {
-            'Accept': 'application/json',
-            'User-Agent': 'Chonks-NFT-App/1.0'
-          };
-          
-          if (zoraApiKey) {
-            headers['Authorization'] = `Bearer ${zoraApiKey}`;
-          }
-          
-          const response = await fetch(zoraUrl, { headers });
-          
-          if (response.ok) {
-            const data = await response.json();
-            console.log(`Zora market data for ${contractAddr}:`, JSON.stringify(data, null, 2));
+          if (pageResponse.ok) {
+            const html = await pageResponse.text();
+            console.log(`Scraped ${html.length} characters for ${contractAddr}`);
             
-            // Extract market data from the response
-            let price = null;
+            // Multiple patterns to find market cap
+            const patterns = [
+              /Market Cap[^$]*\$([0-9,]+\.?[0-9]*)/i,
+              /\$([0-9,]+\.?[0-9]*)[^0-9]*market cap/i,
+              /"marketCap"\s*:\s*"?([0-9,]+\.?[0-9]*)"?/i,
+              /market[^$]*cap[^$]*\$([0-9,]+\.?[0-9]*)/i,
+              /\$([0-9,]+\.?[0-9]*)[^0-9]*Market/i
+            ];
+            
             let marketCap = null;
-            
-            if (data.market) {
-              price = data.market.price || data.market.current_price;
-              marketCap = data.market.market_cap || data.market.marketCap;
-            } else if (data.token) {
-              price = data.token.price || data.token.current_price;
-              marketCap = data.token.market_cap || data.token.marketCap;
+            for (const pattern of patterns) {
+              const match = html.match(pattern);
+              if (match) {
+                marketCap = match[1].replace(/,/g, '');
+                console.log(`Found market cap for ${contractAddr}: $${marketCap} using pattern`);
+                break;
+              }
             }
             
-            // If we got data, format it properly
-            if (price || marketCap) {
+            // Also try to find price patterns
+            const pricePatterns = [
+              /price[^$]*\$([0-9,]+\.?[0-9]*)/i,
+              /"price"\s*:\s*"?([0-9,]+\.?[0-9]*)"?/i
+            ];
+            
+            let price = null;
+            for (const pattern of pricePatterns) {
+              const match = html.match(pattern);
+              if (match) {
+                price = match[1].replace(/,/g, '');
+                console.log(`Found price for ${contractAddr}: $${price}`);
+                break;
+              }
+            }
+            
+            if (marketCap || price) {
               return {
                 contractAddress: contractAddr,
-                price: price ? String(price) : null,
-                marketCap: marketCap ? String(marketCap) : null,
+                price: price,
+                marketCap: marketCap,
                 success: true
               };
+            } else {
+              console.log(`No market data found in HTML for ${contractAddr}`);
             }
           } else {
-            console.log(`Zora API returned ${response.status} for ${contractAddr}`);
-          }
-          
-          // Fallback: Try alternative endpoint
-          const altUrl = `https://api.zora.co/tokens/base:${contractAddr}`;
-          console.log(`Trying alternative endpoint: ${altUrl}`);
-          
-          const altResponse = await fetch(altUrl, { headers });
-          if (altResponse.ok) {
-            const altData = await altResponse.json();
-            console.log(`Alternative Zora data for ${contractAddr}:`, JSON.stringify(altData, null, 2));
-            
-            const price = altData.price || altData.current_price;
-            const marketCap = altData.market_cap || altData.marketCap;
-            
-            if (price || marketCap) {
-              return {
-                contractAddress: contractAddr,
-                price: price ? String(price) : null,
-                marketCap: marketCap ? String(marketCap) : null,
-                success: true
-              };
-            }
+            console.log(`Failed to fetch page for ${contractAddr}: ${pageResponse.status}`);
           }
           
         } catch (error) {
-          console.error(`Error fetching Zora data for ${contractAddr}:`, error);
+          console.error(`Error scraping data for ${contractAddr}:`, error);
         }
         
-        // Return null data if API calls fail
+        // Return null data if scraping fails
         return {
           contractAddress: contractAddr,
           price: null,
@@ -179,7 +179,7 @@ serve(async (req) => {
       });
       
       const priceData = await Promise.all(pricePromises);
-      console.log('Final Zora price data:', priceData);
+      console.log('Final scraped price data:', priceData);
       
       return new Response(
         JSON.stringify({ success: true, data: priceData }),
