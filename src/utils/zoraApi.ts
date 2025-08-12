@@ -16,6 +16,7 @@ export const fetchZoraPrices = async (contractAddresses: string[]) => {
 };
 
 export const extractContractFromZoraUrl = (zoraUrl: string): string | null => {
+  // Support legacy /coin/base:<contract> URLs only (preferred is explicit contractAddress in data)
   const match = zoraUrl.match(/\/coin\/base:([a-fA-F0-9x]+)/);
   return match ? match[1] : null;
 };

@@ -9,11 +9,13 @@ export const useZoraPrices = (nestedNFTs: any[]) => {
   useEffect(() => {
     const fetchPrices = async () => {
       try {
-        // Extract contract addresses from Zora URLs
-        const contractAddresses = nestedNFTs
-          .filter(nft => nft.zoraUrl)
-          .map(nft => extractContractFromZoraUrl(nft.zoraUrl))
-          .filter(Boolean) as string[];
+        // Prefer explicit contractAddress on items; fallback to URL extraction
+        const contractAddresses = Array.from(new Set(
+          nestedNFTs
+            .filter(nft => nft.zoraUrl)
+            .map(nft => nft.contractAddress || extractContractFromZoraUrl(nft.zoraUrl))
+            .filter(Boolean) as string[]
+        ));
 
         if (contractAddresses.length === 0) {
           setLoading(false);
