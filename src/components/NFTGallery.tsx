@@ -13,7 +13,9 @@ export const NFTGallery = () => {
         <div className="container mx-auto max-w-7xl">
           <div className="text-center mb-12">
             <h2 className="text-4xl md:text-5xl font-bold mb-4">
-              <span className="bg-gradient-bio bg-clip-text text-transparent">Green Chonks: CarbonLocks Bundle Shop</span>
+              <span className="bg-gradient-bio bg-clip-text text-transparent">Green Chonks: CarbonLocks</span>
+              <br />
+              <span className="text-foreground">Bundle Shop</span>
             </h2>
             <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
               Loading real Green Chonks data from the blockchain...
@@ -41,7 +43,9 @@ export const NFTGallery = () => {
         <div className="container mx-auto max-w-7xl">
           <div className="text-center mb-12">
             <h2 className="text-4xl md:text-5xl font-bold mb-4">
-              <span className="bg-gradient-bio bg-clip-text text-transparent">Green Chonks: CarbonLocks Bundle Shop</span>
+              <span className="bg-gradient-bio bg-clip-text text-transparent">Green Chonks: CarbonLocks</span>
+              <br />
+              <span className="text-foreground">Bundle Shop</span>
             </h2>
             <div className="bg-destructive/10 border border-destructive/20 rounded-lg p-6 max-w-md mx-auto">
               <AlertCircle className="w-8 h-8 text-destructive mx-auto mb-4" />
@@ -60,7 +64,9 @@ export const NFTGallery = () => {
         {/* Header */}
           <div className="text-center mb-12">
             <h2 className="text-4xl md:text-5xl font-bold mb-4">
-              <span className="bg-gradient-bio bg-clip-text text-transparent">Green Chonks: CarbonLocks Bundle Shop</span>
+              <span className="bg-gradient-bio bg-clip-text text-transparent">Green Chonks: CarbonLocks</span>
+              <br />
+              <span className="text-foreground">Bundle Shop</span>
             </h2>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
               Discover our unique collection of Green Chonks NFTs, each one backed by real carbon offsets and packed with surprises. Every Chonk comes with a digital backpack full of bonus NFTs, tokens, and climate impact certificates.

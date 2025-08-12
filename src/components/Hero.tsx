@@ -37,8 +37,10 @@ export const Hero = () => {
         
         <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-tight">
           <span className="bg-gradient-bio bg-clip-text text-transparent">
-            Green Chonks: CarbonLocks Bundle Shop
+            Green Chonks: CarbonLocks
           </span>
+          <br />
+          <span className="text-foreground">Bundle Shop</span>
         </h1>
       </div>
       
