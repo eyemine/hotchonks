@@ -108,53 +108,60 @@ export const NFTCard = ({ nft }: NFTCardProps) => {
             </CollapsibleTrigger>
             <CollapsibleContent>
               <div className="px-4 pb-4">
-                <div className="grid grid-cols-2 gap-3">
+                <div className="grid grid-cols-1 gap-4">{/* Changed from grid-cols-2 to grid-cols-1 for larger items */}
                   {nft.nestedNFTs.map((nested) => {
                     const contractAddress = nested.zoraUrl ? extractContractFromZoraUrl(nested.zoraUrl) : null;
                     const price = contractAddress ? prices[contractAddress] : null;
                     
                     return (
-                    <div key={nested.id} className="bg-card rounded-lg p-3 border border-border hover:border-bio-green/30 transition-all duration-300 hover:scale-110 cursor-pointer group/nested overflow-hidden">
-                      <div className="overflow-hidden rounded mb-2">
-                        <img 
-                          src={nested.image} 
-                          alt={nested.name}
-                          className="w-full aspect-square object-cover transition-transform duration-500 group-hover/nested:scale-125"
-                        />
+                    <div key={nested.id} className="bg-card rounded-lg p-4 border border-border hover:border-bio-green/30 transition-all duration-300 hover:scale-105 cursor-pointer group/nested overflow-hidden">
+                      <div className="flex gap-4">
+                        <div className="flex-shrink-0 w-24 h-24 overflow-hidden rounded">
+                          <img 
+                            src={nested.image} 
+                            alt={nested.name}
+                            className="w-full h-full object-cover transition-transform duration-500 group-hover/nested:scale-110"
+                          />
+                        </div>
+                        <div className="flex-1 min-w-0">
+                          <p className="text-sm font-medium text-foreground truncate">{nested.name}</p>
+                          <p className="text-xs text-muted-foreground mb-2">{nested.collection}</p>
+                          {price && !pricesLoading && (
+                            <p className="text-sm font-bold text-bio-green">{price} ETH</p>
+                          )}
+                          {pricesLoading && nested.zoraUrl && (
+                            <p className="text-xs text-muted-foreground">Loading price...</p>
+                          )}
+                          <div className="flex gap-2 mt-2">
+                            {nested.zoraUrl && (
+                              <Button 
+                                variant="ghost" 
+                                size="sm" 
+                                asChild
+                                className="p-1 h-auto text-xs text-bio-light hover:text-bio-glow"
+                              >
+                                <a href={nested.zoraUrl} target="_blank" rel="noopener noreferrer">
+                                  <ExternalLink size={12} className="mr-1" />
+                                  Zora
+                                </a>
+                              </Button>
+                            )}
+                            {nested.openSeaUrl && (
+                              <Button 
+                                variant="ghost" 
+                                size="sm" 
+                                asChild
+                                className="p-1 h-auto text-xs text-bio-light hover:text-bio-glow"
+                              >
+                                <a href={nested.openSeaUrl} target="_blank" rel="noopener noreferrer">
+                                  <ExternalLink size={12} className="mr-1" />
+                                  OpenSea
+                                </a>
+                              </Button>
+                            )}
+                          </div>
+                        </div>
                       </div>
-                      <p className="text-xs font-medium text-foreground truncate">{nested.name}</p>
-                      {price && !pricesLoading && (
-                        <p className="text-xs font-bold text-bio-green mt-1">{price} ETH</p>
-                      )}
-                      {pricesLoading && nested.zoraUrl && (
-                        <p className="text-xs text-muted-foreground mt-1">Loading price...</p>
-                      )}
-                      {nested.zoraUrl && (
-                        <Button 
-                          variant="ghost" 
-                          size="sm" 
-                          asChild
-                          className="mt-1 p-0 h-auto text-xs text-bio-light hover:text-bio-glow"
-                        >
-                          <a href={nested.zoraUrl} target="_blank" rel="noopener noreferrer">
-                            <ExternalLink size={12} className="mr-1" />
-                            View on Zora
-                          </a>
-                        </Button>
-                      )}
-                      {nested.openSeaUrl && (
-                        <Button 
-                          variant="ghost" 
-                          size="sm" 
-                          asChild
-                          className="mt-1 p-0 h-auto text-xs text-bio-light hover:text-bio-glow"
-                        >
-                          <a href={nested.openSeaUrl} target="_blank" rel="noopener noreferrer">
-                            <ExternalLink size={12} className="mr-1" />
-                            View on OpenSea
-                          </a>
-                        </Button>
-                      )}
                     </div>
                     );
                   })}

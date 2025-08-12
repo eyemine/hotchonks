@@ -20,6 +20,10 @@ serve(async (req) => {
       throw new Error('Alchemy API key not configured');
     }
 
+    if (!zoraApiKey) {
+      console.log('Zora API key not configured');
+    }
+
     const { action, contractAddress, tokenIds, chain = 'base', contractAddresses } = await req.json();
     
     console.log(`NFT API call: ${action}`, { contractAddress, tokenIds, chain });
@@ -94,38 +98,33 @@ serve(async (req) => {
       // Fetch Zora creator coin prices
       const pricePromises = contractAddresses.map(async (contractAddr: string) => {
         try {
-          const zoraUrl = `https://api.zora.co/discover/tokens/${contractAddr}`;
-          const response = await fetch(zoraUrl, {
-            headers: {
-              'Authorization': `Bearer ${zoraApiKey}`,
-              'Accept': 'application/json'
-            }
-          });
+          // Try different Zora API endpoints for creator coins
+          const endpoints = [
+            `https://api.zora.co/discover/tokens/base:${contractAddr}`,
+            `https://api.zora.co/v1/tokens/base:${contractAddr}`,
+            `https://api.zora.co/tokens/base/${contractAddr}`
+          ];
           
-          if (response.ok) {
-            const data = await response.json();
-            return {
-              contractAddress: contractAddr,
-              price: data.token?.market?.price || null,
-              success: true
-            };
-          } else {
-            // Try alternative endpoint
-            const altUrl = `https://api.zora.co/v1/tokens/${contractAddr}`;
-            const altResponse = await fetch(altUrl, {
-              headers: {
-                'X-API-KEY': zoraApiKey,
-                'Accept': 'application/json'
+          for (const endpoint of endpoints) {
+            try {
+              const response = await fetch(endpoint, {
+                headers: {
+                  'Authorization': `Bearer ${zoraApiKey}`,
+                  'Accept': 'application/json'
+                }
+              });
+              
+              if (response.ok) {
+                const data = await response.json();
+                const price = data.token?.market?.price || data.price || data.current_price || null;
+                return {
+                  contractAddress: contractAddr,
+                  price: price,
+                  success: true
+                };
               }
-            });
-            
-            if (altResponse.ok) {
-              const altData = await altResponse.json();
-              return {
-                contractAddress: contractAddr,
-                price: altData.price || null,
-                success: true
-              };
+            } catch (e) {
+              console.log(`Failed endpoint ${endpoint}:`, e);
             }
           }
         } catch (error) {
