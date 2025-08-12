@@ -17,8 +17,7 @@ export const KlimaSection = () => {
             <span className="bg-gradient-bio bg-clip-text text-transparent">KlimaDAO</span> Integration
           </h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            Every Green Chonk NFT is backed by real carbon offset certificates through KlimaDAO's 
-            decentralized carbon market infrastructure. They are also holding $KLIMA which is staking for September's TGE. They average 7.75 carbon tonnes retired and 100 $KLIMA each.
+            Every Green Chonk NFT is backed by real carbon offset certificates via KlimaDAO’s decentralized carbon market. Each holds 100 $KLIMA (staking for September’s TGE) and averages 7.75 tonnes CO₂ retired. Here is the full impact of this collection of 20 Green Chonks:
           </p>
         </div>
 
