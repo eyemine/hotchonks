@@ -295,6 +295,56 @@ serve(async (req) => {
       );
     }
     
+    if (action === 'getGoneGreenMetadata') {
+      // Safely fetch Gone Green NFT metadata for specific token IDs
+      const goneGreenContract = '0x123a1234567890abcdef1234567890abcdef1234'; // Gone Green contract address
+      const baseUrl = `https://base-mainnet.g.alchemy.com/nft/v3/${alchemyApiKey}`;
+      
+      const goneGreenPromises = tokenIds.map(async (tokenId: string) => {
+        const metadataUrl = `${baseUrl}/getNFTMetadata?contractAddress=${goneGreenContract}&tokenId=${tokenId}&refreshCache=false`;
+        
+        try {
+          const response = await fetch(metadataUrl);
+          const metadata = await response.json();
+          
+          return {
+            tokenId,
+            chonkId: tokenId, // Map to the chonk ID
+            name: `Gone Green #${tokenId}`,
+            image: metadata?.image?.originalUrl || metadata?.image?.cachedUrl || metadata?.image || '',
+            collection: 'Gone Green',
+            metadata,
+            zoraUrl: `https://zora.co/@chonk${tokenId}`,
+            contractAddress: goneGreenContract
+          };
+        } catch (error) {
+          console.error(`Error fetching Gone Green metadata for token ${tokenId}:`, error);
+          return {
+            tokenId,
+            chonkId: tokenId,
+            name: `Gone Green #${tokenId}`,
+            image: '', // Will fall back to existing image
+            collection: 'Gone Green',
+            error: error.message,
+            zoraUrl: `https://zora.co/@chonk${tokenId}`,
+            contractAddress: goneGreenContract
+          };
+        }
+      });
+      
+      const goneGreenData = await Promise.all(goneGreenPromises);
+      
+      return new Response(
+        JSON.stringify({ success: true, data: goneGreenData }),
+        {
+          headers: { 
+            ...corsHeaders, 
+            'Content-Type': 'application/json' 
+          },
+        },
+      );
+    }
+    
     // Fallback for other Alchemy API calls
     const alchemyUrl = `https://eth-mainnet.g.alchemy.com/v2/${alchemyApiKey}`;
     const response = await fetch(alchemyUrl, {
