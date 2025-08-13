@@ -136,51 +136,33 @@ export const NFTCard = ({ nft }: NFTCardProps) => {
                     
                     return (
                     <div key={nested.id} className="bg-card rounded-lg p-3 border border-border hover:border-bio-green/30 transition-all duration-300 hover:scale-102 cursor-pointer group/nested">
-                      {/* Horizontal layout */}
-                      <div className="flex items-center gap-3">
-                        <div className="flex-shrink-0 w-16 h-16 overflow-hidden rounded">
-                          <img 
-                            src={nested.image} 
-                            alt={nested.name}
-                            className="w-full h-full object-cover transition-transform duration-500 group-hover/nested:scale-110"
-                          />
-                        </div>
-                        <div className="flex-1 min-w-0">
-                          {/* Name formatting */}
-                          {isGoneGreen ? (
-                            <div className="mb-1">
+                      {isGoneGreen ? (
+                        /* Vertical layout for Gone Green NFTs - larger image with text below */
+                        <div className="space-y-3">
+                          <div className="w-full h-32 overflow-hidden rounded">
+                            <img 
+                              src={nested.image} 
+                              alt={nested.name}
+                              className="w-full h-full object-cover transition-transform duration-500 group-hover/nested:scale-110"
+                            />
+                          </div>
+                          <div>
+                            <div className="mb-2">
                               <p className="text-sm font-semibold text-foreground leading-tight">
                                 Gone Green {numberTag}
                               </p>
                             </div>
-                          ) : (
-                            <p className="text-sm font-medium text-foreground truncate mb-1">{nested.name}</p>
-                          )}
-
-                          {/* Collection for non-Zora items only */}
-                          {!nested.zoraUrl && (
-                            <p className="text-xs text-muted-foreground mb-1">{nested.collection}</p>
-                          )}
-
-                          {/* Market cap as big number for Gone Green, price for others */}
-                          <div className="flex items-center justify-between">
-                            {isGoneGreen ? (
-                              // Show market cap as the big green number for Gone Green (real API only)
-                              marketCap && !pricesLoading ? (
+                            
+                            {/* Market cap as big number for Gone Green */}
+                            <div className="mb-2">
+                              {marketCap && !pricesLoading ? (
                                 <p className="text-sm font-bold text-bio-green">${marketCap} market cap</p>
                               ) : pricesLoading ? (
                                 <p className="text-xs text-muted-foreground">Loading...</p>
                               ) : (
                                 <p className="text-xs text-muted-foreground">Market cap unavailable</p>
-                              )
-                            ) : (
-                              // Show price for non-Gone Green items
-                              price && !pricesLoading ? (
-                                <p className="text-sm font-bold text-bio-green">{price} ETH</p>
-                              ) : pricesLoading && nested.zoraUrl ? (
-                                <p className="text-xs text-muted-foreground">Loading...</p>
-                              ) : null
-                            )}
+                              )}
+                            </div>
                             
                             <div className="flex gap-1">
                               {nested.zoraUrl && (
@@ -212,7 +194,64 @@ export const NFTCard = ({ nft }: NFTCardProps) => {
                             </div>
                           </div>
                         </div>
-                      </div>
+                      ) : (
+                        /* Horizontal layout for non-Gone Green NFTs */
+                        <div className="flex items-center gap-3">
+                          <div className="flex-shrink-0 w-16 h-16 overflow-hidden rounded">
+                            <img 
+                              src={nested.image} 
+                              alt={nested.name}
+                              className="w-full h-full object-cover transition-transform duration-500 group-hover/nested:scale-110"
+                            />
+                          </div>
+                          <div className="flex-1 min-w-0">
+                            <p className="text-sm font-medium text-foreground truncate mb-1">{nested.name}</p>
+
+                            {/* Collection for non-Zora items only */}
+                            {!nested.zoraUrl && (
+                              <p className="text-xs text-muted-foreground mb-1">{nested.collection}</p>
+                            )}
+
+                            {/* Price for non-Gone Green items */}
+                            <div className="flex items-center justify-between">
+                              {price && !pricesLoading ? (
+                                <p className="text-sm font-bold text-bio-green">{price} ETH</p>
+                              ) : pricesLoading && nested.zoraUrl ? (
+                                <p className="text-xs text-muted-foreground">Loading...</p>
+                              ) : null}
+                              
+                              <div className="flex gap-1">
+                                {nested.zoraUrl && (
+                                  <Button 
+                                    variant="ghost" 
+                                    size="sm" 
+                                    asChild
+                                    className="p-1 h-6 text-xs text-bio-light hover:text-bio-glow"
+                                  >
+                                    <a href={nested.zoraUrl} target="_blank" rel="noopener noreferrer">
+                                      <ExternalLink size={10} className="mr-1" />
+                                      Zora
+                                    </a>
+                                  </Button>
+                                )}
+                                {nested.openSeaUrl && (
+                                  <Button 
+                                    variant="ghost" 
+                                    size="sm" 
+                                    asChild
+                                    className="p-1 h-6 text-xs text-bio-light hover:text-bio-glow"
+                                  >
+                                    <a href={nested.openSeaUrl} target="_blank" rel="noopener noreferrer">
+                                      <ExternalLink size={10} className="mr-1" />
+                                      OpenSea
+                                    </a>
+                                  </Button>
+                                )}
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      )}
                     </div>
                     );
                   })}
