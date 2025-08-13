@@ -92,13 +92,6 @@ export const NFTCard = ({ nft }: NFTCardProps) => {
               <span className="text-lg font-bold text-foreground">
                 {nft.price} ETH
               </span>
-              {nft.primaryCoinContract && nft.id !== '585' && (
-                <div className="text-xs text-muted-foreground">
-                  {marketCaps[nft.primaryCoinContract]
-                    ? <span className="text-bio-green font-semibold">${marketCaps[nft.primaryCoinContract]} market cap</span>
-                    : pricesLoading ? 'Loading market cap…' : 'Market cap unavailable'}
-                </div>
-              )}
             </div>
           )}
 
@@ -166,11 +159,11 @@ export const NFTCard = ({ nft }: NFTCardProps) => {
                             {/* Market cap as big number for Gone Green */}
                             <div className="mb-2">
                               {marketCap && !pricesLoading ? (
-                                <p className="text-sm font-bold text-bio-green">${marketCap} market cap</p>
+                                <p className="text-lg font-bold text-bio-green">${marketCap} market cap</p>
                               ) : pricesLoading ? (
-                                <p className="text-xs text-muted-foreground">Loading...</p>
+                                <p className="text-sm text-muted-foreground">Loading...</p>
                               ) : (
-                                <p className="text-xs text-muted-foreground">Market cap unavailable</p>
+                                <p className="text-sm text-muted-foreground">Market cap unavailable</p>
                               )}
                             </div>
                             
