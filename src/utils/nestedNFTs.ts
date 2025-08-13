@@ -1,4 +1,3 @@
-
 export const getNestedNFTs = (tokenId: number) => {
   const nestedNFTsMap: Record<number, any[]> = {
     585: [
@@ -43,6 +42,14 @@ export const getNestedNFTs = (tokenId: number) => {
         collection: 'Klima DAO',
         openSeaUrl: 'https://opensea.io/item/base/0x2530ffff980ae3400b0e4c1dc222f1536972077e/102',
         contractAddress: '0x2530ffff980ae3400b0e4c1dc222f1536972077e'
+      },
+      {
+        id: 'chonk586-base-eth',
+        name: 'chonk586.base.eth',
+        image: '/lovable-uploads/20ece027-3f7c-4bfe-ab23-ebf6872160b9.png',
+        collection: 'Base Names',
+        openSeaUrl: 'https://opensea.io/item/base/0x03c4738ee98ae44591e1a4a4f3cab6641d95dd9a/TOKEN_ID_FROM_API',
+        contractAddress: '0x03c4738ee98ae44591e1a4a4f3cab6641d95dd9a'
       }
     ],
     588: [
@@ -61,6 +68,14 @@ export const getNestedNFTs = (tokenId: number) => {
         collection: 'Klima DAO',
         openSeaUrl: 'https://opensea.io/item/base/0x2530ffff980ae3400b0e4c1dc222f1536972077e/103',
         contractAddress: '0x2530ffff980ae3400b0e4c1dc222f1536972077e'
+      },
+      {
+        id: 'chonk588-base-eth',
+        name: 'chonk588.base.eth',
+        image: '/lovable-uploads/20ece027-3f7c-4bfe-ab23-ebf6872160b9.png',
+        collection: 'Base Names',
+        openSeaUrl: 'https://opensea.io/item/base/0x03c4738ee98ae44591e1a4a4f3cab6641d95dd9a/TOKEN_ID_FROM_API',
+        contractAddress: '0x03c4738ee98ae44591e1a4a4f3cab6641d95dd9a'
       }
     ],
     596: [
@@ -140,6 +155,14 @@ export const getNestedNFTs = (tokenId: number) => {
         collection: 'Klima DAO',
         openSeaUrl: 'https://opensea.io/item/base/0x2530ffff980ae3400b0e4c1dc222f1536972077e/104',
         contractAddress: '0x2530ffff980ae3400b0e4c1dc222f1536972077e'
+      },
+      {
+        id: 'chonk599-base-eth',
+        name: 'chonk599.base.eth',
+        image: '/lovable-uploads/20ece027-3f7c-4bfe-ab23-ebf6872160b9.png',
+        collection: 'Base Names',
+        openSeaUrl: 'https://opensea.io/item/base/0x03c4738ee98ae44591e1a4a4f3cab6641d95dd9a/TOKEN_ID_FROM_API',
+        contractAddress: '0x03c4738ee98ae44591e1a4a4f3cab6641d95dd9a'
       }
     ],
     601: [
@@ -150,6 +173,14 @@ export const getNestedNFTs = (tokenId: number) => {
         collection: 'Gone Green',
         zoraUrl: 'https://zora.co/@chonk601',
         contractAddress: '0xd0c95dca0101eca9725aed891bda0a2b1a394e38'
+      },
+      {
+        id: 'chonk601-base-eth',
+        name: 'chonk601.base.eth',
+        image: '/lovable-uploads/20ece027-3f7c-4bfe-ab23-ebf6872160b9.png',
+        collection: 'Base Names',
+        openSeaUrl: 'https://opensea.io/item/base/0x03c4738ee98ae44591e1a4a4f3cab6641d95dd9a/TOKEN_ID_FROM_API',
+        contractAddress: '0x03c4738ee98ae44591e1a4a4f3cab6641d95dd9a'
       }
     ],
     606: [
@@ -160,6 +191,14 @@ export const getNestedNFTs = (tokenId: number) => {
         collection: 'Gone Green',
         zoraUrl: 'https://zora.co/@chonk606',
         contractAddress: '0xdf042a1398377f9ae2d3b482bb2e1aba9bb8da01'
+      },
+      {
+        id: 'chonk606-base-eth',
+        name: 'chonk606.base.eth',
+        image: '/lovable-uploads/20ece027-3f7c-4bfe-ab23-ebf6872160b9.png',
+        collection: 'Base Names',
+        openSeaUrl: 'https://opensea.io/item/base/0x03c4738ee98ae44591e1a4a4f3cab6641d95dd9a/TOKEN_ID_FROM_API',
+        contractAddress: '0x03c4738ee98ae44591e1a4a4f3cab6641d95dd9a'
       }
     ],
     662: [
@@ -170,6 +209,14 @@ export const getNestedNFTs = (tokenId: number) => {
         collection: 'Gone Green',
         zoraUrl: 'https://zora.co/@chonk662',
         contractAddress: '0xbef0550be11c727cdf0ee6a9b4c6616b0aaff334'
+      },
+      {
+        id: 'chonk662-base-eth',
+        name: 'chonk662.base.eth',
+        image: '/lovable-uploads/20ece027-3f7c-4bfe-ab23-ebf6872160b9.png',
+        collection: 'Base Names',
+        openSeaUrl: 'https://opensea.io/item/base/0x03c4738ee98ae44591e1a4a4f3cab6641d95dd9a/TOKEN_ID_FROM_API',
+        contractAddress: '0x03c4738ee98ae44591e1a4a4f3cab6641d95dd9a'
       }
     ],
     663: [
@@ -180,6 +227,14 @@ export const getNestedNFTs = (tokenId: number) => {
         collection: 'Gone Green',
         zoraUrl: 'https://zora.co/@chonk663',
         contractAddress: '0xf44591c8044471dd293e8a538189b6596f2795ef'
+      },
+      {
+        id: 'chonk663-base-eth',
+        name: 'chonk663.base.eth',
+        image: '/lovable-uploads/20ece027-3f7c-4bfe-ab23-ebf6872160b9.png',
+        collection: 'Base Names',
+        openSeaUrl: 'https://opensea.io/item/base/0x03c4738ee98ae44591e1a4a4f3cab6641d95dd9a/TOKEN_ID_FROM_API',
+        contractAddress: '0x03c4738ee98ae44591e1a4a4f3cab6641d95dd9a'
       }
     ],
     665: [
@@ -190,6 +245,14 @@ export const getNestedNFTs = (tokenId: number) => {
         collection: 'Gone Green',
         zoraUrl: 'https://zora.co/@chonk665',
         contractAddress: '0x44a86e54e3e49e2fca3c64e4f1fc78199349324c'
+      },
+      {
+        id: 'chonk665-base-eth',
+        name: 'chonk665.base.eth',
+        image: '/lovable-uploads/20ece027-3f7c-4bfe-ab23-ebf6872160b9.png',
+        collection: 'Base Names',
+        openSeaUrl: 'https://opensea.io/item/base/0x03c4738ee98ae44591e1a4a4f3cab6641d95dd9a/TOKEN_ID_FROM_API',
+        contractAddress: '0x03c4738ee98ae44591e1a4a4f3cab6641d95dd9a'
       }
     ],
     672: [
@@ -200,6 +263,14 @@ export const getNestedNFTs = (tokenId: number) => {
         collection: 'Gone Green',
         zoraUrl: 'https://zora.co/@chonk672',
         contractAddress: '0x84fbbecd652c9f8e35cf2be29d5a5c93d1582e89'
+      },
+      {
+        id: 'chonk672-base-eth',
+        name: 'chonk672.base.eth',
+        image: '/lovable-uploads/20ece027-3f7c-4bfe-ab23-ebf6872160b9.png',
+        collection: 'Base Names',
+        openSeaUrl: 'https://opensea.io/item/base/0x03c4738ee98ae44591e1a4a4f3cab6641d95dd9a/TOKEN_ID_FROM_API',
+        contractAddress: '0x03c4738ee98ae44591e1a4a4f3cab6641d95dd9a'
       }
     ],
     676: [
@@ -210,6 +281,14 @@ export const getNestedNFTs = (tokenId: number) => {
         collection: 'Gone Green',
         zoraUrl: 'https://zora.co/@chonk676',
         contractAddress: '0x89735823f88b141a5f50646ccd1517c92b6d45ce'
+      },
+      {
+        id: 'chonk676-base-eth',
+        name: 'chonk676.base.eth',
+        image: '/lovable-uploads/20ece027-3f7c-4bfe-ab23-ebf6872160b9.png',
+        collection: 'Base Names',
+        openSeaUrl: 'https://opensea.io/item/base/0x03c4738ee98ae44591e1a4a4f3cab6641d95dd9a/TOKEN_ID_FROM_API',
+        contractAddress: '0x03c4738ee98ae44591e1a4a4f3cab6641d95dd9a'
       }
     ],
     678: [
@@ -220,6 +299,14 @@ export const getNestedNFTs = (tokenId: number) => {
         collection: 'Gone Green',
         zoraUrl: 'https://zora.co/@chonk678',
         contractAddress: '0xd9dd283d2e3646e6c2795a24932a14adbd1cd788'
+      },
+      {
+        id: 'chonk678-base-eth',
+        name: 'chonk678.base.eth',
+        image: '/lovable-uploads/20ece027-3f7c-4bfe-ab23-ebf6872160b9.png',
+        collection: 'Base Names',
+        openSeaUrl: 'https://opensea.io/item/base/0x03c4738ee98ae44591e1a4a4f3cab6641d95dd9a/TOKEN_ID_FROM_API',
+        contractAddress: '0x03c4738ee98ae44591e1a4a4f3cab6641d95dd9a'
       }
     ],
     680: [
@@ -230,6 +317,14 @@ export const getNestedNFTs = (tokenId: number) => {
         collection: 'Gone Green',
         zoraUrl: 'https://zora.co/@chonk680',
         contractAddress: '0x25046b4f5a5a15682a01d5324c3c77340d5b8ad1'
+      },
+      {
+        id: 'chonk680-base-eth',
+        name: 'chonk680.base.eth',
+        image: '/lovable-uploads/20ece027-3f7c-4bfe-ab23-ebf6872160b9.png',
+        collection: 'Base Names',
+        openSeaUrl: 'https://opensea.io/item/base/0x03c4738ee98ae44591e1a4a4f3cab6641d95dd9a/TOKEN_ID_FROM_API',
+        contractAddress: '0x03c4738ee98ae44591e1a4a4f3cab6641d95dd9a'
       }
     ],
     681: [
@@ -240,6 +335,14 @@ export const getNestedNFTs = (tokenId: number) => {
         collection: 'Gone Green',
         zoraUrl: 'https://zora.co/@chonk681',
         contractAddress: '0xcd6f89037377a917615f13f166677b406ded550b'
+      },
+      {
+        id: 'chonk681-base-eth',
+        name: 'chonk681.base.eth',
+        image: '/lovable-uploads/20ece027-3f7c-4bfe-ab23-ebf6872160b9.png',
+        collection: 'Base Names',
+        openSeaUrl: 'https://opensea.io/item/base/0x03c4738ee98ae44591e1a4a4f3cab6641d95dd9a/TOKEN_ID_FROM_API',
+        contractAddress: '0x03c4738ee98ae44591e1a4a4f3cab6641d95dd9a'
       }
     ],
     693: [
@@ -250,16 +353,14 @@ export const getNestedNFTs = (tokenId: number) => {
         collection: 'Gone Green',
         zoraUrl: 'https://zora.co/@chonk693',
         contractAddress: '0x7fd8b61eada4eb171cf08c3ed12e29bf32727c8d'
-      }
-    ],
-    700: [
+      },
       {
-        id: 'gone-green-700',
-        name: 'Gone Green #700',
-        image: '/lovable-uploads/3c37a26e-18da-4f5d-971d-bfb366969143.png',
-        collection: 'Gone Green',
-        zoraUrl: 'https://zora.co/@chonk700',
-        contractAddress: '0xd975a37a3710f2edf70f514af9709e62d9b61ee5'
+        id: 'chonk693-base-eth',
+        name: 'chonk693.base.eth',
+        image: '/lovable-uploads/20ece027-3f7c-4bfe-ab23-ebf6872160b9.png',
+        collection: 'Base Names',
+        openSeaUrl: 'https://opensea.io/item/base/0x03c4738ee98ae44591e1a4a4f3cab6641d95dd9a/TOKEN_ID_FROM_API',
+        contractAddress: '0x03c4738ee98ae44591e1a4a4f3cab6641d95dd9a'
       }
     ],
     697: [
@@ -286,6 +387,32 @@ export const getNestedNFTs = (tokenId: number) => {
         collection: 'Klima DAO',
         openSeaUrl: 'https://opensea.io/item/base/0x2530ffff980ae3400b0e4c1dc222f1536972077e/100',
         contractAddress: '0x2530ffff980ae3400b0e4c1dc222f1536972077e'
+      },
+      {
+        id: 'chonk697-base-eth',
+        name: 'chonk697.base.eth',
+        image: '/lovable-uploads/20ece027-3f7c-4bfe-ab23-ebf6872160b9.png',
+        collection: 'Base Names',
+        openSeaUrl: 'https://opensea.io/item/base/0x03c4738ee98ae44591e1a4a4f3cab6641d95dd9a/TOKEN_ID_FROM_API',
+        contractAddress: '0x03c4738ee98ae44591e1a4a4f3cab6641d95dd9a'
+      }
+    ],
+    700: [
+      {
+        id: 'gone-green-700',
+        name: 'Gone Green #700',
+        image: '/lovable-uploads/3c37a26e-18da-4f5d-971d-bfb366969143.png',
+        collection: 'Gone Green',
+        zoraUrl: 'https://zora.co/@chonk700',
+        contractAddress: '0xd975a37a3710f2edf70f514af9709e62d9b61ee5'
+      },
+      {
+        id: 'chonk700-base-eth',
+        name: 'chonk700.base.eth',
+        image: '/lovable-uploads/20ece027-3f7c-4bfe-ab23-ebf6872160b9.png',
+        collection: 'Base Names',
+        openSeaUrl: 'https://opensea.io/item/base/0x03c4738ee98ae44591e1a4a4f3cab6641d95dd9a/TOKEN_ID_FROM_API',
+        contractAddress: '0x03c4738ee98ae44591e1a4a4f3cab6641d95dd9a'
       }
     ],
     972: [
@@ -296,6 +423,14 @@ export const getNestedNFTs = (tokenId: number) => {
         collection: 'Gone Green',
         zoraUrl: 'https://zora.co/coin/base:0x8056d4b41db338c6c4e792527f80e73ef54cb094',
         contractAddress: '0x8056d4b41db338c6c4e792527f80e73ef54cb094'
+      },
+      {
+        id: 'chonk972-base-eth',
+        name: 'chonk972.base.eth',
+        image: '/lovable-uploads/20ece027-3f7c-4bfe-ab23-ebf6872160b9.png',
+        collection: 'Base Names',
+        openSeaUrl: 'https://opensea.io/item/base/0x03c4738ee98ae44591e1a4a4f3cab6641d95dd9a/TOKEN_ID_FROM_API',
+        contractAddress: '0x03c4738ee98ae44591e1a4a4f3cab6641d95dd9a'
       }
     ],
     9534: [
@@ -306,6 +441,14 @@ export const getNestedNFTs = (tokenId: number) => {
         collection: 'Gone Green',
         zoraUrl: 'https://zora.co/@chonk9534',
         contractAddress: '0xc32913cebf6d266a86e4b613927743171ccd174b'
+      },
+      {
+        id: 'chonk9534-base-eth',
+        name: 'chonk9534.base.eth',
+        image: '/lovable-uploads/20ece027-3f7c-4bfe-ab23-ebf6872160b9.png',
+        collection: 'Base Names',
+        openSeaUrl: 'https://opensea.io/item/base/0x03c4738ee98ae44591e1a4a4f3cab6641d95dd9a/TOKEN_ID_FROM_API',
+        contractAddress: '0x03c4738ee98ae44591e1a4a4f3cab6641d95dd9a'
       }
     ]
   };
