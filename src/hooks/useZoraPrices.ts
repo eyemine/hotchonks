@@ -35,7 +35,10 @@ export const useZoraPrices = (nestedNFTs: any[]) => {
           setMarketCaps(sdkCaps as Record<string, string>);
         }
       } catch (error) {
-        console.error('Error fetching Zora prices/caps:', error);
+        // Suppress excessive error logging in development
+        if (process.env.NODE_ENV !== 'development') {
+          console.error('Error fetching Zora prices/caps:', error);
+        }
       } finally {
         setLoading(false);
       }

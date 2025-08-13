@@ -33,6 +33,12 @@ export const fetchGoneGreenMarketCaps = async (
     (contractAddresses || []).filter((a) => typeof a === 'string' && a.startsWith('0x'))
   ));
 
+  // Skip SDK calls in development to prevent console spam
+  if (process.env.NODE_ENV === 'development') {
+    console.log('Skipping Zora SDK calls in development to prevent console errors');
+    return caps;
+  }
+
   for (const address of addresses) {
     try {
       const res = await getCoin({ address });
@@ -49,7 +55,10 @@ export const fetchGoneGreenMarketCaps = async (
         }
       }
     } catch (e) {
-      console.warn(`Failed to fetch coin via SDK for ${address}`, e);
+      // Suppress excessive logging in development
+      if (process.env.NODE_ENV !== 'development') {
+        console.warn(`Failed to fetch coin via SDK for ${address}`, e);
+      }
     }
   }
 
