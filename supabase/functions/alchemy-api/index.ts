@@ -296,26 +296,91 @@ serve(async (req) => {
     }
     
     if (action === 'getGoneGreenMetadata') {
-      // Safely fetch Gone Green NFT metadata for specific token IDs
-      const goneGreenContract = '0x123a1234567890abcdef1234567890abcdef1234'; // Gone Green contract address
-      const baseUrl = `https://base-mainnet.g.alchemy.com/nft/v3/${alchemyApiKey}`;
-      
+      // Safely fetch Gone Green NFT metadata from Zora for specific token IDs
       const goneGreenPromises = tokenIds.map(async (tokenId: string) => {
-        const metadataUrl = `${baseUrl}/getNFTMetadata?contractAddress=${goneGreenContract}&tokenId=${tokenId}&refreshCache=false`;
-        
         try {
-          const response = await fetch(metadataUrl);
-          const metadata = await response.json();
+          // Use Zora GraphQL API to fetch NFT metadata
+          const gqlUrl = 'https://api.zora.co/graphql';
+          const gqlQuery = `
+            query TokenMetadata($token: TokenInput!) {
+              token(token: $token) {
+                token {
+                  tokenId
+                  name
+                  image
+                  description
+                }
+                metadata {
+                  name
+                  description
+                  image
+                }
+              }
+            }
+          `;
+          
+          // Try fetching from Zora's creator coin/NFT system
+          const gqlBody = {
+            query: gqlQuery,
+            variables: { 
+              token: { 
+                address: `chonk${tokenId}`, // Zora handle format
+                network: "BASE" 
+              } 
+            }
+          };
+
+          const gqlResp = await fetch(gqlUrl, {
+            method: 'POST',
+            headers: {
+              'X-API-KEY': zoraApiKey || '',
+              'Content-Type': 'application/json',
+              'Accept': 'application/json'
+            },
+            body: JSON.stringify(gqlBody)
+          });
+
+          let metadata = null;
+          let image = '';
+          
+          if (gqlResp.ok) {
+            const gqlData = await gqlResp.json();
+            const token = gqlData?.data?.token;
+            if (token) {
+              metadata = token;
+              image = token.token?.image || token.metadata?.image || '';
+            }
+          }
+
+          // Fallback: Try Zora REST API for creator coins
+          if (!image) {
+            try {
+              const restUrl = `https://api.zora.co/coin/v1/profile/@chonk${tokenId}`;
+              const restResp = await fetch(restUrl, {
+                headers: {
+                  'X-API-KEY': zoraApiKey || '',
+                  'Accept': 'application/json'
+                }
+              });
+              
+              if (restResp.ok) {
+                const restData = await restResp.json();
+                image = restData?.data?.avatar?.url || restData?.avatar?.url || '';
+              }
+            } catch (e) {
+              console.log(`Zora REST fallback error for chonk${tokenId}:`, e);
+            }
+          }
           
           return {
             tokenId,
-            chonkId: tokenId, // Map to the chonk ID
+            chonkId: tokenId,
             name: `Gone Green #${tokenId}`,
-            image: metadata?.image?.originalUrl || metadata?.image?.cachedUrl || metadata?.image || '',
+            image: image || '', // Will fall back to existing image if empty
             collection: 'Gone Green',
             metadata,
             zoraUrl: `https://zora.co/@chonk${tokenId}`,
-            contractAddress: goneGreenContract
+            contractAddress: '' // Gone Green on Zora doesn't have traditional contract addresses
           };
         } catch (error) {
           console.error(`Error fetching Gone Green metadata for token ${tokenId}:`, error);
@@ -327,12 +392,13 @@ serve(async (req) => {
             collection: 'Gone Green',
             error: error.message,
             zoraUrl: `https://zora.co/@chonk${tokenId}`,
-            contractAddress: goneGreenContract
+            contractAddress: ''
           };
         }
       });
       
       const goneGreenData = await Promise.all(goneGreenPromises);
+      console.log('Gone Green Zora data fetched:', goneGreenData);
       
       return new Response(
         JSON.stringify({ success: true, data: goneGreenData }),
