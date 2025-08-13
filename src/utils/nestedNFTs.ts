@@ -9,6 +9,14 @@ export const getNestedNFTs = (tokenId: number) => {
         collection: 'Gone Green',
         zoraUrl: 'https://zora.co/@chonk585',
         contractAddress: '0x8bc6e5e303344f5526057df842316ff4c347efd7'
+      },
+      {
+        id: 'klima-stake-100-2',
+        name: '100 $Klima stake',
+        image: '/lovable-uploads/9546ef85-5991-4c07-9718-b259b3c74e33.png',
+        collection: 'Klima DAO',
+        openSeaUrl: 'https://opensea.io/item/base/0x2530ffff980ae3400b0e4c1dc222f1536972077e/101',
+        contractAddress: '0x2530ffff980ae3400b0e4c1dc222f1536972077e'
       }
     ],
     586: [
@@ -19,6 +27,14 @@ export const getNestedNFTs = (tokenId: number) => {
         collection: 'Gone Green',
         zoraUrl: 'https://zora.co/@chonk586',
         contractAddress: '0xcbe47fa36e99d11125660262611a1fc998f330b5'
+      },
+      {
+        id: 'klima-stake-100-3',
+        name: '100 $Klima stake',
+        image: '/lovable-uploads/9546ef85-5991-4c07-9718-b259b3c74e33.png',
+        collection: 'Klima DAO',
+        openSeaUrl: 'https://opensea.io/item/base/0x2530ffff980ae3400b0e4c1dc222f1536972077e/102',
+        contractAddress: '0x2530ffff980ae3400b0e4c1dc222f1536972077e'
       }
     ],
     588: [
@@ -29,6 +45,14 @@ export const getNestedNFTs = (tokenId: number) => {
         collection: 'Gone Green',
         zoraUrl: 'https://zora.co/@chonk588',
         contractAddress: '0x021594a8005aec083f04b53edf2e57e941086d5e'
+      },
+      {
+        id: 'klima-stake-100-4',
+        name: '100 $Klima stake',
+        image: '/lovable-uploads/9546ef85-5991-4c07-9718-b259b3c74e33.png',
+        collection: 'Klima DAO',
+        openSeaUrl: 'https://opensea.io/item/base/0x2530ffff980ae3400b0e4c1dc222f1536972077e/103',
+        contractAddress: '0x2530ffff980ae3400b0e4c1dc222f1536972077e'
       }
     ],
     596: [
@@ -79,8 +103,9 @@ export const getNestedNFTs = (tokenId: number) => {
         id: 'klima-stake-99',
         name: '99 $Klima stake',
         image: '/lovable-uploads/9ba13695-94cb-4da6-9696-e17b0eed8929.png',
-        collection: 'Klima Stake',
-        openSeaUrl: 'https://opensea.io/item/base/0x2530ffff980ae3400b0e4c1dc222f1536972077e/5'
+        collection: 'Klima DAO',
+        openSeaUrl: 'https://opensea.io/item/base/0x2530ffff980ae3400b0e4c1dc222f1536972077e/99',
+        contractAddress: '0x2530ffff980ae3400b0e4c1dc222f1536972077e'
       },
       {
         id: 'chonk596-base-eth',
@@ -98,6 +123,14 @@ export const getNestedNFTs = (tokenId: number) => {
         collection: 'Gone Green',
         zoraUrl: 'https://zora.co/@chonk599',
         contractAddress: '0xe995b8f87c76614fd094acc971d1651ab82f6a2a'
+      },
+      {
+        id: 'klima-stake-100-5',
+        name: '100 $Klima stake',
+        image: '/lovable-uploads/9546ef85-5991-4c07-9718-b259b3c74e33.png',
+        collection: 'Klima DAO',
+        openSeaUrl: 'https://opensea.io/item/base/0x2530ffff980ae3400b0e4c1dc222f1536972077e/104',
+        contractAddress: '0x2530ffff980ae3400b0e4c1dc222f1536972077e'
       }
     ],
     601: [
@@ -234,7 +267,16 @@ export const getNestedNFTs = (tokenId: number) => {
         name: 'Klima DAO Token #4',
         image: '/lovable-uploads/9546ef85-5991-4c07-9718-b259b3c74e33.png',
         collection: 'Klima DAO',
-        openSeaUrl: 'https://opensea.io/item/base/0x2530ffff980ae3400b0e4c1dc222f1536972077e/4'
+        openSeaUrl: 'https://opensea.io/item/base/0x2530ffff980ae3400b0e4c1dc222f1536972077e/4',
+        contractAddress: '0x2530ffff980ae3400b0e4c1dc222f1536972077e'
+      },
+      {
+        id: 'klima-stake-100-1',
+        name: '100 $Klima stake',
+        image: '/lovable-uploads/9546ef85-5991-4c07-9718-b259b3c74e33.png',
+        collection: 'Klima DAO',
+        openSeaUrl: 'https://opensea.io/item/base/0x2530ffff980ae3400b0e4c1dc222f1536972077e/100',
+        contractAddress: '0x2530ffff980ae3400b0e4c1dc222f1536972077e'
       }
     ],
     972: [
