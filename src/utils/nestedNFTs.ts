@@ -136,7 +136,8 @@ export const getNestedNFTs = (tokenId: number) => {
         name: 'Gone Green #663',
         image: '/lovable-uploads/203aff55-05a6-4206-8547-21930e7f11bd.png',
         collection: 'Gone Green',
-        zoraUrl: 'https://zora.co/@chonk663'
+        zoraUrl: 'https://zora.co/@chonk663',
+        contractAddress: '0xf44591c8044471dd293e8a538189b6596f2795ef'
       }
     ],
     665: [
@@ -145,7 +146,8 @@ export const getNestedNFTs = (tokenId: number) => {
         name: 'Gone Green #665',
         image: '/lovable-uploads/f03fadfc-4f72-4926-8fa0-2843426fb6da.png',
         collection: 'Gone Green',
-        zoraUrl: 'https://zora.co/@chonk665'
+        zoraUrl: 'https://zora.co/@chonk665',
+        contractAddress: '0x44a86e54e3e49e2fca3c64e4f1fc78199349324c'
       }
     ],
     672: [
@@ -154,7 +156,8 @@ export const getNestedNFTs = (tokenId: number) => {
         name: 'Gone Green #672',
         image: '/lovable-uploads/337b7708-ebcf-4696-ac2e-07e46315a15e.png',
         collection: 'Gone Green',
-        zoraUrl: 'https://zora.co/@chonk672'
+        zoraUrl: 'https://zora.co/@chonk672',
+        contractAddress: '0x84fbbecd652c9f8e35cf2be29d5a5c93d1582e89'
       }
     ],
     676: [
@@ -163,7 +166,8 @@ export const getNestedNFTs = (tokenId: number) => {
         name: 'Gone Green #676',
         image: '/lovable-uploads/ceb85d63-f5aa-436d-93af-7f5e2db6969c.png',
         collection: 'Gone Green',
-        zoraUrl: 'https://zora.co/@chonk676'
+        zoraUrl: 'https://zora.co/@chonk676',
+        contractAddress: '0x89735823f88b141a5f50646ccd1517c92b6d45ce'
       }
     ],
     678: [
@@ -172,7 +176,8 @@ export const getNestedNFTs = (tokenId: number) => {
         name: 'Gone Green #678',
         image: '/lovable-uploads/c7d6c82d-b7a4-4308-8606-2cde3aa9f608.png',
         collection: 'Gone Green',
-        zoraUrl: 'https://zora.co/@chonk678'
+        zoraUrl: 'https://zora.co/@chonk678',
+        contractAddress: '0xd9dd283d2e3646e6c2795a24932a14adbd1cd788'
       }
     ],
     680: [
@@ -181,7 +186,8 @@ export const getNestedNFTs = (tokenId: number) => {
         name: 'Gone Green #680',
         image: '/lovable-uploads/7a46b1a8-fb49-4e33-89c5-0e6b72b5e94c.png',
         collection: 'Gone Green',
-        zoraUrl: 'https://zora.co/@chonk680'
+        zoraUrl: 'https://zora.co/@chonk680',
+        contractAddress: '0x25046b4f5a5a15682a01d5324c3c77340d5b8ad1'
       }
     ],
     681: [
@@ -190,7 +196,8 @@ export const getNestedNFTs = (tokenId: number) => {
         name: 'Gone Green #681',
         image: '/lovable-uploads/23d17a8a-8db3-4535-a04d-3842da1b8407.png',
         collection: 'Gone Green',
-        zoraUrl: 'https://zora.co/@chonk681'
+        zoraUrl: 'https://zora.co/@chonk681',
+        contractAddress: '0xcd6f89037377a917615f13f166677b406ded550b'
       }
     ],
     693: [
@@ -199,7 +206,8 @@ export const getNestedNFTs = (tokenId: number) => {
         name: 'Gone Green #693',
         image: '/lovable-uploads/6ae587b6-de3a-43e1-ac42-5b76f0076c44.png',
         collection: 'Gone Green',
-        zoraUrl: 'https://zora.co/@chonk693'
+        zoraUrl: 'https://zora.co/@chonk693',
+        contractAddress: '0x7fd8b61eada4eb171cf08c3ed12e29bf32727c8d'
       }
     ],
     700: [
@@ -208,7 +216,8 @@ export const getNestedNFTs = (tokenId: number) => {
         name: 'Gone Green #700',
         image: '/lovable-uploads/3c37a26e-18da-4f5d-971d-bfb366969143.png',
         collection: 'Gone Green',
-        zoraUrl: 'https://zora.co/@chonk700'
+        zoraUrl: 'https://zora.co/@chonk700',
+        contractAddress: '0xd975a37a3710f2edf70f514af9709e62d9b61ee5'
       }
     ],
     697: [
