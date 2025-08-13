@@ -139,11 +139,11 @@ export const NFTCard = ({ nft }: NFTCardProps) => {
                       {isGoneGreen ? (
                         /* Vertical layout for Gone Green NFTs - larger image with text below */
                         <div className="space-y-3">
-                          <div className="w-full h-32 overflow-hidden rounded">
+                          <div className="w-full aspect-square overflow-hidden rounded">
                             <img 
                               src={nested.image} 
                               alt={nested.name}
-                              className="w-full h-full object-cover transition-transform duration-500 group-hover/nested:scale-110"
+                              className="w-full h-full object-contain transition-transform duration-500 group-hover/nested:scale-105"
                             />
                           </div>
                           <div>
