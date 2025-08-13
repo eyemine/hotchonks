@@ -1,8 +1,10 @@
 
 import { NFTCard } from "./NFTCard";
 import { Skeleton } from "@/components/ui/skeleton";
+import { Button } from "@/components/ui/button";
 import { AlertCircle } from "lucide-react";
 import { useChonksData } from "@/hooks/useChonksData";
+import { testKlimaContract } from "@/utils/testKlima";
 
 export const NFTGallery = () => {
   const { chonks, loading, error } = useChonksData();
@@ -71,10 +73,21 @@ export const NFTGallery = () => {
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
               Join the Green Chonks Crew (20 in total) each bundled by GhostAgent and backed by real carbon offsets. Every Chonk{" "}
               <a href="https://www.chonks.xyz/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">
-                chonks.xyz
+               chonks.xyz
               </a>{" "}
               carries a digital backpack packed with clothing traits, bonus NFTs, tokens, and climate impact certificates. Your purchase supports the planet and GhostAgent's family. More adventures to come.
             </p>
+            
+            {/* Temporary test button */}
+            <div className="mt-4">
+              <Button 
+                onClick={() => testKlimaContract()}
+                variant="outline"
+                size="sm"
+              >
+                Test Klima Contract (Check Console)
+              </Button>
+            </div>
           </div>
 
         {/* NFT Grid */}

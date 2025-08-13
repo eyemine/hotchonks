@@ -132,6 +132,66 @@ serve(async (req) => {
       );
     }
     
+    if (action === 'getContractNFTs') {
+      // Get all NFTs from a specific contract
+      const baseUrl = chain === 'base' 
+        ? `https://base-mainnet.g.alchemy.com/nft/v3/${alchemyApiKey}`
+        : `https://eth-mainnet.g.alchemy.com/nft/v3/${alchemyApiKey}`;
+      
+      try {
+        const nftsUrl = `${baseUrl}/getNFTsForContract?contractAddress=${contractAddress}&withMetadata=true&limit=100`;
+        const response = await fetch(nftsUrl);
+        const data = await response.json();
+        
+        if (data.nfts && data.nfts.length > 0) {
+          const processedNFTs = data.nfts.map((nft: any) => ({
+            tokenId: nft.tokenId,
+            title: nft.title || nft.name || `Token #${nft.tokenId}`,
+            description: nft.description || '',
+            image: nft.image?.originalUrl || nft.image?.cachedUrl || nft.image?.thumbnailUrl || '',
+            metadata: nft,
+            openSeaUrl: `https://opensea.io/item/${chain}/${contractAddress}/${nft.tokenId}`
+          }));
+          
+          return new Response(
+            JSON.stringify({ success: true, data: processedNFTs }),
+            {
+              headers: { 
+                ...corsHeaders, 
+                'Content-Type': 'application/json' 
+              },
+            },
+          );
+        } else {
+          return new Response(
+            JSON.stringify({ success: false, message: 'No NFTs found in contract' }),
+            {
+              headers: { 
+                ...corsHeaders, 
+                'Content-Type': 'application/json' 
+              },
+            },
+          );
+        }
+      } catch (error) {
+        console.error(`Error fetching NFTs from contract ${contractAddress}:`, error);
+        return new Response(
+          JSON.stringify({ 
+            success: false, 
+            error: error.message,
+            message: 'Failed to fetch NFTs from contract' 
+          }),
+          {
+            status: 500,
+            headers: { 
+              ...corsHeaders, 
+              'Content-Type': 'application/json' 
+            },
+          },
+        );
+      }
+    }
+    
     if (action === 'getZoraPrices') {
       // Use Zora official API for creator coin prices/market caps
       const pricePromises = contractAddresses.map(async (contractAddr: string) => {
