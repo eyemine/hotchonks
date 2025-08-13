@@ -17,6 +17,14 @@ export const getNestedNFTs = (tokenId: number) => {
         collection: 'Klima DAO',
         openSeaUrl: 'https://opensea.io/item/base/0x2530ffff980ae3400b0e4c1dc222f1536972077e/101',
         contractAddress: '0x2530ffff980ae3400b0e4c1dc222f1536972077e'
+      },
+      {
+        id: 'chonk585-base-eth',
+        name: 'chonk585.base.eth',
+        image: '/lovable-uploads/20ece027-3f7c-4bfe-ab23-ebf6872160b9.png',
+        collection: 'Base Names',
+        openSeaUrl: 'https://opensea.io/item/base/0x03c4738ee98ae44591e1a4a4f3cab6641d95dd9a/TOKEN_ID_FROM_API',
+        contractAddress: '0x03c4738ee98ae44591e1a4a4f3cab6641d95dd9a'
       }
     ],
     586: [
@@ -112,7 +120,8 @@ export const getNestedNFTs = (tokenId: number) => {
         name: 'chonk596.base.eth',
         image: '/lovable-uploads/20ece027-3f7c-4bfe-ab23-ebf6872160b9.png',
         collection: 'Base Names',
-        openSeaUrl: 'https://opensea.io/item/base/0x03c4738ee98ae44591e1a4a4f3cab6641d95dd9a/114072095704861542368688163225597811475385939717344165564990381437927256695765'
+        openSeaUrl: 'https://opensea.io/item/base/0x03c4738ee98ae44591e1a4a4f3cab6641d95dd9a/TOKEN_ID_FROM_API',
+        contractAddress: '0x03c4738ee98ae44591e1a4a4f3cab6641d95dd9a'
       }
     ],
     599: [
