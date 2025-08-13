@@ -5,7 +5,7 @@ import { Badge } from "@/components/ui/badge";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
 import { ExternalLink, ChevronDown } from "lucide-react";
 import { useState } from "react";
-import { useZoraPrices } from "@/hooks/useZoraPrices";
+
 import { extractContractFromZoraUrl } from "@/utils/zoraApi";
 
 interface NestedNFT {
@@ -40,12 +40,10 @@ interface NFTCardProps {
 
 export const NFTCard = ({ nft }: NFTCardProps) => {
   const [isOpen, setIsOpen] = useState(false);
-  const { prices, marketCaps, loading: pricesLoading } = useZoraPrices([
-    ...nft.nestedNFTs,
-    ...(nft.primaryCoinContract
-      ? [{ id: 'primary', name: 'Primary', image: '', collection: 'Zora Coin', contractAddress: nft.primaryCoinContract }]
-      : [])
-  ]);
+  // Temporarily disable Zora prices to prevent crashes
+  const prices = {};
+  const marketCaps = {};
+  const pricesLoading = false;
 
   return (
     <Card className="group bg-card border-border hover:border-bio-green/40 transition-all duration-500 hover:shadow-bio">
