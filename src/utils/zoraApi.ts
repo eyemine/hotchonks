@@ -26,6 +26,32 @@ export const extractContractFromZoraUrl = (zoraUrl: string): string | null => {
 export const fetchGoneGreenMarketCaps = async (
   contractAddresses: string[]
 ): Promise<Record<string, string>> => {
-  // Completely disable to prevent crashes - return empty object immediately
-  return {};
+  const caps: Record<string, string> = {};
+
+  // Deduplicate and validate addresses
+  const addresses = Array.from(new Set(
+    (contractAddresses || []).filter((a) => typeof a === 'string' && a.startsWith('0x'))
+  ));
+
+  for (const address of addresses) {
+    try {
+      const res = await getCoin({ address });
+      const coin = (res as any)?.data?.zora20Token;
+      const cap = coin?.marketCap;
+      if (cap != null) {
+        if (typeof cap === 'number') {
+          caps[address] = cap.toFixed(2);
+        } else if (typeof cap === 'string') {
+          // Strip any leading $ then keep numeric string
+          caps[address] = cap.replace('$', '');
+        } else {
+          caps[address] = String(cap);
+        }
+      }
+    } catch (e) {
+      console.warn(`Failed to fetch coin via SDK for ${address}`, e);
+    }
+  }
+
+  return caps;
 };

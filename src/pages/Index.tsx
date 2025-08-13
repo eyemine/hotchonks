@@ -5,7 +5,6 @@ import { NFTGallery } from "@/components/NFTGallery";
 import { GameEmbed } from "@/components/GameEmbed";
 import { KlimaSection } from "@/components/KlimaSection";
 import { Footer } from "@/components/Footer";
-import { GoneGreenUpdater } from "@/components/GoneGreenUpdater";
 
 const Index = () => {
   return (
@@ -13,9 +12,6 @@ const Index = () => {
       <Header />
       <main>
         <Hero />
-        <div className="container mx-auto px-4 py-8">
-          <GoneGreenUpdater />
-        </div>
         <KlimaSection />
         <NFTGallery />
         <GameEmbed />

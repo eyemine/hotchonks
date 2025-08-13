@@ -3,20 +3,9 @@ import { NFTCard } from "./NFTCard";
 import { Skeleton } from "@/components/ui/skeleton";
 import { AlertCircle } from "lucide-react";
 import { useChonksData } from "@/hooks/useChonksData";
-import { useEffect } from "react";
-import { initializeGoneGreenImages } from "@/utils/dynamicNestedNFTs";
 
 export const NFTGallery = () => {
   const { chonks, loading, error } = useChonksData();
-
-  // Initialize Gone Green images when component mounts
-  useEffect(() => {
-    initializeGoneGreenImages().then(() => {
-      console.log('Gone Green images initialized');
-    }).catch((err) => {
-      console.error('Failed to initialize Gone Green images:', err);
-    });
-  }, []);
 
   if (loading) {
     return (
@@ -82,7 +71,7 @@ export const NFTGallery = () => {
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
               Join the Green Chonks Crew (20 in total) each bundled by GhostAgent and backed by real carbon offsets. Every Chonk{" "}
               <a href="https://www.chonks.xyz/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">
-               chonks.xyz
+                chonks.xyz
               </a>{" "}
               carries a digital backpack packed with clothing traits, bonus NFTs, tokens, and climate impact certificates. Your purchase supports the planet and GhostAgent's family. More adventures to come.
             </p>
