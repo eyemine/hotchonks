@@ -69,7 +69,11 @@ export const NFTGallery = () => {
               <span className="text-foreground">Bundle Shop</span>
             </h2>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-              Discover our unique collection of Green Chonks NFTs, each one backed by real carbon offsets and packed with surprises. Every Chonk comes with a digital backpack full of bonus NFTs, tokens, and climate impact certificates.
+              Join the Green Chonks Crew (20 in total) each bundled by GhostAgent and backed by real carbon offsets. Every Chonk{" "}
+              <a href="https://www.chonks.xyz/" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">
+                chonks.xyz
+              </a>{" "}
+              carries a digital backpack packed with clothing traits, bonus NFTs, tokens, and climate impact certificates. Your purchase supports the planet and GhostAgent's family. More adventures to come.
             </p>
           </div>
 
