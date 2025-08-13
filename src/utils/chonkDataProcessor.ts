@@ -1,7 +1,7 @@
 
 import { ChonkNFT } from "@/types/chonk";
 import { CHONKS_CONTRACT } from "@/constants/chonks";
-import { getNestedNFTs } from "./nestedNFTs";
+import { getNestedNFTs } from "./dynamicNestedNFTs";
 
 export const processAPIData = (apiResult: any): ChonkNFT[] => {
   const chonksData: ChonkNFT[] = [];

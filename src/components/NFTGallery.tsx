@@ -3,9 +3,20 @@ import { NFTCard } from "./NFTCard";
 import { Skeleton } from "@/components/ui/skeleton";
 import { AlertCircle } from "lucide-react";
 import { useChonksData } from "@/hooks/useChonksData";
+import { useEffect } from "react";
+import { initializeGoneGreenImages } from "@/utils/dynamicNestedNFTs";
 
 export const NFTGallery = () => {
   const { chonks, loading, error } = useChonksData();
+
+  // Initialize Gone Green images when component mounts
+  useEffect(() => {
+    initializeGoneGreenImages().then(() => {
+      console.log('Gone Green images initialized');
+    }).catch((err) => {
+      console.error('Failed to initialize Gone Green images:', err);
+    });
+  }, []);
 
   if (loading) {
     return (

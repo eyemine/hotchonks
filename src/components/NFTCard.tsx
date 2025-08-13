@@ -4,9 +4,10 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
 import { ExternalLink, ChevronDown } from "lucide-react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 import { extractContractFromZoraUrl } from "@/utils/zoraApi";
+import { getNestedNFTs, initializeGoneGreenImages } from "@/utils/dynamicNestedNFTs";
 
 interface NestedNFT {
   id: string;
