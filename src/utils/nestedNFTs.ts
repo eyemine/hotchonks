@@ -355,14 +355,6 @@ export const getNestedNFTs = (chonkId: number) => {
         contractAddress: '0x12ea7232bb05e031a0ac588662fac0b2d2a93dbe'
       },
       {
-        id: 'klima-dao-token-4',
-        name: 'Klima DAO Token #4',
-        image: '/lovable-uploads/9546ef85-5991-4c07-9718-b259b3c74e33.png',
-        collection: 'Klima DAO',
-        openSeaUrl: 'https://opensea.io/item/base/0x2530ffff980ae3400b0e4c1dc222f1536972077e/4',
-        contractAddress: '0x2530ffff980ae3400b0e4c1dc222f1536972077e'
-      },
-      {
         id: 'chonk697-base-eth',
         name: 'chonk697.base.eth',
         image: '/lovable-uploads/20ece027-3f7c-4bfe-ab23-ebf6872160b9.png',
