@@ -131,8 +131,6 @@ export const NFTCard = ({ nft }: NFTCardProps) => {
                     const price = contractAddress ? prices[contractAddress] : null;
                     const marketCap = contractAddress ? marketCaps[contractAddress] : null;
                     
-                    // Debug logging
-                    console.log(`Nested item ${nested.name}:`, { contractAddress, price, marketCap, pricesLoading });
                     
                     const isGoneGreen = nested.collection === 'Gone Green' || /Gone\s+Green/i.test(nested.name);
                     const numberTag = nested.name.match(/#\d+/)?.[0] || '';
