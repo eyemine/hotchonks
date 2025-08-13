@@ -52,14 +52,24 @@ export const NFTCard = ({ nft }: NFTCardProps) => {
       <div className="p-6">
         {/* Main NFT Image - Square and Larger */}
         <div className="relative mb-4 overflow-hidden rounded-lg">
-          <img 
-            src={nft.image} 
-            alt={nft.name}
-            className="w-full h-80 object-cover transition-transform duration-500 group-hover:scale-105"
-          />
+          {nft.openSeaUrl ? (
+            <a href={nft.openSeaUrl} target="_blank" rel="noopener noreferrer" className="block">
+              <img 
+                src={nft.image} 
+                alt={nft.name}
+                className="w-full h-80 object-cover transition-transform duration-500 group-hover:scale-105 cursor-pointer"
+              />
+            </a>
+          ) : (
+            <img 
+              src={nft.image} 
+              alt={nft.name}
+              className="w-full h-80 object-cover transition-transform duration-500 group-hover:scale-105"
+            />
+          )}
           {/* Semi-transparent overlay for sold items */}
           {nft.sold && (
-            <div className="absolute inset-0 bg-black/50" />
+            <div className="absolute inset-0 bg-black/50 pointer-events-none" />
           )}
           {nft.sold && (
             <div className="absolute top-2 left-2 z-10">
