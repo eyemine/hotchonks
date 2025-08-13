@@ -25,7 +25,7 @@ export const Footer = () => {
             >
               @ghostagent_og
             </a>
-            's birthday 🎂 | Learn more about{" "}
+            {" "}| Learn more about{" "}
             <a 
               href="https://eips.ethereum.org/EIPS/eip-6551" 
               target="_blank" 
