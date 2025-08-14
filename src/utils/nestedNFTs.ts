@@ -9,6 +9,12 @@ export const getNestedNFTs = (tokenId: number) => {
         collection: 'Gone Green',
         zoraUrl: 'https://zora.co/@chonk585',
         contractAddress: '0x8bc6e5e303344f5526057df842316ff4c347efd7'
+      },
+      {
+        id: 'klima-stake-585',
+        name: '100 $KLIMA Staked',
+        image: '/lovable-uploads/b3b222f0-1d06-420e-907c-0b88ca3114e2.png',
+        collection: 'Klima Protocol'
       }
     ],
     586: [
@@ -19,6 +25,12 @@ export const getNestedNFTs = (tokenId: number) => {
         collection: 'Gone Green',
         zoraUrl: 'https://zora.co/@chonk586',
         contractAddress: '0xcbe47fa36e99d11125660262611a1fc998f330b5'
+      },
+      {
+        id: 'klima-stake-586',
+        name: '100 $KLIMA Staked',
+        image: '/lovable-uploads/d1793031-6834-4186-81dc-108975cd1022.png',
+        collection: 'Klima Protocol'
       }
     ],
     588: [
@@ -29,6 +41,12 @@ export const getNestedNFTs = (tokenId: number) => {
         collection: 'Gone Green',
         zoraUrl: 'https://zora.co/@chonk588',
         contractAddress: '0x021594a8005aec083f04b53edf2e57e941086d5e'
+      },
+      {
+        id: 'klima-stake-588',
+        name: '100 $KLIMA Staked',
+        image: '/lovable-uploads/4a4b3cd6-9bde-4e5d-80d1-302d1d96ed99.png',
+        collection: 'Klima Protocol'
       }
     ],
     596: [
@@ -88,6 +106,12 @@ export const getNestedNFTs = (tokenId: number) => {
         image: '/lovable-uploads/20ece027-3f7c-4bfe-ab23-ebf6872160b9.png',
         collection: 'Base Names',
         openSeaUrl: 'https://opensea.io/item/base/0x03c4738ee98ae44591e1a4a4f3cab6641d95dd9a/114072095704861542368688163225597811475385939717344165564990381437927256695765'
+      },
+      {
+        id: 'klima-stake-596',
+        name: '100 $KLIMA Staked',
+        image: '/lovable-uploads/ba785906-0857-44c3-9286-28d7955cd5c7.png',
+        collection: 'Klima Protocol'
       }
     ],
     599: [
@@ -98,6 +122,12 @@ export const getNestedNFTs = (tokenId: number) => {
         collection: 'Gone Green',
         zoraUrl: 'https://zora.co/@chonk599',
         contractAddress: '0xe995b8f87c76614fd094acc971d1651ab82f6a2a'
+      },
+      {
+        id: 'klima-stake-599',
+        name: '100 $KLIMA Staked',
+        image: '/lovable-uploads/deac98a4-071e-46a4-9913-a9b094936bdc.png',
+        collection: 'Klima Protocol'
       }
     ],
     601: [
