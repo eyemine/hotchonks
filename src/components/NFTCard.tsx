@@ -38,17 +38,19 @@ interface NFTCardProps {
   nft: NFT;
 }
 
-const getENSName = (nftName: string): string => {
-  const match = nftName.match(/Chonk #(\d+)/);
-  if (match) {
-    const number = match[1];
-    return `chonk${number}.base.eth`;
-  }
-  return "chonk585.base.eth"; // fallback
-};
 
 export const NFTCard = ({ nft }: NFTCardProps) => {
   const [isOpen, setIsOpen] = useState(false);
+  
+  const getENSName = (nftName: string): string => {
+    const match = nftName.match(/Chonk #(\d+)/);
+    if (match) {
+      const number = match[1];
+      return `chonk${number}.base.eth`;
+    }
+    return "chonk585.base.eth"; // fallback
+  };
+  
   const { prices, marketCaps, loading: pricesLoading } = useZoraPrices([
     ...nft.nestedNFTs,
     ...(nft.primaryCoinContract
