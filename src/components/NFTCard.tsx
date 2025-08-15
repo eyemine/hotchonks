@@ -146,11 +146,12 @@ export const NFTCard = ({ nft }: NFTCardProps) => {
                     console.log(`Nested item ${nested.name}:`, { contractAddress, price, marketCap, pricesLoading });
                     
                     const isGoneGreen = nested.collection === 'Gone Green' || /Gone\s+Green/i.test(nested.name);
+                    const isKlimaStaked = nested.collection === 'Klima Protocol' || nested.name.includes('$KLIMA Staked');
                     const numberTag = nested.name.match(/#\d+/)?.[0] || '';
                     
                     return (
                     <div key={nested.id} className="bg-card rounded-lg p-3 border border-border hover:border-bio-green/30 transition-all duration-300 hover:scale-102 cursor-pointer group/nested">
-                      {isGoneGreen ? (
+                      {(isGoneGreen || isKlimaStaked) ? (
                         /* Vertical layout for Gone Green NFTs - larger image with text below */
                         <div className="space-y-3">
                           <div className="w-full aspect-square overflow-hidden rounded">
@@ -160,23 +161,25 @@ export const NFTCard = ({ nft }: NFTCardProps) => {
                               className="w-full h-full object-contain transition-transform duration-500 group-hover/nested:scale-105"
                             />
                           </div>
-                          <div>
-                            <div className="mb-2">
-                              <p className="text-sm font-semibold text-foreground leading-tight">
-                                Gone Green {numberTag}
-                              </p>
-                            </div>
-                            
-                            {/* Market cap as big number for Gone Green */}
-                            <div className="mb-2">
-                              {marketCap && !pricesLoading ? (
-                                <p className="text-lg font-bold text-bio-green">${marketCap} market cap</p>
-                              ) : pricesLoading ? (
-                                <p className="text-sm text-muted-foreground">Loading...</p>
-                              ) : (
-                                <p className="text-sm text-muted-foreground">Market cap unavailable</p>
-                              )}
-                            </div>
+                           <div>
+                             <div className="mb-2">
+                               <p className="text-sm font-semibold text-foreground leading-tight">
+                                 {isGoneGreen ? `Gone Green ${numberTag}` : nested.name}
+                               </p>
+                             </div>
+                             
+                             {/* Market cap for Gone Green, special styling for KLIMA */}
+                             <div className="mb-2">
+                               {isGoneGreen && marketCap && !pricesLoading ? (
+                                 <p className="text-lg font-bold text-bio-green">${marketCap} market cap</p>
+                               ) : isGoneGreen && pricesLoading ? (
+                                 <p className="text-sm text-muted-foreground">Loading...</p>
+                               ) : isGoneGreen ? (
+                                 <p className="text-sm text-muted-foreground">Market cap unavailable</p>
+                               ) : isKlimaStaked ? (
+                                 <p className="text-lg font-bold text-green-500">Climate Impact Certificate</p>
+                               ) : null}
+                             </div>
                             
                             <div className="flex gap-1">
                               {nested.zoraUrl && (
