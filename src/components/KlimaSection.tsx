@@ -28,7 +28,7 @@ export const KlimaSection = () => {
                 <Leaf className="w-6 h-6 text-bio-light" />
               </div>
               <h3 className="text-2xl font-bold text-foreground mb-2">155</h3>
-              <p className="text-muted-foreground">Tons CO₂ Offset</p>
+              <p className="text-muted-foreground">Tonnes CO₂ Offset</p>
             </CardContent>
           </Card>
 
