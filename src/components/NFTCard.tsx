@@ -181,34 +181,47 @@ export const NFTCard = ({ nft }: NFTCardProps) => {
                                ) : null}
                              </div>
                             
-                            <div className="flex gap-1">
-                              {nested.zoraUrl && (
-                                <Button 
-                                  variant="ghost" 
-                                  size="sm" 
-                                  asChild
-                                  className="p-1 h-6 text-xs text-bio-light hover:text-bio-glow"
-                                >
-                                  <a href={nested.zoraUrl} target="_blank" rel="noopener noreferrer">
-                                    <ExternalLink size={10} className="mr-1" />
-                                    Zora
-                                  </a>
-                                </Button>
-                              )}
-                              {nested.openSeaUrl && (
-                                <Button 
-                                  variant="ghost" 
-                                  size="sm" 
-                                  asChild
-                                  className="p-1 h-6 text-xs text-bio-light hover:text-bio-glow"
-                                >
-                                  <a href={nested.openSeaUrl} target="_blank" rel="noopener noreferrer">
-                                    <ExternalLink size={10} className="mr-1" />
-                                    OpenSea
-                                  </a>
-                                </Button>
-                              )}
-                            </div>
+                             <div className="flex gap-1">
+                               {isKlimaStaked && (
+                                 <Button 
+                                   variant="ghost" 
+                                   size="sm" 
+                                   asChild
+                                   className="p-1 h-6 text-xs text-bio-light hover:text-bio-glow"
+                                 >
+                                   <a href="https://www.klimaprotocol.com/faq" target="_blank" rel="noopener noreferrer">
+                                     <ExternalLink size={10} className="mr-1" />
+                                     KlimaProtocol
+                                   </a>
+                                 </Button>
+                               )}
+                               {nested.zoraUrl && (
+                                 <Button 
+                                   variant="ghost" 
+                                   size="sm" 
+                                   asChild
+                                   className="p-1 h-6 text-xs text-bio-light hover:text-bio-glow"
+                                 >
+                                   <a href={nested.zoraUrl} target="_blank" rel="noopener noreferrer">
+                                     <ExternalLink size={10} className="mr-1" />
+                                     Zora
+                                   </a>
+                                 </Button>
+                               )}
+                               {nested.openSeaUrl && (
+                                 <Button 
+                                   variant="ghost" 
+                                   size="sm" 
+                                   asChild
+                                   className="p-1 h-6 text-xs text-bio-light hover:text-bio-glow"
+                                 >
+                                   <a href={nested.openSeaUrl} target="_blank" rel="noopener noreferrer">
+                                     <ExternalLink size={10} className="mr-1" />
+                                     OpenSea
+                                   </a>
+                                 </Button>
+                               )}
+                             </div>
                           </div>
                         </div>
                       ) : (
