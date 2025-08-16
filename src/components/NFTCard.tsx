@@ -169,6 +169,22 @@ export const NFTCard = ({ nft }: NFTCardProps) => {
             </CollapsibleTrigger>
             <CollapsibleContent>
               <div className="px-4 pb-4">
+                {/* Gallery Link */}
+                {getGalleryUrl(parseInt(nft.id)) && (
+                  <div className="mb-4">
+                    <Button 
+                      variant="default" 
+                      size="sm" 
+                      asChild
+                      className="w-full bg-black text-white hover:bg-gray-800 border-0"
+                    >
+                      <a href={getGalleryUrl(parseInt(nft.id))} target="_blank" rel="noopener noreferrer">
+                        <ExternalLink size={12} className="mr-2 text-white" />
+                        View Full Gallery on OpenSea
+                      </a>
+                    </Button>
+                  </div>
+                )}
                 <div className="grid grid-cols-1 gap-3">
                   {nft.nestedNFTs.map((nested) => {
                     const contractAddress = nested.contractAddress || (nested.zoraUrl ? extractContractFromZoraUrl(nested.zoraUrl) : null);
@@ -332,26 +348,9 @@ export const NFTCard = ({ nft }: NFTCardProps) => {
         </Collapsible>
       )}
 
-      {/* Gallery Button */}
-      {getGalleryUrl(parseInt(nft.id)) && (
-        <div className="p-4 border-t border-border">
-          <Button 
-            variant="default" 
-            size="sm" 
-            asChild
-            className="w-full bg-black text-white hover:bg-gray-800 border-0 mb-2"
-          >
-            <a href={getGalleryUrl(parseInt(nft.id))} target="_blank" rel="noopener noreferrer">
-              <ExternalLink size={12} className="mr-2 text-white" />
-              View Full Gallery on OpenSea
-            </a>
-          </Button>
-        </div>
-      )}
-
       {/* OpenSea Button */}
       {nft.openSeaUrl && (
-        <div className={`p-4 border-t border-border ${getGalleryUrl(parseInt(nft.id)) ? 'pt-0' : ''}`}>
+        <div className="p-4 border-t border-border">
           <Button 
             variant="default" 
             size="sm" 
