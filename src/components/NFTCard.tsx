@@ -242,10 +242,10 @@ export const NFTCard = ({ nft }: NFTCardProps) => {
                                    asChild
                                    className="p-1 h-6 text-xs text-bio-light hover:text-bio-glow"
                                  >
-                                   <a href={nested.zoraUrl} target="_blank" rel="noopener noreferrer">
-                                     <ExternalLink size={10} className="mr-1" />
-                                     Zora
-                                   </a>
+                                    <a href={nested.zoraUrl} target="_blank" rel="noopener noreferrer">
+                                      <ExternalLink size={10} className="mr-1" />
+                                      Backpack Zora Account
+                                    </a>
                                  </Button>
                                )}
                                {nested.openSeaUrl && (
@@ -298,10 +298,10 @@ export const NFTCard = ({ nft }: NFTCardProps) => {
                                     asChild
                                     className="p-1 h-6 text-xs text-bio-light hover:text-bio-glow"
                                   >
-                                    <a href={nested.zoraUrl} target="_blank" rel="noopener noreferrer">
-                                      <ExternalLink size={10} className="mr-1" />
-                                      Zora
-                                    </a>
+                                     <a href={nested.zoraUrl} target="_blank" rel="noopener noreferrer">
+                                       <ExternalLink size={10} className="mr-1" />
+                                       Backpack Zora Account
+                                     </a>
                                   </Button>
                                 )}
                                 {nested.openSeaUrl && (
