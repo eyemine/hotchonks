@@ -9,7 +9,6 @@ import { useZoraPrices } from "@/hooks/useZoraPrices";
 import { extractContractFromZoraUrl } from "@/utils/zoraApi";
 import { getGalleryUrl } from "@/utils/openSeaGalleries";
 import openSeaLogo from "@/assets/opensea-logo.png";
-import basepaintNft from "@/assets/basepaint-nft.png";
 
 interface NestedNFT {
   id: string;
@@ -170,22 +169,6 @@ export const NFTCard = ({ nft }: NFTCardProps) => {
             </CollapsibleTrigger>
             <CollapsibleContent>
               <div className="px-4 pb-4">
-                {/* Gallery Link */}
-                {getGalleryUrl(parseInt(nft.id)) && (
-                  <div className="mb-4">
-                    <Button 
-                      variant="outline" 
-                      size="sm" 
-                      asChild
-                      className="w-full text-bio-light border-bio-green/30 hover:bg-bio-green/10"
-                    >
-                      <a href={getGalleryUrl(parseInt(nft.id))} target="_blank" rel="noopener noreferrer">
-                        <ExternalLink size={12} className="mr-2" />
-                        View Full Gallery on OpenSea
-                      </a>
-                    </Button>
-                  </div>
-                )}
                 <div className="grid grid-cols-1 gap-3">
                   {nft.nestedNFTs.map((nested) => {
                     const contractAddress = nested.contractAddress || (nested.zoraUrl ? extractContractFromZoraUrl(nested.zoraUrl) : null);
@@ -343,48 +326,32 @@ export const NFTCard = ({ nft }: NFTCardProps) => {
                     );
                   })}
                 </div>
-                
-                {/* Plus Bonus NFTs Section */}
-                {getGalleryUrl(parseInt(nft.id)) && (
-                  <div className="mt-4 pt-4 border-t border-border">
-                    <div className="bg-card rounded-lg p-3 border border-border hover:border-bio-green/30 transition-all duration-300 hover:scale-102 cursor-pointer group/bonus">
-                      <div className="flex items-center gap-3">
-                        <div className="flex-shrink-0 w-16 h-16 overflow-hidden rounded">
-                          <img 
-                            src={basepaintNft} 
-                            alt="BasePaint NFT"
-                            className="w-full h-full object-cover transition-transform duration-500 group-hover/bonus:scale-110"
-                          />
-                        </div>
-                        <div className="flex-1 min-w-0">
-                          <p className="text-sm font-medium text-foreground mb-1">Plus Bonus NFTs</p>
-                          <div className="flex items-center justify-between">
-                            <Button 
-                              variant="ghost" 
-                              size="sm" 
-                              asChild
-                              className="p-1 h-6 text-xs text-bio-light hover:text-bio-glow"
-                            >
-                              <a href={getGalleryUrl(parseInt(nft.id))} target="_blank" rel="noopener noreferrer">
-                                <ExternalLink size={10} className="mr-1" />
-                                View Gallery
-                              </a>
-                            </Button>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                )}
               </div>
             </CollapsibleContent>
           </div>
         </Collapsible>
       )}
 
+      {/* Gallery Button */}
+      {getGalleryUrl(parseInt(nft.id)) && (
+        <div className="p-4 border-t border-border">
+          <Button 
+            variant="default" 
+            size="sm" 
+            asChild
+            className="w-full bg-black text-white hover:bg-gray-800 border-0 mb-2"
+          >
+            <a href={getGalleryUrl(parseInt(nft.id))} target="_blank" rel="noopener noreferrer">
+              <ExternalLink size={12} className="mr-2 text-white" />
+              View Full Gallery on OpenSea
+            </a>
+          </Button>
+        </div>
+      )}
+
       {/* OpenSea Button */}
       {nft.openSeaUrl && (
-        <div className="p-4 border-t border-border">
+        <div className={`p-4 border-t border-border ${getGalleryUrl(parseInt(nft.id)) ? 'pt-0' : ''}`}>
           <Button 
             variant="default" 
             size="sm" 
