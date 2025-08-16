@@ -18,7 +18,7 @@ All colors MUST be HSL.
     --popover: 220 15% 12%;
     --popover-foreground: 120 20% 95%;
 
-    --primary: 150 100% 35%;
+    --primary: 135 100% 40%;
     --primary-foreground: 220 15% 8%;
 
     --secondary: 220 15% 15%;
@@ -27,7 +27,7 @@ All colors MUST be HSL.
     --muted: 220 15% 15%;
     --muted-foreground: 120 10% 65%;
 
-    --accent: 160 80% 45%;
+    --accent: 135 100% 40%;
     --accent-foreground: 220 15% 8%;
 
     --destructive: 0 84.2% 60.2%;
@@ -35,16 +35,16 @@ All colors MUST be HSL.
 
     --border: 220 15% 20%;
     --input: 220 15% 18%;
-    --ring: 150 100% 35%;
+    --ring: 135 100% 40%;
 
     /* Climate-themed design tokens */
     --carbon-dark: 220 15% 8%;
     --carbon-medium: 220 15% 12%;
     --carbon-light: 220 15% 18%;
     
-    --bio-green: 150 100% 35%;
-    --bio-light: 160 80% 45%;
-    --bio-glow: 140 100% 60%;
+    --bio-green: 135 100% 40%;
+    --bio-light: 135 100% 50%;
+    --bio-glow: 135 100% 60%;
     
     --earth-brown: 30 25% 20%;
     --earth-gold: 45 70% 45%;
@@ -94,7 +94,7 @@ All colors MUST be HSL.
     --popover: 120 10% 98%;
     --popover-foreground: 220 15% 15%;
 
-    --primary: 150 60% 25%;
+    --primary: 135 100% 25%;
     --primary-foreground: 120 20% 98%;
 
     --secondary: 120 10% 90%;
@@ -103,7 +103,7 @@ All colors MUST be HSL.
     --muted: 120 10% 90%;
     --muted-foreground: 220 10% 45%;
 
-    --accent: 160 50% 35%;
+    --accent: 135 100% 30%;
     --accent-foreground: 120 20% 98%;
 
     --destructive: 0 84.2% 60.2%;
@@ -111,7 +111,7 @@ All colors MUST be HSL.
 
     --border: 120 10% 85%;
     --input: 120 10% 88%;
-    --ring: 150 60% 25%;
+    --ring: 135 100% 25%;
     --sidebar-background: 240 5.9% 10%;
     --sidebar-foreground: 240 4.8% 95.9%;
     --sidebar-primary: 224.3 76.3% 48%;
