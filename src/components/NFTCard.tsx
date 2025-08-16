@@ -177,7 +177,7 @@ export const NFTCard = ({ nft }: NFTCardProps) => {
                                ) : isGoneGreen ? (
                                  <p className="text-sm text-muted-foreground">Market cap unavailable</p>
                                ) : isKlimaStaked ? (
-                                 <p className="text-lg font-bold text-green-500">Climate Impact Certificate</p>
+                                 <p className="text-lg font-bold text-green-500">Staking ends est. Q3 2025</p>
                                ) : null}
                              </div>
                             
