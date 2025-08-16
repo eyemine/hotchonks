@@ -47,8 +47,17 @@ export const KlimaSection = () => {
               <div className="w-12 h-12 bg-bio-green/20 rounded-full flex items-center justify-center mx-auto mb-4">
                 <Leaf className="w-6 h-6 text-bio-light" />
               </div>
-              <h3 className="text-2xl font-bold text-foreground mb-2">5,968</h3>
-              <p className="text-muted-foreground">Trees Equivalent</p>
+              <h3 className="text-2xl font-bold text-foreground mb-2">15,500</h3>
+              <p className="text-muted-foreground">
+                <a 
+                  href="https://onetreeplanted.org/blogs/stories/how-much-co2-does-tree-absorb" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="hover:text-bio-light transition-colors underline"
+                >
+                  Average Trees Absorb in One Year
+                </a>
+              </p>
             </CardContent>
           </Card>
         </div>
