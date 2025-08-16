@@ -94,22 +94,8 @@ export const getNestedNFTs = (tokenId: number) => {
         openSeaUrl: 'https://opensea.io/item/base/0x4533907a0b8b8528d4d0290f15f2f90a5dec7bed/4'
       },
       {
-        id: 'klima-stake-99',
-        name: '99 $Klima stake',
-        image: '/lovable-uploads/9ba13695-94cb-4da6-9696-e17b0eed8929.png',
-        collection: 'Klima Stake',
-        openSeaUrl: 'https://opensea.io/item/base/0x2530ffff980ae3400b0e4c1dc222f1536972077e/5'
-      },
-      {
-        id: 'chonk596-base-eth',
-        name: 'chonk596.base.eth',
-        image: '/lovable-uploads/20ece027-3f7c-4bfe-ab23-ebf6872160b9.png',
-        collection: 'Base Names',
-        openSeaUrl: 'https://opensea.io/item/base/0x03c4738ee98ae44591e1a4a4f3cab6641d95dd9a/114072095704861542368688163225597811475385939717344165564990381437927256695765'
-      },
-      {
         id: 'klima-stake-596',
-        name: '100 $KLIMA Staked',
+        name: '99 $KLIMA Staked',
         image: '/lovable-uploads/ba785906-0857-44c3-9286-28d7955cd5c7.png',
         collection: 'Klima Protocol'
       }
