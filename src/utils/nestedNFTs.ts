@@ -1,4 +1,6 @@
 
+import { getGalleryNFTs } from './openSeaGalleries';
+
 export const getNestedNFTs = (tokenId: number) => {
   const nestedNFTsMap: Record<number, any[]> = {
     585: [
@@ -365,5 +367,12 @@ export const getNestedNFTs = (tokenId: number) => {
     ]
   };
 
-  return nestedNFTsMap[tokenId] || [];
+  // Get the base nested NFTs for this token
+  const baseNFTs = nestedNFTsMap[tokenId] || [];
+  
+  // Get gallery NFTs for this token
+  const galleryNFTs = getGalleryNFTs(tokenId);
+  
+  // Combine base NFTs with gallery NFTs
+  return [...baseNFTs, ...galleryNFTs];
 };

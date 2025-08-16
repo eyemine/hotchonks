@@ -7,6 +7,7 @@ import { ExternalLink, ChevronDown } from "lucide-react";
 import { useState } from "react";
 import { useZoraPrices } from "@/hooks/useZoraPrices";
 import { extractContractFromZoraUrl } from "@/utils/zoraApi";
+import { getGalleryUrl } from "@/utils/openSeaGalleries";
 import openSeaLogo from "@/assets/opensea-logo.png";
 
 interface NestedNFT {
@@ -168,6 +169,22 @@ export const NFTCard = ({ nft }: NFTCardProps) => {
             </CollapsibleTrigger>
             <CollapsibleContent>
               <div className="px-4 pb-4">
+                {/* Gallery Link */}
+                {getGalleryUrl(parseInt(nft.id)) && (
+                  <div className="mb-4">
+                    <Button 
+                      variant="outline" 
+                      size="sm" 
+                      asChild
+                      className="w-full text-bio-light border-bio-green/30 hover:bg-bio-green/10"
+                    >
+                      <a href={getGalleryUrl(parseInt(nft.id))} target="_blank" rel="noopener noreferrer">
+                        <ExternalLink size={12} className="mr-2" />
+                        View Full Gallery on OpenSea
+                      </a>
+                    </Button>
+                  </div>
+                )}
                 <div className="grid grid-cols-1 gap-3">
                   {nft.nestedNFTs.map((nested) => {
                     const contractAddress = nested.contractAddress || (nested.zoraUrl ? extractContractFromZoraUrl(nested.zoraUrl) : null);
