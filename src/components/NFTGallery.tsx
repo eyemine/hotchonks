@@ -78,7 +78,7 @@ export const NFTGallery = () => {
               >
                 GhostAgent
               </a>
-              {" "}and backed by real carbon offsets. Your purchase supports GhostAgent's family and the planet.
+              {" "}and backed by real carbon offsets. Your purchase benefits you, the environment and GhostAgent's family. Win, win win!
             </p>
           </div>
 
