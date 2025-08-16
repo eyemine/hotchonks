@@ -7,6 +7,7 @@ import { ExternalLink, ChevronDown } from "lucide-react";
 import { useState } from "react";
 import { useZoraPrices } from "@/hooks/useZoraPrices";
 import { extractContractFromZoraUrl } from "@/utils/zoraApi";
+import openSeaLogo from "@/assets/opensea-logo.png";
 
 interface NestedNFT {
   id: string;
@@ -302,6 +303,7 @@ export const NFTCard = ({ nft }: NFTCardProps) => {
             className="w-full bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-700 hover:to-blue-700 text-white border-0"
           >
             <a href={nft.openSeaUrl} target="_blank" rel="noopener noreferrer">
+              <img src={openSeaLogo} alt="OpenSea" className="w-4 h-4 mr-2" />
               Buy on OpenSea
             </a>
           </Button>
