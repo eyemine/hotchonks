@@ -59,6 +59,12 @@ export const getNestedNFTs = (tokenId: number) => {
         contractAddress: '0x09d5b3297545f69a8893bb7a610132354117b66e'
       },
       {
+        id: 'klima-stake-596',
+        name: '99 $KLIMA Staked',
+        image: '/lovable-uploads/ba785906-0857-44c3-9286-28d7955cd5c7.png',
+        collection: 'Klima Protocol'
+      },
+      {
         id: 'basepaint-day-485',
         name: 'BasePaint Day #485',
         image: '/lovable-uploads/f45142a4-0651-4e29-8814-9dca1a418963.png',
@@ -92,12 +98,6 @@ export const getNestedNFTs = (tokenId: number) => {
         image: '/lovable-uploads/42d78e09-011b-4ead-a4fa-bfdff93f482d.png',
         collection: 'NINE CHONKS',
         openSeaUrl: 'https://opensea.io/item/base/0x4533907a0b8b8528d4d0290f15f2f90a5dec7bed/4'
-      },
-      {
-        id: 'klima-stake-596',
-        name: '99 $KLIMA Staked',
-        image: '/lovable-uploads/ba785906-0857-44c3-9286-28d7955cd5c7.png',
-        collection: 'Klima Protocol'
       }
     ],
     599: [
