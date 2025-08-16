@@ -354,6 +354,13 @@ export const getNestedNFTs = (tokenId: number) => {
         name: '100 $KLIMA Staked',
         image: '/lovable-uploads/9546ef85-5991-4c07-9718-b259b3c74e33.png',
         collection: 'Klima Protocol'
+      },
+      {
+        id: 'basepaint-day-201',
+        name: 'BasePaint Day #201',
+        image: '/lovable-uploads/ade97e97-5961-45e3-85c7-da242351c633.png',
+        collection: 'Base Paint',
+        openSeaUrl: 'https://opensea.io/item/base/0xba5e05cb26b78eda3a2f8e3b3814726305dcac83/201'
       }
     ]
   };
