@@ -219,7 +219,7 @@ export const NFTCard = ({ nft }: NFTCardProps) => {
                                     rel="noopener noreferrer"
                                     className="text-lg font-bold text-bio-green hover:underline"
                                   >
-                                    Staking ends est. Q3 2025
+                                    Staking ends ~Q3 '25
                                   </a>
                                 ) : null}
                              </div>
