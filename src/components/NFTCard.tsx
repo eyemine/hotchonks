@@ -163,7 +163,10 @@ export const NFTCard = ({ nft }: NFTCardProps) => {
                 variant="ghost" 
                 className="w-full p-4 justify-between text-bio-light hover:text-bio-glow hover:bg-bio-green/10 transition-colors"
               >
-                <span className="font-medium">Look in the backpack of {getENSName(nft.name)}</span>
+                <span className="font-medium">
+                  <span className="md:hidden">Backpack of {getENSName(nft.name)}</span>
+                  <span className="hidden md:inline">Look in the backpack of {getENSName(nft.name)}</span>
+                </span>
                 <ChevronDown className={`h-4 w-4 transition-transform duration-200 ${isOpen ? 'rotate-180' : ''}`} />
               </Button>
             </CollapsibleTrigger>
