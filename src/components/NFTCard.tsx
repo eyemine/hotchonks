@@ -348,7 +348,7 @@ export const NFTCard = ({ nft }: NFTCardProps) => {
                     >
                       <a href={getGalleryUrl(parseInt(nft.id))} target="_blank" rel="noopener noreferrer">
                         <ExternalLink size={12} className="mr-2 text-white" />
-                        View Full Gallery on OpenSea
+                        View More in the Backpack
                       </a>
                     </Button>
                   </div>
