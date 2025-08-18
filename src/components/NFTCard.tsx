@@ -133,7 +133,7 @@ export const NFTCard = ({ nft }: NFTCardProps) => {
           {/* Price - only show if not sold and not coming soon */}
           {!nft.sold && nft.price !== 'Coming Soon' && nft.price !== 'SOLD' && (
             <div className="pt-2 space-y-1">
-              <span className="text-lg font-bold text-foreground">
+              <span className="text-lg font-bold text-blue-500">
                 {nft.price} ETH
               </span>
             </div>
@@ -288,7 +288,7 @@ export const NFTCard = ({ nft }: NFTCardProps) => {
                             {/* Price for non-Gone Green items */}
                             <div className="flex items-center justify-between">
                               {price && !pricesLoading ? (
-                                <p className="text-sm font-bold text-bio-green">{price} ETH</p>
+                                <p className="text-sm font-bold text-blue-500">{price} ETH</p>
                               ) : pricesLoading && nested.zoraUrl ? (
                                 <p className="text-xs text-muted-foreground">Loading...</p>
                               ) : null}
