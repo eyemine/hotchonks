@@ -413,6 +413,13 @@ export const getNestedNFTs = (tokenId: number) => {
         name: '100 $KLIMA Staked',
         image: '/lovable-uploads/9546ef85-5991-4c07-9718-b259b3c74e33.png',
         collection: 'Klima Protocol'
+      },
+      {
+        id: 'basepaint-day-239',
+        name: 'BasePaint Day #239',
+        image: '/lovable-uploads/bac65af0-f626-4982-a786-cb46a1416b55.png',
+        collection: 'BasePaint',
+        openSeaUrl: 'https://opensea.io/item/base/0xba5e05cb26b78eda3a2f8e3b3814726305dcac83/239'
       }
     ],
     697: [
@@ -452,6 +459,13 @@ export const getNestedNFTs = (tokenId: number) => {
         name: '100 $KLIMA Staked',
         image: '/lovable-uploads/9546ef85-5991-4c07-9718-b259b3c74e33.png',
         collection: 'Klima Protocol'
+      },
+      {
+        id: 'basepaint-day-247',
+        name: 'BasePaint Day #247',
+        image: '/lovable-uploads/79a68462-25e2-42b9-bc70-fc6142c11935.png',
+        collection: 'BasePaint',
+        openSeaUrl: 'https://opensea.io/item/base/0xba5e05cb26b78eda3a2f8e3b3814726305dcac83/247'
       }
     ],
     9534: [
