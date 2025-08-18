@@ -177,7 +177,7 @@ export const NFTCard = ({ nft }: NFTCardProps) => {
               </Button>
             </CollapsibleTrigger>
             <CollapsibleContent>
-              <div className="px-4 pb-4">
+              <div className={`px-4 pb-4 transition-colors duration-300 ${isOpen ? 'bg-bio-green/5' : ''}`}>
                 <div className="grid grid-cols-1 gap-3">
                   {nft.nestedNFTs.map((nested) => {
                     const contractAddress = nested.contractAddress || (nested.zoraUrl ? extractContractFromZoraUrl(nested.zoraUrl) : null);
