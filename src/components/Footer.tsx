@@ -34,7 +34,7 @@ export const Footer = () => {
             >
               ERC-6551
             </a>
-            {" "}📦 | Scroll up and buy a Chonk 😡
+            {" "} | Scroll up and buy a Chonk 😡
           </p>
         </div>
       </div>
