@@ -10,6 +10,12 @@ import { extractContractFromZoraUrl } from "@/utils/zoraApi";
 import { getGalleryUrl } from "@/utils/openSeaGalleries";
 import openSeaLogo from "@/assets/opensea-logo.png";
 
+// Helper function to format ETH prices by removing trailing zeros
+const formatEthPrice = (price: string): string => {
+  const numPrice = parseFloat(price);
+  return isNaN(numPrice) ? price : numPrice.toString();
+};
+
 interface NestedNFT {
   id: string;
   name: string;
@@ -134,7 +140,7 @@ export const NFTCard = ({ nft }: NFTCardProps) => {
           {!nft.sold && nft.price !== 'Coming Soon' && nft.price !== 'SOLD' && (
             <div className="pt-2 space-y-1">
               <span className="text-lg font-bold text-blue-500">
-                {nft.price} ETH
+                {formatEthPrice(nft.price)} ETH
               </span>
             </div>
           )}
@@ -288,7 +294,7 @@ export const NFTCard = ({ nft }: NFTCardProps) => {
                             {/* Price for non-Gone Green items */}
                             <div className="flex items-center justify-between">
                               {price && !pricesLoading ? (
-                                <p className="text-sm font-bold text-blue-500">{price} ETH</p>
+                                <p className="text-sm font-bold text-blue-500">{formatEthPrice(price)} ETH</p>
                               ) : pricesLoading && nested.zoraUrl ? (
                                 <p className="text-xs text-muted-foreground">Loading...</p>
                               ) : null}
