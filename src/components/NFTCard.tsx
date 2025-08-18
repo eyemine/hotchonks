@@ -187,13 +187,14 @@ export const NFTCard = ({ nft }: NFTCardProps) => {
                     // Debug logging
                     console.log(`Nested item ${nested.name}:`, { contractAddress, price, marketCap, pricesLoading });
                     
-                    const isGoneGreen = nested.collection === 'Gone Green' || /Gone\s+Green/i.test(nested.name);
-                    const isKlimaStaked = nested.collection === 'Klima Protocol' || nested.name.includes('$KLIMA Staked');
+                     const isGoneGreen = nested.collection === 'Gone Green' || /Gone\s+Green/i.test(nested.name);
+                     const isKlimaStaked = nested.collection === 'Klima Protocol' || nested.name.includes('$KLIMA Staked');
+                     const isBasePaint = nested.collection === 'BasePaint' || /BasePaint/i.test(nested.name);
                     const numberTag = nested.name.match(/#\d+/)?.[0] || '';
                     
                     return (
                     <div key={nested.id} className="bg-card rounded-lg p-3 border border-border hover:border-bio-green/30 transition-all duration-300 hover:scale-102 cursor-pointer group/nested">
-                      {(isGoneGreen || isKlimaStaked) ? (
+                      {(isGoneGreen || isKlimaStaked || isBasePaint) ? (
                         /* Vertical layout for Gone Green NFTs - larger image with text below */
                         <div className="space-y-3">
                           <div className="w-full aspect-square overflow-hidden rounded">
