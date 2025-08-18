@@ -13,17 +13,17 @@ export const getNestedNFTs = (tokenId: number) => {
         contractAddress: '0x8bc6e5e303344f5526057df842316ff4c347efd7'
       },
       {
+        id: 'klima-stake-585',
+        name: '100 $KLIMA Staked',
+        image: '/lovable-uploads/b3b222f0-1d06-420e-907c-0b88ca3114e2.png',
+        collection: 'Klima Protocol'
+      },
+      {
         id: 'basepaint-day-15',
         name: 'BasePaint Day #15',
         image: '/lovable-uploads/511c077d-c71d-478b-a63f-af40c4f941cb.png',
         collection: 'BasePaint',
         openSeaUrl: 'https://opensea.io/item/base/0xba5e05cb26b78eda3a2f8e3b3814726305dcac83/15'
-      },
-      {
-        id: 'klima-stake-585',
-        name: '100 $KLIMA Staked',
-        image: '/lovable-uploads/b3b222f0-1d06-420e-907c-0b88ca3114e2.png',
-        collection: 'Klima Protocol'
       }
     ],
     586: [
@@ -36,17 +36,17 @@ export const getNestedNFTs = (tokenId: number) => {
         contractAddress: '0xcbe47fa36e99d11125660262611a1fc998f330b5'
       },
       {
+        id: 'klima-stake-586',
+        name: '100 $KLIMA Staked',
+        image: '/lovable-uploads/d1793031-6834-4186-81dc-108975cd1022.png',
+        collection: 'Klima Protocol'
+      },
+      {
         id: 'basepaint-day-670',
         name: 'BasePaint Day #670',
         image: '/lovable-uploads/1fdf376b-997a-45c0-80c4-2f30b4047c76.png',
         collection: 'BasePaint',
         openSeaUrl: 'https://opensea.io/item/base/0xba5e05cb26b78eda3a2f8e3b3814726305dcac83/670'
-      },
-      {
-        id: 'klima-stake-586',
-        name: '100 $KLIMA Staked',
-        image: '/lovable-uploads/d1793031-6834-4186-81dc-108975cd1022.png',
-        collection: 'Klima Protocol'
       }
     ],
     588: [
@@ -59,17 +59,17 @@ export const getNestedNFTs = (tokenId: number) => {
         contractAddress: '0x021594a8005aec083f04b53edf2e57e941086d5e'
       },
       {
+        id: 'klima-stake-588',
+        name: '100 $KLIMA Staked',
+        image: '/lovable-uploads/4a4b3cd6-9bde-4e5d-80d1-302d1d96ed99.png',
+        collection: 'Klima Protocol'
+      },
+      {
         id: 'basepaint-day-276',
         name: 'BasePaint Day #276',
         image: '/lovable-uploads/bec1d52f-4cd9-4558-95eb-65c24cc45f76.png',
         collection: 'BasePaint',
         openSeaUrl: 'https://opensea.io/item/base/0xba5e05cb26b78eda3a2f8e3b3814726305dcac83/276'
-      },
-      {
-        id: 'klima-stake-588',
-        name: '100 $KLIMA Staked',
-        image: '/lovable-uploads/4a4b3cd6-9bde-4e5d-80d1-302d1d96ed99.png',
-        collection: 'Klima Protocol'
       }
     ],
     596: [
@@ -133,17 +133,17 @@ export const getNestedNFTs = (tokenId: number) => {
         contractAddress: '0xe995b8f87c76614fd094acc971d1651ab82f6a2a'
       },
       {
+        id: 'klima-stake-599',
+        name: '100 $KLIMA Staked',
+        image: '/lovable-uploads/deac98a4-071e-46a4-9913-a9b094936bdc.png',
+        collection: 'Klima Protocol'
+      },
+      {
         id: 'basepaint-day-209',
         name: 'BasePaint Day #209',
         image: '/lovable-uploads/50c39ba2-c2b0-49e4-ba60-ef82c9e60ba5.png',
         collection: 'BasePaint',
         openSeaUrl: 'https://opensea.io/item/base/0xba5e05cb26b78eda3a2f8e3b3814726305dcac83/209'
-      },
-      {
-        id: 'klima-stake-599',
-        name: '100 $KLIMA Staked',
-        image: '/lovable-uploads/deac98a4-071e-46a4-9913-a9b094936bdc.png',
-        collection: 'Klima Protocol'
       }
     ],
     601: [
@@ -156,17 +156,17 @@ export const getNestedNFTs = (tokenId: number) => {
         contractAddress: '0xd0c95dca0101eca9725aed891bda0a2b1a394e38'
       },
       {
+        id: 'klima-stake-601',
+        name: '100 $KLIMA Staked',
+        image: '/lovable-uploads/9546ef85-5991-4c07-9718-b259b3c74e33.png',
+        collection: 'Klima Protocol'
+      },
+      {
         id: 'basepaint-day-209-601',
         name: 'BasePaint Day #209',
         image: '/lovable-uploads/b65137dd-96f1-4b7b-ab92-1deff95d5bd1.png',
         collection: 'BasePaint',
         openSeaUrl: 'https://opensea.io/item/base/0xba5e05cb26b78eda3a2f8e3b3814726305dcac83/209'
-      },
-      {
-        id: 'klima-stake-601',
-        name: '100 $KLIMA Staked',
-        image: '/lovable-uploads/9546ef85-5991-4c07-9718-b259b3c74e33.png',
-        collection: 'Klima Protocol'
       }
     ],
     606: [
@@ -179,17 +179,17 @@ export const getNestedNFTs = (tokenId: number) => {
         contractAddress: '0xdf042a1398377f9ae2d3b482bb2e1aba9bb8da01'
       },
       {
+        id: 'klima-stake-606',
+        name: '100 $KLIMA Staked',
+        image: '/lovable-uploads/9546ef85-5991-4c07-9718-b259b3c74e33.png',
+        collection: 'Klima Protocol'
+      },
+      {
         id: 'basepaint-day-669',
         name: 'BasePaint Day #669',
         image: '/lovable-uploads/3ea8d7f2-2429-439d-9645-f70cd2798240.png',
         collection: 'BasePaint',
         openSeaUrl: 'https://opensea.io/item/base/0xba5e05cb26b78eda3a2f8e3b3814726305dcac83/669'
-      },
-      {
-        id: 'klima-stake-606',
-        name: '100 $KLIMA Staked',
-        image: '/lovable-uploads/9546ef85-5991-4c07-9718-b259b3c74e33.png',
-        collection: 'Klima Protocol'
       }
     ],
     662: [
@@ -202,17 +202,17 @@ export const getNestedNFTs = (tokenId: number) => {
         contractAddress: '0xbef0550be11c727cdf0ee6a9b4c6616b0aaff334'
       },
       {
+        id: 'klima-stake-662',
+        name: '100 $KLIMA Staked',
+        image: '/lovable-uploads/9546ef85-5991-4c07-9718-b259b3c74e33.png',
+        collection: 'Klima Protocol'
+      },
+      {
         id: 'basepaint-day-233',
         name: 'BasePaint Day #233',
         image: '/lovable-uploads/deb8ca1a-d5ad-4787-9509-b66c6c9c859a.png',
         collection: 'BasePaint',
         openSeaUrl: 'https://opensea.io/item/base/0xba5e05cb26b78eda3a2f8e3b3814726305dcac83/233'
-      },
-      {
-        id: 'klima-stake-662',
-        name: '100 $KLIMA Staked',
-        image: '/lovable-uploads/9546ef85-5991-4c07-9718-b259b3c74e33.png',
-        collection: 'Klima Protocol'
       }
     ],
     663: [
@@ -225,17 +225,17 @@ export const getNestedNFTs = (tokenId: number) => {
         contractAddress: '0xf44591c8044471dd293e8a538189b6596f2795ef'
       },
       {
+        id: 'klima-stake-663',
+        name: '100 $KLIMA Staked',
+        image: '/lovable-uploads/9546ef85-5991-4c07-9718-b259b3c74e33.png',
+        collection: 'Klima Protocol'
+      },
+      {
         id: 'basepaint-day-197',
         name: 'BasePaint Day #197',
         image: '/lovable-uploads/0d998e54-3352-49ca-882c-3892c4d70602.png',
         collection: 'BasePaint',
         openSeaUrl: 'https://opensea.io/item/base/0xba5e05cb26b78eda3a2f8e3b3814726305dcac83/197'
-      },
-      {
-        id: 'klima-stake-663',
-        name: '100 $KLIMA Staked',
-        image: '/lovable-uploads/9546ef85-5991-4c07-9718-b259b3c74e33.png',
-        collection: 'Klima Protocol'
       }
     ],
     665: [
@@ -248,17 +248,17 @@ export const getNestedNFTs = (tokenId: number) => {
         contractAddress: '0x44a86e54e3e49e2fca3c64e4f1fc78199349324c'
       },
       {
+        id: 'klima-stake-665',
+        name: '100 $KLIMA Staked',
+        image: '/lovable-uploads/9546ef85-5991-4c07-9718-b259b3c74e33.png',
+        collection: 'Klima Protocol'
+      },
+      {
         id: 'basepaint-day-215',
         name: 'BasePaint Day #215',
         image: '/lovable-uploads/d039653a-f24c-48bf-8699-8072340eab4c.png',
         collection: 'BasePaint',
         openSeaUrl: 'https://opensea.io/item/base/0xba5e05cb26b78eda3a2f8e3b3814726305dcac83/215'
-      },
-      {
-        id: 'klima-stake-665',
-        name: '100 $KLIMA Staked',
-        image: '/lovable-uploads/9546ef85-5991-4c07-9718-b259b3c74e33.png',
-        collection: 'Klima Protocol'
       }
     ],
     672: [
@@ -271,17 +271,17 @@ export const getNestedNFTs = (tokenId: number) => {
         contractAddress: '0x84fbbecd652c9f8e35cf2be29d5a5c93d1582e89'
       },
       {
+        id: 'klima-stake-672',
+        name: '100 $KLIMA Staked',
+        image: '/lovable-uploads/9546ef85-5991-4c07-9718-b259b3c74e33.png',
+        collection: 'Klima Protocol'
+      },
+      {
         id: 'basepaint-day-209-672',
         name: 'BasePaint Day #209',
         image: '/lovable-uploads/5247086c-a123-42dc-b53c-b082a1035cf6.png',
         collection: 'BasePaint',
         openSeaUrl: 'https://opensea.io/item/base/0xba5e05cb26b78eda3a2f8e3b3814726305dcac83/209'
-      },
-      {
-        id: 'klima-stake-672',
-        name: '100 $KLIMA Staked',
-        image: '/lovable-uploads/9546ef85-5991-4c07-9718-b259b3c74e33.png',
-        collection: 'Klima Protocol'
       }
     ],
     676: [
@@ -294,17 +294,17 @@ export const getNestedNFTs = (tokenId: number) => {
         contractAddress: '0x89735823f88b141a5f50646ccd1517c92b6d45ce'
       },
       {
+        id: 'klima-stake-676',
+        name: '100 $KLIMA Staked',
+        image: '/lovable-uploads/9546ef85-5991-4c07-9718-b259b3c74e33.png',
+        collection: 'Klima Protocol'
+      },
+      {
         id: 'basepaint-day-246',
         name: 'BasePaint Day #246',
         image: '/lovable-uploads/5c226b2e-7e22-415e-9e9d-ddcc7cf86f5f.png',
         collection: 'BasePaint',
         openSeaUrl: 'https://opensea.io/item/base/0xba5e05cb26b78eda3a2f8e3b3814726305dcac83/246'
-      },
-      {
-        id: 'klima-stake-676',
-        name: '100 $KLIMA Staked',
-        image: '/lovable-uploads/9546ef85-5991-4c07-9718-b259b3c74e33.png',
-        collection: 'Klima Protocol'
       }
     ],
     678: [
@@ -317,17 +317,17 @@ export const getNestedNFTs = (tokenId: number) => {
         contractAddress: '0xd9dd283d2e3646e6c2795a24932a14adbd1cd788'
       },
       {
+        id: 'klima-stake-678',
+        name: '100 $KLIMA Staked',
+        image: '/lovable-uploads/9546ef85-5991-4c07-9718-b259b3c74e33.png',
+        collection: 'Klima Protocol'
+      },
+      {
         id: 'basepaint-day-241',
         name: 'BasePaint Day #241',
         image: '/lovable-uploads/bd6919f9-872f-4477-b176-535bac5a7364.png',
         collection: 'BasePaint',
         openSeaUrl: 'https://opensea.io/item/base/0xba5e05cb26b78eda3a2f8e3b3814726305dcac83/241'
-      },
-      {
-        id: 'klima-stake-678',
-        name: '100 $KLIMA Staked',
-        image: '/lovable-uploads/9546ef85-5991-4c07-9718-b259b3c74e33.png',
-        collection: 'Klima Protocol'
       }
     ],
     680: [
@@ -340,17 +340,17 @@ export const getNestedNFTs = (tokenId: number) => {
         contractAddress: '0x25046b4f5a5a15682a01d5324c3c77340d5b8ad1'
       },
       {
+        id: 'klima-stake-680',
+        name: '100 $KLIMA Staked',
+        image: '/lovable-uploads/9546ef85-5991-4c07-9718-b259b3c74e33.png',
+        collection: 'Klima Protocol'
+      },
+      {
         id: 'basepaint-day-225',
         name: 'BasePaint Day #225',
         image: '/lovable-uploads/d8678613-ce25-4ebf-aec0-51f9c77bf1b6.png',
         collection: 'BasePaint',
         openSeaUrl: 'https://opensea.io/item/base/0xba5e05cb26b78eda3a2f8e3b3814726305dcac83/225'
-      },
-      {
-        id: 'klima-stake-680',
-        name: '100 $KLIMA Staked',
-        image: '/lovable-uploads/9546ef85-5991-4c07-9718-b259b3c74e33.png',
-        collection: 'Klima Protocol'
       }
     ],
     681: [
@@ -363,17 +363,17 @@ export const getNestedNFTs = (tokenId: number) => {
         contractAddress: '0xcd6f89037377a917615f13f166677b406ded550b'
       },
       {
+        id: 'klima-stake-681',
+        name: '100 $KLIMA Staked',
+        image: '/lovable-uploads/9546ef85-5991-4c07-9718-b259b3c74e33.png',
+        collection: 'Klima Protocol'
+      },
+      {
         id: 'basepaint-day-230',
         name: 'BasePaint Day #230',
         image: '/lovable-uploads/7a162340-a7c4-4802-a099-6a3b6a62c424.png',
         collection: 'BasePaint',
         openSeaUrl: 'https://opensea.io/item/base/0xba5e05cb26b78eda3a2f8e3b3814726305dcac83/230'
-      },
-      {
-        id: 'klima-stake-681',
-        name: '100 $KLIMA Staked',
-        image: '/lovable-uploads/9546ef85-5991-4c07-9718-b259b3c74e33.png',
-        collection: 'Klima Protocol'
       }
     ],
     693: [
@@ -386,17 +386,17 @@ export const getNestedNFTs = (tokenId: number) => {
         contractAddress: '0x7fd8b61eada4eb171cf08c3ed12e29bf32727c8d'
       },
       {
+        id: 'klima-stake-693',
+        name: '100 $KLIMA Staked',
+        image: '/lovable-uploads/9546ef85-5991-4c07-9718-b259b3c74e33.png',
+        collection: 'Klima Protocol'
+      },
+      {
         id: 'basepaint-day-47',
         name: 'BasePaint Day #47',
         image: '/lovable-uploads/c5e131a0-ce1d-43b7-b8e7-f97f6284c485.png',
         collection: 'BasePaint',
         openSeaUrl: 'https://opensea.io/item/base/0xba5e05cb26b78eda3a2f8e3b3814726305dcac83/47'
-      },
-      {
-        id: 'klima-stake-693',
-        name: '100 $KLIMA Staked',
-        image: '/lovable-uploads/9546ef85-5991-4c07-9718-b259b3c74e33.png',
-        collection: 'Klima Protocol'
       }
     ],
     700: [
@@ -409,17 +409,17 @@ export const getNestedNFTs = (tokenId: number) => {
         contractAddress: '0xd975a37a3710f2edf70f514af9709e62d9b61ee5'
       },
       {
+        id: 'klima-stake-700',
+        name: '100 $KLIMA Staked',
+        image: '/lovable-uploads/9546ef85-5991-4c07-9718-b259b3c74e33.png',
+        collection: 'Klima Protocol'
+      },
+      {
         id: 'basepaint-day-239',
         name: 'BasePaint Day #239',
         image: '/lovable-uploads/bac65af0-f626-4982-a786-cb46a1416b55.png',
         collection: 'BasePaint',
         openSeaUrl: 'https://opensea.io/item/base/0xba5e05cb26b78eda3a2f8e3b3814726305dcac83/239'
-      },
-      {
-        id: 'klima-stake-700',
-        name: '100 $KLIMA Staked',
-        image: '/lovable-uploads/9546ef85-5991-4c07-9718-b259b3c74e33.png',
-        collection: 'Klima Protocol'
       }
     ],
     697: [
@@ -432,17 +432,17 @@ export const getNestedNFTs = (tokenId: number) => {
         contractAddress: '0x12ea7232bb05e031a0ac588662fac0b2d2a93dbe'
       },
       {
+        id: 'klima-stake-697',
+        name: '100 $KLIMA Staked',
+        image: '/lovable-uploads/9546ef85-5991-4c07-9718-b259b3c74e33.png',
+        collection: 'Klima Protocol'
+      },
+      {
         id: 'basepaint-day-234',
         name: 'BasePaint Day #234',
         image: '/lovable-uploads/441fe014-d01f-4f56-90b4-bb389238f5ee.png',
         collection: 'BasePaint',
         openSeaUrl: 'https://opensea.io/item/base/0xba5e05cb26b78eda3a2f8e3b3814726305dcac83/234'
-      },
-      {
-        id: 'klima-stake-697',
-        name: '100 $KLIMA Staked',
-        image: '/lovable-uploads/9546ef85-5991-4c07-9718-b259b3c74e33.png',
-        collection: 'Klima Protocol'
       }
     ],
     972: [
@@ -455,17 +455,17 @@ export const getNestedNFTs = (tokenId: number) => {
         contractAddress: '0x8056d4b41db338c6c4e792527f80e73ef54cb094'
       },
       {
+        id: 'klima-stake-972',
+        name: '100 $KLIMA Staked',
+        image: '/lovable-uploads/9546ef85-5991-4c07-9718-b259b3c74e33.png',
+        collection: 'Klima Protocol'
+      },
+      {
         id: 'basepaint-day-247',
         name: 'BasePaint Day #247',
         image: '/lovable-uploads/79a68462-25e2-42b9-bc70-fc6142c11935.png',
         collection: 'BasePaint',
         openSeaUrl: 'https://opensea.io/item/base/0xba5e05cb26b78eda3a2f8e3b3814726305dcac83/247'
-      },
-      {
-        id: 'klima-stake-972',
-        name: '100 $KLIMA Staked',
-        image: '/lovable-uploads/9546ef85-5991-4c07-9718-b259b3c74e33.png',
-        collection: 'Klima Protocol'
       }
     ],
     9534: [
