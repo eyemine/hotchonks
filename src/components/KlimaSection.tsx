@@ -20,6 +20,18 @@ export const KlimaSection = () => {
           </p>
         </div>
 
+        {/* Video */}
+        <div className="mb-16 flex justify-center">
+          <video 
+            controls 
+            className="rounded-lg shadow-lg max-w-full h-auto"
+            style={{ maxHeight: '400px' }}
+          >
+            <source src="/chonk-staking.mp4" type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
+        </div>
+
         {/* Stats Grid */}
         <div className="grid md:grid-cols-3 gap-8 mb-16">
           <Card className="bg-card/50 border-bio-green/20 hover:border-bio-green/40 transition-colors">
