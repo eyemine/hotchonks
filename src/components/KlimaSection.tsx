@@ -15,21 +15,22 @@ export const KlimaSection = () => {
           <h2 className="text-4xl md:text-5xl font-bold mb-6">
             <span className="bg-gradient-bio bg-clip-text text-transparent">KlimaDAO</span> Integration
           </h2>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            Each Green Chonk NFT holds 100 $KLIMA (staking since ~may '25 for October's TGE) They also virtue signal carbon offset certificates via carbonmark.com. With an average of 7.75 tonnes CO₂ retired per NFT. Here is the green impact of this collection: 
-          </p>
-        </div>
 
-        {/* Video */}
-        <div className="mb-16 flex justify-center">
-          <video 
-            controls 
-            className="rounded-lg shadow-lg max-w-full h-auto"
-            style={{ maxHeight: '400px' }}
-          >
-            <source src="/chonk-staking.mp4" type="video/mp4" />
-            Your browser does not support the video tag.
-          </video>
+          {/* Video */}
+          <div className="mb-8 flex justify-center">
+            <video 
+              controls 
+              className="rounded-lg shadow-lg max-w-full h-auto"
+              style={{ maxHeight: '400px' }}
+            >
+              <source src="/chonk-staking.mp4" type="video/mp4" />
+              Your browser does not support the video tag.
+            </video>
+          </div>
+
+          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+            Each Green Chonk NFT holds 100 $KLIMA (staking since ~May '25 for October's TGE) They also virtue signal carbon offset certificates via carbonmark.com. With an average of 7.75 tonnes CO₂ retired per NFT. Here is the green impact of this collection:
+          </p>
         </div>
 
         {/* Stats Grid */}
@@ -85,7 +86,7 @@ export const KlimaSection = () => {
           <Button variant="bio" size="lg" className="gap-2" asChild>
             <a href="https://www.klimaprotocol.com/" target="_blank" rel="noopener noreferrer">
               <ExternalLink size={20} />
-              Explore KlimaProtocol
+              Explore Fair Launch TGE
             </a>
           </Button>
         </div>
