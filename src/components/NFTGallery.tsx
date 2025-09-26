@@ -15,7 +15,7 @@ export const NFTGallery = () => {
             <h2 className="text-4xl md:text-5xl font-bold mb-4">
               <span className="bg-gradient-bio bg-clip-text text-transparent">Green Chonks: CarbonLocks</span>
               <br />
-              <span className="text-foreground">Bundle Shop</span>
+              <span className="text-foreground">TBA Bundle Shop</span>
             </h2>
             <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
               Loading real Green Chonks data from the blockchain...
@@ -45,7 +45,7 @@ export const NFTGallery = () => {
             <h2 className="text-4xl md:text-5xl font-bold mb-4">
               <span className="bg-gradient-bio bg-clip-text text-transparent">Green Chonks: CarbonLocks</span>
               <br />
-              <span className="text-foreground">Bundle Shop</span>
+              <span className="text-foreground">TBA Bundle Shop</span>
             </h2>
             <div className="bg-destructive/10 border border-destructive/20 rounded-lg p-6 max-w-md mx-auto">
               <AlertCircle className="w-8 h-8 text-destructive mx-auto mb-4" />
@@ -66,7 +66,7 @@ export const NFTGallery = () => {
             <h2 className="text-4xl md:text-5xl font-bold mb-4">
               <span className="bg-gradient-bio bg-clip-text text-transparent">Green Chonks: CarbonLocks</span>
               <br />
-              <span className="text-foreground">Bundle Shop</span>
+              <span className="text-foreground">TBA Bundle Shop</span>
             </h2>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
               Join the Green Chonks Crew (20 in total) each bundled by{" "}

@@ -40,7 +40,7 @@ export const Hero = () => {
             Green Chonks: CarbonLocks
           </span>
           <br />
-          <span className="text-foreground">Bundle Shop</span>
+          <span className="text-foreground">TBA Bundle Shop</span>
         </h1>
       </div>
       
