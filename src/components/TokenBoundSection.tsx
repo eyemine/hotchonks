@@ -1,14 +1,20 @@
 import { Button } from "@/components/ui/button";
-import tokenBoundImage from "@/assets/token-bound-account.png";
+import { Badge } from "@/components/ui/badge";
+import tokenBoundImage from "@/assets/token-bound-account-new.png";
 
 export const TokenBoundSection = () => {
   return (
     <section id="tba" className="py-20 bg-carbon-dark">
       <div className="container mx-auto px-4">
         <div className="max-w-4xl mx-auto">
-          <h2 className="text-4xl md:text-5xl font-bold text-center mb-8 bg-gradient-bio bg-clip-text text-transparent">
-            Token Bound Account
-          </h2>
+          <div className="text-center mb-8">
+            <Badge className="mb-4 bg-bio-green/20 text-bio-light border-bio-green/40">
+              ERC-6551
+            </Badge>
+            <h2 className="text-4xl md:text-5xl font-bold bg-gradient-bio bg-clip-text text-transparent">
+              Token Bound Account
+            </h2>
+          </div>
           
           <div className="mb-12 flex justify-center">
             <img 
@@ -35,7 +41,7 @@ export const TokenBoundSection = () => {
               </a>
             </Button>
             <Button 
-              variant="glow" 
+              variant="bio" 
               size="lg"
               asChild
             >
