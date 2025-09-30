@@ -44,7 +44,7 @@ export const Hero = () => {
         </h1>
         
         <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto">
-          Join the Green Chonks Crew (20 in total) each Web3 identity bundled by GhostAgent is loaded with value. see: Backpack wallet
+          Join the Green Chonks Crew (20 in total). Each Web3 identity has been lovingly bundled by GhostAgent. They are chock full of value. Look in the Chonk's backpack wallet below
         </p>
       </div>
       
