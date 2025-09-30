@@ -39,7 +39,7 @@ export const KlimaSection = () => {
             <br /><br />
             At the core of Klima 2.0 is the Autonomous Asset Manager (AAM) that acquires, prices, and curates carbon credits. These credits are then made available for retirement; the true measure of climate impact within the market.
             <br /><br />
-            Klima 2.0 is built on a simple principle: carbon markets should reward the people and projects that create climate impact and participate in the curation of the market.
+            Green Chonk holders can claim their $kVCM, (*at a rate of 1.33:1 staked $Klima) while their $K2 will remain vested for a period TBD
             <br /><br />
             Each Chonk also virtue signals their green credentials with carbon offset certificates via carbonmark.com. With an average of 7.75 tonnes CO₂ retired per NFT. Here is the green impact of this collection:
           </p>
