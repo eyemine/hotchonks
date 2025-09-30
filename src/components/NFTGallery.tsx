@@ -69,7 +69,7 @@ export const NFTGallery = () => {
               <span className="text-foreground">TBA Bundle Shop</span>
             </h2>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-              Join the Green Chonks Crew (20 in total) each bundled by{" "}
+              Join the Green Chonks Crew (20 in total). Each Web3 identity has been carefully curated and bundled by{" "}
               <a 
                 href="https://x.com/ghostagent_og" 
                 target="_blank" 
@@ -78,7 +78,7 @@ export const NFTGallery = () => {
               >
                 GhostAgent
               </a>
-              {" "}and backed by real carbon offsets. Your purchase benefits you, the environment and GhostAgent's family. Win, win win!
+              . They're chock full of value! Look in the Chonk's backpack below
             </p>
           </div>
 
