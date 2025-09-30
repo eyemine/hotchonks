@@ -16,6 +16,10 @@ export const KlimaSection = () => {
             <span className="bg-gradient-bio bg-clip-text text-transparent">KlimaDAO</span> Integration
           </h2>
 
+          <p className="text-xl text-muted-foreground max-w-3xl mx-auto mb-8">
+            Each Green Chonk NFT holds 100 $KLIMA (staking since ~May '25 for October's Fair Launch TGE).
+          </p>
+
           {/* Video */}
           <div className="mb-8 flex justify-center">
             <video 
@@ -29,8 +33,6 @@ export const KlimaSection = () => {
           </div>
 
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            Each Green Chonk NFT holds 100 $KLIMA (staking since ~May '25 for October's Fair Launch TGE).
-            <br /><br />
             On October 15th, Klima marks the beginning of a new chapter. Fair Launch concludes with the deployment of two new tokens, $kVCM and $K2
             <br /><br />
             Klima 2.0, creates an open, transparent infrastructure layer for environmental real-world assets. Klima aims to grow a rational, liquid, and trusted market for carbon.
