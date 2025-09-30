@@ -40,7 +40,7 @@ export const Hero = () => {
             Green Chonks: CarbonLocks
           </span>
           <br />
-          <span className="text-foreground">TBA Bundle Shop</span>
+          <span className="text-foreground">Join the Green Chonks Crew (20 in total) each Web3 identity bundled by GhostAgent is loaded with value. see:Backpack wallet</span>
         </h1>
       </div>
       
