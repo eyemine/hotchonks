@@ -35,7 +35,7 @@ export const KlimaSection = () => {
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
             On October 15th, Klima marks the beginning of a new chapter. Fair Launch concludes with the deployment of two new tokens, $kVCM and $K2
             <br /><br />
-            Green Chonk holders can claim their $kVCM, (*at a projected rate of 1.33:1 staked $Klima) while their $K2 which will be assigned proportional to the period staked will be vested at protocol launch claimable over a 48 month period
+            Green Chonk holders can claim their $kVCM, (*at a projected rate of 1.33:1 staked $Klima). Their $K2 which will be assigned proportional to the period staked will be vested at protocol launch, will be claimable over a 48 month period.
             <br /><br />
             Klima 2.0, creates an open, transparent infrastructure layer for environmental real-world assets. Klima aims to grow a rational, liquid, and trusted market for carbon.
             <br /><br />
@@ -98,9 +98,9 @@ export const KlimaSection = () => {
             </a>
           </Button>
           <Button variant="bio" size="lg" className="gap-2" asChild>
-            <a href="https://www.klimaprotocol.com/" target="_blank" rel="noopener noreferrer">
+            <a href="https://www.klimadao.finance/resources/klima-2-0-tge-fair-launch-of-the-open-climate-protocol" target="_blank" rel="noopener noreferrer">
               <ExternalLink size={20} />
-              Explore Fair Launch TGE
+              Explore KlimaProtocol Fair Launch TGE
             </a>
           </Button>
         </div>
