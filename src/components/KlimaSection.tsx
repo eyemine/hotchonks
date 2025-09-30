@@ -35,7 +35,7 @@ export const KlimaSection = () => {
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
             On October 15th, Klima marks the beginning of a new chapter. Fair Launch concludes with the deployment of two new tokens, $kVCM and $K2
             <br /><br />
-            Green Chonk holders can claim their $kVCM, (*at a rate of 1.33:1 staked $Klima) while their $K2 will remain vested for a period TBD
+            Green Chonk holders can claim their $kVCM, (*at a projected rate of 1.33:1 staked $Klima) while their $K2 will remain vested for a period TBD
             <br /><br />
             Klima 2.0, creates an open, transparent infrastructure layer for environmental real-world assets. Klima aims to grow a rational, liquid, and trusted market for carbon.
             <br /><br />
