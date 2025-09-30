@@ -42,6 +42,10 @@ export const Hero = () => {
           <br />
           <span className="text-foreground">TBA Bundle Shop</span>
         </h1>
+        
+        <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto">
+          Join the Green Chonks Crew (20 in total) each Web3 identity bundled by GhostAgent is loaded with value. see: Backpack wallet
+        </p>
       </div>
       
       {/* Scroll Indicator */}
