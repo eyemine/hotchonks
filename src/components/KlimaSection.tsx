@@ -29,7 +29,11 @@ export const KlimaSection = () => {
           </div>
 
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            Each Green Chonk NFT holds 100 $KLIMA (staking since ~May '25 for October's TGE) They also virtue signal carbon offset certificates via carbonmark.com. With an average of 7.75 tonnes CO₂ retired per NFT. Here is the green impact of this collection:
+            Each Green Chonk NFT holds 100 $KLIMA (staking since ~May '25 for October's Fair Launch TGE).
+            <br /><br />
+            On October 15th, Klima marks the beginning of a new chapter. With the conclusion of the Fair Launch and the deployment of two new tokens, $kVCM and $K2, we are laying the groundwork for Klima 2.0, an open, transparent infrastructure layer for environmental real-world assets. Klima aims to create a rational, liquid, and trusted market for carbon. At the core of Klima 2.0 is the Autonomous Asset Manager (AAM) that acquires, prices, and curates carbon credits. These credits are then made available for retirement; the true measure of climate impact within the market. Klima 2.0 is built on a simple principle: carbon markets should reward the people and projects that create climate impact and participate in the curation of the market.
+            <br /><br />
+            Each Chonk also virtue signals their green credentials with carbon offset certificates via carbonmark.com. With an average of 7.75 tonnes CO₂ retired per NFT. Here is the green impact of this collection:
           </p>
         </div>
 
