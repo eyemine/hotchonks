@@ -15,6 +15,9 @@ export const Header = () => {
         
         <div className="flex items-center gap-8">
           <nav className="hidden md:flex items-center gap-6">
+            <a href="/token-bound-account" className="text-muted-foreground hover:text-bio-light transition-colors">
+              Token Bound Account
+            </a>
             <a href="#klima" className="text-muted-foreground hover:text-bio-light transition-colors">
               KlimaDAO
             </a>
