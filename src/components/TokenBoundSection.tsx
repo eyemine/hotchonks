@@ -10,11 +10,11 @@ export const TokenBoundSection = () => {
             Token Bound Account
           </h2>
           
-          <div className="mb-12">
+          <div className="mb-12 flex justify-center">
             <img 
               src={tokenBoundImage} 
               alt="Token Bound Account Diagram" 
-              className="w-full rounded-lg shadow-lg"
+              className="w-3/4 rounded-lg shadow-lg"
             />
           </div>
           
