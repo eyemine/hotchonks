@@ -207,7 +207,7 @@ export const NFTCard = ({ nft }: NFTCardProps) => {
                            <div>
                              <div className="mb-2">
                                <p className="text-sm font-semibold text-foreground leading-tight">
-                                 {isGoneGreen ? `Gone Green ${numberTag}` : isKlimaStaked && nft.name?.includes('#599') ? 'Fair Launch TGE – $kVCM 151 + $K2 199' : nested.name}
+                                 {isGoneGreen ? `Gone Green ${numberTag}` : isKlimaStaked && nft.name?.includes('#599') ? 'Fair Launch TGE – $kVCM 151 + $K2 199' : isKlimaStaked && nft.name?.includes('#697') ? 'Fair Launch TGE – $kVCM 112 + $K2 198' : nested.name}
                                </p>
                              </div>
                              
@@ -226,7 +226,7 @@ export const NFTCard = ({ nft }: NFTCardProps) => {
                                     rel="noopener noreferrer"
                                     className="text-lg font-bold text-bio-green hover:underline"
                                   >
-                                    {nft.name?.includes('#599') ? "K2 Protocol Launch Jan '26" : "Staking ends ~Q3 '25"}
+                                    {nft.name?.includes('#599') ? "K2 Protocol Launch Jan '26" : nft.name?.includes('#697') ? "K2 Protocol Launch Jan '26" : "Staking ends ~Q3 '25"}
                                   </a>
                                 ) : null}
                              </div>
