@@ -207,7 +207,7 @@ export const NFTCard = ({ nft }: NFTCardProps) => {
                            <div>
                              <div className="mb-2">
                                <p className="text-sm font-semibold text-foreground leading-tight">
-                                 {isGoneGreen ? `Gone Green ${numberTag}` : nested.name}
+                                 {isGoneGreen ? `Gone Green ${numberTag}` : isKlimaStaked && nft.name?.includes('#599') ? 'Fair launch TGE > 151 $kVCM + 199 $K2' : nested.name}
                                </p>
                              </div>
                              
@@ -221,12 +221,12 @@ export const NFTCard = ({ nft }: NFTCardProps) => {
                                  <p className="text-sm text-muted-foreground">Market cap unavailable</p>
                                 ) : isKlimaStaked ? (
                                   <a 
-                                    href="https://www.klimaprotocol.com/faq" 
+                                    href="https://www.klimaprotocol.com/" 
                                     target="_blank" 
                                     rel="noopener noreferrer"
                                     className="text-lg font-bold text-bio-green hover:underline"
                                   >
-                                    Staking ends ~Q3 '25
+                                    {nft.name?.includes('#599') ? "K2 launch Jan '26" : "Staking ends ~Q3 '25"}
                                   </a>
                                 ) : null}
                              </div>
