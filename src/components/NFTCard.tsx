@@ -365,11 +365,21 @@ export const NFTCard = ({ nft }: NFTCardProps) => {
           variant="default" 
           size="sm" 
           asChild
-          className="w-full bg-gradient-to-r from-purple-500 to-purple-600 hover:from-purple-700 hover:to-purple-700 text-white border-0"
+          className={`w-full border-0 text-white ${
+            nft.name?.includes('#599') 
+              ? 'bg-black hover:bg-gray-900' 
+              : 'bg-gradient-to-r from-purple-500 to-purple-600 hover:from-purple-700 hover:to-purple-700'
+          }`}
         >
-          <a href="https://purebpm.com" target="_blank" rel="noopener noreferrer">
+          <a 
+            href={nft.name?.includes('#599') ? 'https://www.purebpm.com/@forked' : 'https://purebpm.com'} 
+            target="_blank" 
+            rel="noopener noreferrer"
+          >
             <ExternalLink size={16} className="mr-2" />
-            PureBPM.com
+            <span className={nft.name?.includes('#599') ? 'font-bold' : ''}>
+              {nft.name?.includes('#599') ? 'PureBPM – FORKED' : 'PureBPM.com'}
+            </span>
           </a>
         </Button>
       </div>
