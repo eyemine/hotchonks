@@ -370,17 +370,19 @@ export const NFTCard = ({ nft }: NFTCardProps) => {
               ? 'bg-black hover:bg-gray-900' 
               : nft.name?.includes('#697')
                 ? 'bg-black hover:bg-gray-900'
-                : 'bg-gradient-to-r from-purple-500 to-purple-600 hover:from-purple-700 hover:to-purple-700'
+                : nft.name?.includes('#678')
+                  ? 'bg-black hover:bg-gray-900'
+                  : 'bg-gradient-to-r from-purple-500 to-purple-600 hover:from-purple-700 hover:to-purple-700'
           }`}
         >
           <a 
-            href={nft.name?.includes('#599') ? 'https://www.purebpm.com/@forked' : nft.name?.includes('#697') ? 'https://www.purebpm.com/@red-hammer' : 'https://purebpm.com'} 
+            href={nft.name?.includes('#599') ? 'https://www.purebpm.com/@forked' : nft.name?.includes('#697') ? 'https://www.purebpm.com/@red-hammer' : nft.name?.includes('#678') ? 'https://www.purebpm.com/@sandy-freeland' : 'https://purebpm.com'} 
             target="_blank" 
             rel="noopener noreferrer"
           >
             <ExternalLink size={16} className="mr-2" />
-            <span className={nft.name?.includes('#599') || nft.name?.includes('#697') ? 'font-bold' : ''}>
-              {nft.name?.includes('#599') ? "PureBPM Virtual Artist – 'FORKED'" : nft.name?.includes('#697') ? "PureBPM Virtual Artist – 'Red Hammer'" : 'PureBPM.com'}
+            <span className={nft.name?.includes('#599') || nft.name?.includes('#697') || nft.name?.includes('#678') ? 'font-bold' : ''}>
+              {nft.name?.includes('#599') ? "PureBPM Virtual Artist – 'FORKED'" : nft.name?.includes('#697') ? "PureBPM Virtual Artist – 'Red Hammer'" : nft.name?.includes('#678') ? "PureBPM Virtual Artist – 'Sandy Freeland'" : 'PureBPM.com'}
             </span>
           </a>
         </Button>
