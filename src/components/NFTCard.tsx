@@ -378,7 +378,7 @@ export const NFTCard = ({ nft }: NFTCardProps) => {
           >
             <ExternalLink size={16} className="mr-2" />
             <span className={nft.name?.includes('#599') ? 'font-bold' : ''}>
-              {nft.name?.includes('#599') ? 'PureBPM – FORKED' : 'PureBPM.com'}
+              {nft.name?.includes('#599') ? "PureBPM Virtual Artist – 'FORKED'" : 'PureBPM.com'}
             </span>
           </a>
         </Button>
