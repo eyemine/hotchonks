@@ -359,9 +359,24 @@ export const NFTCard = ({ nft }: NFTCardProps) => {
         </Collapsible>
       )}
 
+      {/* PureBPM Button */}
+      <div className="p-4 border-t border-border">
+        <Button 
+          variant="default" 
+          size="sm" 
+          asChild
+          className="w-full bg-gradient-to-r from-purple-500 to-purple-600 hover:from-purple-700 hover:to-purple-700 text-white border-0"
+        >
+          <a href="https://purebpm.com" target="_blank" rel="noopener noreferrer">
+            <ExternalLink size={16} className="mr-2" />
+            PureBPM.com
+          </a>
+        </Button>
+      </div>
+
       {/* OpenSea Button */}
       {nft.openSeaUrl && (
-        <div className="p-4 border-t border-border">
+        <div className="px-4 pb-4">
           <Button 
             variant="default" 
             size="sm" 
