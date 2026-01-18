@@ -99,6 +99,41 @@ export const NFTCard = ({ nft }: NFTCardProps) => {
 
   return (
     <Card className="group bg-card border-border hover:border-bio-green/40 transition-all duration-500 hover:shadow-bio">
+      {/* PureBPM Button - Top of Card */}
+      <div className="p-4 border-b border-border">
+        <Button 
+          variant="default" 
+          size="sm" 
+          asChild
+          className={`w-full border-0 text-white ${
+            nft.name?.includes('#599') 
+              ? 'bg-black hover:bg-gray-900' 
+              : nft.name?.includes('#697')
+                ? 'bg-black hover:bg-gray-900'
+                : nft.name?.includes('#678')
+                  ? 'bg-black hover:bg-gray-900'
+                  : nft.name?.includes('#588')
+                    ? 'bg-black hover:bg-gray-900'
+                    : nft.name?.includes('#606')
+                      ? 'bg-black hover:bg-gray-900'
+                      : nft.name?.includes('#676')
+                        ? 'bg-black hover:bg-gray-900'
+                        : 'bg-gradient-to-r from-purple-500 to-purple-600 hover:from-purple-700 hover:to-purple-700'
+          }`}
+        >
+          <a 
+            href={nft.name?.includes('#599') ? 'https://www.purebpm.com/@forked' : nft.name?.includes('#697') ? 'https://www.purebpm.com/@red-hammer' : nft.name?.includes('#678') ? 'https://www.purebpm.com/@sandy-freeland' : nft.name?.includes('#588') ? 'https://www.purebpm.com/@pearce-resurgance' : nft.name?.includes('#606') ? 'https://www.purebpm.com/@blues-dandy' : nft.name?.includes('#676') ? 'https://www.purebpm.com/@delilah' : 'https://purebpm.com'} 
+            target="_blank" 
+            rel="noopener noreferrer"
+          >
+            <ExternalLink size={16} className="mr-2" />
+            <span className={nft.name?.includes('#599') || nft.name?.includes('#697') || nft.name?.includes('#678') || nft.name?.includes('#588') || nft.name?.includes('#606') || nft.name?.includes('#676') ? 'font-bold' : ''}>
+              {nft.name?.includes('#599') ? "PureBPM Virtual Artist – 'FORKED'" : nft.name?.includes('#697') ? "PureBPM Virtual Artist – 'Red Hammer'" : nft.name?.includes('#678') ? "PureBPM Virtual Artist – 'Sandy Freeland'" : nft.name?.includes('#588') ? "PureBPM Virtual Artist – 'Pearce Resurgance'" : nft.name?.includes('#606') ? "PureBPM Virtual Artist – 'Blues Dandy'" : nft.name?.includes('#676') ? "PureBPM Virtual Artist – 'Delilah'" : 'PureBPM.com'}
+            </span>
+          </a>
+        </Button>
+      </div>
+
       <div className="p-6">
         {/* Main NFT Image - Square and Larger */}
         <div className="relative mb-4 overflow-hidden rounded-lg">
@@ -358,41 +393,6 @@ export const NFTCard = ({ nft }: NFTCardProps) => {
           </div>
         </Collapsible>
       )}
-
-      {/* PureBPM Button */}
-      <div className="p-4 border-t border-border">
-        <Button 
-          variant="default" 
-          size="sm" 
-          asChild
-          className={`w-full border-0 text-white ${
-            nft.name?.includes('#599') 
-              ? 'bg-black hover:bg-gray-900' 
-              : nft.name?.includes('#697')
-                ? 'bg-black hover:bg-gray-900'
-                : nft.name?.includes('#678')
-                  ? 'bg-black hover:bg-gray-900'
-                  : nft.name?.includes('#588')
-                    ? 'bg-black hover:bg-gray-900'
-                    : nft.name?.includes('#606')
-                      ? 'bg-black hover:bg-gray-900'
-                      : nft.name?.includes('#676')
-                        ? 'bg-black hover:bg-gray-900'
-                        : 'bg-gradient-to-r from-purple-500 to-purple-600 hover:from-purple-700 hover:to-purple-700'
-          }`}
-        >
-          <a 
-            href={nft.name?.includes('#599') ? 'https://www.purebpm.com/@forked' : nft.name?.includes('#697') ? 'https://www.purebpm.com/@red-hammer' : nft.name?.includes('#678') ? 'https://www.purebpm.com/@sandy-freeland' : nft.name?.includes('#588') ? 'https://www.purebpm.com/@pearce-resurgance' : nft.name?.includes('#606') ? 'https://www.purebpm.com/@blues-dandy' : nft.name?.includes('#676') ? 'https://www.purebpm.com/@delilah' : 'https://purebpm.com'} 
-            target="_blank" 
-            rel="noopener noreferrer"
-          >
-            <ExternalLink size={16} className="mr-2" />
-            <span className={nft.name?.includes('#599') || nft.name?.includes('#697') || nft.name?.includes('#678') || nft.name?.includes('#588') || nft.name?.includes('#606') || nft.name?.includes('#676') ? 'font-bold' : ''}>
-              {nft.name?.includes('#599') ? "PureBPM Virtual Artist – 'FORKED'" : nft.name?.includes('#697') ? "PureBPM Virtual Artist – 'Red Hammer'" : nft.name?.includes('#678') ? "PureBPM Virtual Artist – 'Sandy Freeland'" : nft.name?.includes('#588') ? "PureBPM Virtual Artist – 'Pearce Resurgance'" : nft.name?.includes('#606') ? "PureBPM Virtual Artist – 'Blues Dandy'" : nft.name?.includes('#676') ? "PureBPM Virtual Artist – 'Delilah'" : 'PureBPM.com'}
-            </span>
-          </a>
-        </Button>
-      </div>
 
       {/* OpenSea Button */}
       {nft.openSeaUrl && (
