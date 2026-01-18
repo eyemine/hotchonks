@@ -247,7 +247,7 @@ export const NFTCard = ({ nft }: NFTCardProps) => {
                                     rel="noopener noreferrer"
                                     className="text-lg font-bold text-bio-green hover:underline"
                                   >
-                                    {nft.name?.includes('#599') ? "K2 Protocol Launch Jan '26" : nft.name?.includes('#697') ? "K2 Protocol Launch Jan '26" : "Staking ends ~Q3 '25"}
+                                    {nft.name?.includes('#599') ? "K2 Protocol Launch Jan '26" : nft.name?.includes('#697') ? "K2 Protocol Launch Jan '26" : "Klima 2.0 $K2 launch Q1 '26"}
                                   </a>
                                 ) : null}
                              </div>
