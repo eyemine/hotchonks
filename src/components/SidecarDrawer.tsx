@@ -322,17 +322,8 @@ export const SidecarDrawer = ({
     return raw.replace(/\s+/g, "");
   })();
 
-  // Map chonk IDs to GhostAgent names
-  const ghostAgentName = (() => {
-    const chonkMatch = agentSlug.match(/^chonk(\d+)$/);
-    if (chonkMatch) {
-      return `chonk-${chonkMatch[1]}.molt.gno`;
-    }
-    return agentSlug;
-  })();
-
-  const iframeUrl = ghostAgentName
-    ? `https://ghostagent.ninja/embed/agent/${ghostAgentName}`
+  const iframeUrl = agentSlug
+    ? `https://ghostagent.ninja/embed/agent/${agentSlug}`
     : null;
   const hasRows = !!rows;
   const hasData = !!rows && rows.length > 0;
