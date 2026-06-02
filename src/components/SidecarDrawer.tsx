@@ -62,7 +62,7 @@ function writeLast(chain: string, tokenId: string, name: string) {
 }
 
 const QUERY = /* GraphQL */ `
-  query GetSidecarMetadata($tokenIds: [BigInt!]) {
+  query GetSidecarMetadata($tokenIds: [numeric!]) {
     Metadata(where: { tokenId: { _in: $tokenIds } }) {
       tokenId
       key
