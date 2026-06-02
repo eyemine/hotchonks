@@ -312,13 +312,14 @@ export const SidecarDrawer = ({
   const vaultId = findValue("cdr[vault_id]");
 
   const agentSlug = (() => {
-    const raw = (name || "").trim();
-    const parts = raw.match(/^([a-zA-Z\s]+)#(\d+)/);
-    if (parts) {
-      const base = parts[1].trim().toLowerCase().replace(/[^a-z0-9]/g, "");
-      return `${base}${parts[2]}`;
+    const raw = (name || "").trim().toLowerCase();
+    // Convert "Name #123" -> "name.123", preserve existing dots like "chonk.676"
+    const hashMatch = raw.match(/^(.+?)\s*#(\d+)\s*$/);
+    if (hashMatch) {
+      const base = hashMatch[1].trim().replace(/\s+/g, "");
+      return `${base}.${hashMatch[2]}`;
     }
-    return raw.toLowerCase().replace(/[^a-z0-9]+/g, "");
+    return raw.replace(/\s+/g, "");
   })();
   const iframeUrl = agentSlug
     ? `https://ghostagent.ninja/embed/agent/${agentSlug}`
