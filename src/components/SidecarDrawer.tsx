@@ -408,6 +408,15 @@ export const SidecarDrawer = ({
                   </p>
                 </div>
 
+                <div className="rounded border border-indigo-900/60 bg-indigo-950/20 p-3">
+                  <p className="text-[10px] uppercase tracking-widest text-indigo-400/80 mb-1">
+                    Story Protocol License ID
+                  </p>
+                  <p className="font-mono text-xs text-indigo-200 break-all">
+                    {licenseId ?? <span className="text-indigo-700">No License Issued</span>}
+                  </p>
+                </div>
+
                 <div className="rounded border border-emerald-900/60 bg-emerald-950/20 p-3">
                   <p className="text-[10px] uppercase tracking-widest text-emerald-500/80 mb-1">
                     Confidential Data Rail Vault UUID
