@@ -1,5 +1,5 @@
 import { supabase } from "@/integrations/supabase/client";
-import { getCoin } from "@zoralabs/coins-sdk";
+
 
 export const fetchZoraPrices = async (contractAddresses: string[]) => {
   const { data, error } = await supabase.functions.invoke('alchemy-api', {
