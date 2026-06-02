@@ -62,7 +62,7 @@ function writeLast(chain: string, tokenId: string, name: string) {
 }
 
 const QUERY = /* GraphQL */ `
-  query GetSidecarMetadata($tokenIds: [numeric!]) {
+  query GetSidecarMetadata($tokenIds: [BigInt!]) {
     Metadata(where: { tokenId: { _in: $tokenIds } }) {
       tokenId
       key
@@ -70,6 +70,16 @@ const QUERY = /* GraphQL */ `
     }
   }
 `;
+
+/** Normalize a hex value to an EVM address. Padded 32-byte words become the last 20 bytes. */
+function hexToAddress(value: string | undefined | null): string | undefined {
+  if (!value) return undefined;
+  const v = value.trim();
+  if (!v.startsWith("0x")) return v;
+  const hex = v.slice(2);
+  if (hex.length <= 40) return v.toLowerCase();
+  return ("0x" + hex.slice(-40)).toLowerCase();
+}
 
 function LoadingState() {
   return (
@@ -267,7 +277,8 @@ export const SidecarDrawer = ({
   const handleRetry = () => setAttemptCount((c) => c + 1);
 
   const findValue = (k: string) => rows?.find((r) => r.key === k)?.value;
-  const ipId = findValue("story[ip_id]");
+  const ipId = hexToAddress(findValue("story[ip_id]"));
+  const licenseId = findValue("story[license_id]");
   const vaultId = findValue("cdr[vault_id]");
 
   const iframeUrl = `https://ghostagent.ninja/agent/chonk.${tokenId}`;
@@ -394,6 +405,15 @@ export const SidecarDrawer = ({
                   </p>
                   <p className="font-mono text-xs text-slate-100 break-all">
                     {ipId ?? <span className="text-slate-500">Unregistered</span>}
+                  </p>
+                </div>
+
+                <div className="rounded border border-indigo-900/60 bg-indigo-950/20 p-3">
+                  <p className="text-[10px] uppercase tracking-widest text-indigo-400/80 mb-1">
+                    Story Protocol License ID
+                  </p>
+                  <p className="font-mono text-xs text-indigo-200 break-all">
+                    {licenseId ?? <span className="text-indigo-700">No License Issued</span>}
                   </p>
                 </div>
 
