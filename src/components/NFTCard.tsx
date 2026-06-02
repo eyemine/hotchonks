@@ -204,6 +204,7 @@ export const NFTCard = ({ nft }: NFTCardProps) => {
         onOpenChange={setSidecarOpen}
         tokenId={tokenId}
         name={nft.name}
+        chain={nft.chain}
       />
 
       {/* Nested NFTs Collapsible */}
