@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetClose } from "@/components/ui/sheet";
 import { Button } from "@/components/ui/button";
 import { X, Loader2, AlertTriangle, RefreshCw, Database, Radio } from "lucide-react";
@@ -9,6 +9,8 @@ interface SidecarDrawerProps {
   onOpenChange: (open: boolean) => void;
   tokenId: string;
   name: string;
+  /** Chain the token lives on. Persisted alongside tokenId. */
+  chain?: "Base" | "Zora";
 }
 
 interface MetadataRow {
@@ -18,6 +20,45 @@ interface MetadataRow {
 
 interface MetadataResponse {
   Metadata: MetadataRow[];
+}
+
+interface CachedHud {
+  rows: MetadataRow[];
+  fetchedAt: number;
+  name: string;
+  chain: string;
+}
+
+const STORAGE_PREFIX = "sidecar:hud:";
+const LAST_KEY = "sidecar:last";
+const RAW_OPEN_KEY = "sidecar:rawOpen";
+
+const cacheKey = (chain: string, tokenId: string) =>
+  `${STORAGE_PREFIX}${chain.toLowerCase()}:${tokenId}`;
+
+function readCache(chain: string, tokenId: string): CachedHud | null {
+  try {
+    const raw = localStorage.getItem(cacheKey(chain, tokenId));
+    return raw ? (JSON.parse(raw) as CachedHud) : null;
+  } catch {
+    return null;
+  }
+}
+
+function writeCache(chain: string, tokenId: string, value: CachedHud) {
+  try {
+    localStorage.setItem(cacheKey(chain, tokenId), JSON.stringify(value));
+  } catch {
+    /* ignore quota / serialization errors */
+  }
+}
+
+function writeLast(chain: string, tokenId: string, name: string) {
+  try {
+    localStorage.setItem(LAST_KEY, JSON.stringify({ chain, tokenId, name }));
+  } catch {
+    /* ignore */
+  }
 }
 
 const QUERY = /* GraphQL */ `
@@ -93,49 +134,92 @@ function EmptyState({ tokenId }: { tokenId: string }) {
   );
 }
 
-export const SidecarDrawer = ({ open, onOpenChange, tokenId, name }: SidecarDrawerProps) => {
+export const SidecarDrawer = ({
+  open,
+  onOpenChange,
+  tokenId,
+  name,
+  chain = "Base",
+}: SidecarDrawerProps) => {
   const [rows, setRows] = useState<MetadataRow[] | null>(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [attemptCount, setAttemptCount] = useState(0);
+  const [fromCache, setFromCache] = useState(false);
+  const [cacheAge, setCacheAge] = useState<number | null>(null);
+  const [rawOpen, setRawOpen] = useState<boolean>(() => {
+    try {
+      return localStorage.getItem(RAW_OPEN_KEY) === "1";
+    } catch {
+      return false;
+    }
+  });
 
-  const fetchData = () => {
-    if (!open || !tokenId) return;
-    setLoading(true);
-    setError(null);
-    setRows(null);
+  // Persist raw-metadata disclosure state across sessions.
+  useEffect(() => {
+    try {
+      localStorage.setItem(RAW_OPEN_KEY, rawOpen ? "1" : "0");
+    } catch {
+      /* ignore */
+    }
+  }, [rawOpen]);
 
-    envioQuery<MetadataResponse>(QUERY, {
-      contract: ENVIO_CONTRACT.toLowerCase(),
-      id: tokenId,
-    })
-      .then((data) => {
-        setRows(data.Metadata ?? []);
-      })
-      .catch((err) => {
-        setError(err?.message || "Failed to fetch Envio metadata");
-      })
-      .finally(() => {
-        setLoading(false);
-      });
-  };
+  // Remember most recently opened token + chain.
+  useEffect(() => {
+    if (open && tokenId) writeLast(chain, tokenId, name);
+  }, [open, tokenId, chain, name]);
 
+  // Hydrate from cache instantly, then refresh in background.
+  const hydratedKey = useRef<string>("");
   useEffect(() => {
     if (!open || !tokenId) return;
+    const key = `${chain}:${tokenId}:${attemptCount}`;
+    if (hydratedKey.current === key) return;
+    hydratedKey.current = key;
+
     let cancelled = false;
-    setLoading(true);
-    setError(null);
-    setRows(null);
+    const cached = readCache(chain, tokenId);
+
+    if (cached && attemptCount === 0) {
+      setRows(cached.rows);
+      setFromCache(true);
+      setCacheAge(Date.now() - cached.fetchedAt);
+      setError(null);
+      setLoading(false);
+    } else {
+      setRows(null);
+      setFromCache(false);
+      setCacheAge(null);
+      setLoading(true);
+      setError(null);
+    }
+
+    // Always refresh in the background so cached HUD updates.
+    const refreshing = !!cached && attemptCount === 0;
+    if (refreshing) setLoading(true);
 
     envioQuery<MetadataResponse>(QUERY, {
       contract: ENVIO_CONTRACT.toLowerCase(),
       id: tokenId,
     })
       .then((data) => {
-        if (!cancelled) setRows(data.Metadata ?? []);
+        if (cancelled) return;
+        const fresh = data.Metadata ?? [];
+        setRows(fresh);
+        setFromCache(false);
+        setCacheAge(0);
+        setError(null);
+        writeCache(chain, tokenId, {
+          rows: fresh,
+          fetchedAt: Date.now(),
+          name,
+          chain,
+        });
       })
       .catch((err) => {
-        if (!cancelled) setError(err?.message || "Failed to fetch Envio metadata");
+        if (cancelled) return;
+        // Keep cached rows visible on failure if we have them.
+        setError(err?.message || "Failed to fetch Envio metadata");
       })
       .finally(() => {
         if (!cancelled) setLoading(false);
@@ -144,19 +228,42 @@ export const SidecarDrawer = ({ open, onOpenChange, tokenId, name }: SidecarDraw
     return () => {
       cancelled = true;
     };
-  }, [open, tokenId, attemptCount]);
+  }, [open, tokenId, chain, name, attemptCount]);
 
-  const handleRetry = () => {
-    setAttemptCount((c) => c + 1);
-  };
+  const handleRetry = () => setAttemptCount((c) => c + 1);
 
   const findValue = (k: string) => rows?.find((r) => r.key === k)?.value;
   const ipId = findValue("story[ip_id]");
   const vaultId = findValue("cdr[vault_id]");
 
   const iframeUrl = `https://ghostagent.ninja/agent/chonk.${tokenId}`;
+  const hasData = !!rows && rows.length > 0;
 
-  const hasData = rows && rows.length > 0;
+  const statusLabel = loading
+    ? fromCache
+      ? "Refreshing…"
+      : "Syncing…"
+    : error
+    ? hasData
+      ? "Stale · Query Failed"
+      : "Query Failed"
+    : hasData
+    ? fromCache
+      ? "Cached"
+      : "Live"
+    : rows
+    ? "No Data"
+    : "Idle";
+
+  const statusDot = loading
+    ? "bg-amber-500 animate-pulse"
+    : error
+    ? "bg-red-500"
+    : hasData
+    ? fromCache
+      ? "bg-sky-500"
+      : "bg-emerald-500"
+    : "bg-slate-600";
 
   return (
     <Sheet open={open} onOpenChange={onOpenChange}>
@@ -168,6 +275,9 @@ export const SidecarDrawer = ({ open, onOpenChange, tokenId, name }: SidecarDraw
           <SheetTitle className="text-slate-100 text-sm font-mono flex items-center gap-2">
             <Radio className="h-3.5 w-3.5 text-emerald-500" />
             Sidecar Inspector · {name} · #{tokenId}
+            <span className="ml-1 rounded border border-slate-800 px-1.5 py-0.5 text-[10px] uppercase tracking-wider text-slate-400">
+              {chain}
+            </span>
           </SheetTitle>
           <SheetClose asChild>
             <Button variant="ghost" size="sm" className="text-slate-300 hover:text-white hover:bg-slate-900">
@@ -201,17 +311,24 @@ export const SidecarDrawer = ({ open, onOpenChange, tokenId, name }: SidecarDraw
             </div>
 
             {/* Status Divider */}
-            <div className="flex items-center gap-2">
-              <div className={`h-1.5 w-1.5 rounded-full ${loading ? 'bg-amber-500 animate-pulse' : error ? 'bg-red-500' : hasData ? 'bg-emerald-500' : 'bg-slate-600'}`} />
-              <span className="text-[10px] uppercase tracking-wider text-slate-500">
-                {loading ? 'Syncing…' : error ? 'Query Failed' : hasData ? 'Live' : 'No Data'}
-              </span>
+            <div className="flex items-center justify-between gap-2">
+              <div className="flex items-center gap-2">
+                <div className={`h-1.5 w-1.5 rounded-full ${statusDot}`} />
+                <span className="text-[10px] uppercase tracking-wider text-slate-500">
+                  {statusLabel}
+                </span>
+              </div>
+              {fromCache && cacheAge !== null && (
+                <span className="text-[10px] text-slate-600 font-mono">
+                  age {Math.max(0, Math.round(cacheAge / 1000))}s
+                </span>
+              )}
             </div>
 
             {/* Content States */}
-            {loading && <LoadingState />}
+            {loading && !hasData && <LoadingState />}
 
-            {!loading && error && (
+            {!loading && error && !hasData && (
               <ErrorState message={error} onRetry={handleRetry} />
             )}
 
@@ -219,8 +336,24 @@ export const SidecarDrawer = ({ open, onOpenChange, tokenId, name }: SidecarDraw
               <EmptyState tokenId={tokenId} />
             )}
 
-            {!loading && !error && hasData && (
+            {hasData && (
               <>
+                {error && (
+                  <div className="rounded border border-red-900/50 bg-red-950/20 p-2 flex items-center justify-between gap-2">
+                    <span className="text-[10px] text-red-300">
+                      Showing cached data — refresh failed
+                    </span>
+                    <Button
+                      variant="ghost"
+                      size="sm"
+                      onClick={handleRetry}
+                      className="h-6 px-2 text-red-300 hover:text-red-200 hover:bg-red-950/40"
+                    >
+                      <RefreshCw className="h-3 w-3" />
+                    </Button>
+                  </div>
+                )}
+
                 <div className="rounded border border-slate-900 bg-slate-900/40 p-3">
                   <p className="text-[10px] uppercase tracking-widest text-slate-500 mb-1">
                     Story Protocol IPA Identity
@@ -239,21 +372,23 @@ export const SidecarDrawer = ({ open, onOpenChange, tokenId, name }: SidecarDraw
                   </p>
                 </div>
 
-                {rows.length > 0 && (
-                  <details className="text-xs text-slate-400">
-                    <summary className="cursor-pointer text-slate-500 hover:text-slate-300">
-                      Raw metadata ({rows.length})
-                    </summary>
-                    <div className="mt-2 space-y-1 font-mono">
-                      {rows.map((r, i) => (
-                        <div key={i} className="border-b border-slate-900 pb-1">
-                          <div className="text-slate-500">{r.key}</div>
-                          <div className="text-slate-300 break-all">{r.value}</div>
-                        </div>
-                      ))}
-                    </div>
-                  </details>
-                )}
+                <details
+                  className="text-xs text-slate-400"
+                  open={rawOpen}
+                  onToggle={(e) => setRawOpen((e.currentTarget as HTMLDetailsElement).open)}
+                >
+                  <summary className="cursor-pointer text-slate-500 hover:text-slate-300">
+                    Raw metadata ({rows!.length})
+                  </summary>
+                  <div className="mt-2 space-y-1 font-mono">
+                    {rows!.map((r, i) => (
+                      <div key={i} className="border-b border-slate-900 pb-1">
+                        <div className="text-slate-500">{r.key}</div>
+                        <div className="text-slate-300 break-all">{r.value}</div>
+                      </div>
+                    ))}
+                  </div>
+                </details>
               </>
             )}
 
