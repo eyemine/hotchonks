@@ -277,7 +277,8 @@ export const SidecarDrawer = ({
   const handleRetry = () => setAttemptCount((c) => c + 1);
 
   const findValue = (k: string) => rows?.find((r) => r.key === k)?.value;
-  const ipId = findValue("story[ip_id]");
+  const ipId = hexToAddress(findValue("story[ip_id]"));
+  const licenseId = findValue("story[license_id]");
   const vaultId = findValue("cdr[vault_id]");
 
   const iframeUrl = `https://ghostagent.ninja/agent/chonk.${tokenId}`;
