@@ -368,11 +368,6 @@ export const SidecarDrawer = ({
               {chain}
             </span>
           </SheetTitle>
-          <SheetClose asChild>
-            <Button variant="ghost" size="sm" className="text-slate-300 hover:text-white hover:bg-slate-900">
-              <X className="h-4 w-4 mr-1" /> Close
-            </Button>
-          </SheetClose>
         </SheetHeader>
 
         <div className="flex flex-col md:flex-row h-[calc(100vh-3.25rem)]">
