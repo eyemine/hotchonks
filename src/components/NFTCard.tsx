@@ -104,26 +104,6 @@ export const NFTCard = ({ nft }: NFTCardProps) => {
 
   return (
     <Card className="group bg-card border-border hover:border-bio-green/40 transition-all duration-500 hover:shadow-bio">
-      {/* PureBPM Button - Top of Card */}
-      <div className="p-4 border-b border-border">
-        <Button 
-          variant="default" 
-          size="sm" 
-          asChild
-          className="w-full border-0 text-white bg-black hover:bg-gray-900"
-        >
-          <a 
-            href={nft.name?.includes('#599') ? 'https://www.purebpm.com/@forked' : nft.name?.includes('#697') ? 'https://www.purebpm.com/@red-hammer' : nft.name?.includes('#678') ? 'https://www.purebpm.com/@sandy-freeland' : nft.name?.includes('#588') ? 'https://www.purebpm.com/@pearce-resurgance' : nft.name?.includes('#606') ? 'https://www.purebpm.com/@blues-dandy' : nft.name?.includes('#676') ? 'https://www.purebpm.com/@delilah' : 'https://www.purebpm.com/@ghost-agent'} 
-            target="_blank" 
-            rel="noopener noreferrer"
-          >
-            <ExternalLink size={16} className="mr-2" />
-            <span className="font-bold">
-              {nft.name?.includes('#599') ? "PureBPM Virtual Artist – 'FORKED'" : nft.name?.includes('#697') ? "PureBPM Virtual Artist – 'Red Hammer'" : nft.name?.includes('#678') ? "PureBPM Virtual Artist – 'Sandy Freeland'" : nft.name?.includes('#588') ? "PureBPM Virtual Artist – 'Pearce Resurgance'" : nft.name?.includes('#606') ? "PureBPM Virtual Artist – 'Blues Dandy'" : nft.name?.includes('#676') ? "PureBPM Virtual Artist – 'Delilah'" : "PureBPM Artist – 'Ghost Agent'"}
-            </span>
-          </a>
-        </Button>
-      </div>
 
       <div className="p-6">
         {/* Main NFT Image - Square and Larger */}
@@ -185,6 +165,27 @@ export const NFTCard = ({ nft }: NFTCardProps) => {
           )}
         </div>
 
+        {/* PureBPM Virtual Artist Button */}
+        <div className="mt-4">
+          <Button 
+            variant="default" 
+            size="sm" 
+            asChild
+            className="w-full border-0 text-white bg-black hover:bg-gray-900"
+          >
+            <a 
+              href={nft.name?.includes('#599') ? 'https://www.purebpm.com/@forked' : nft.name?.includes('#697') ? 'https://www.purebpm.com/@red-hammer' : nft.name?.includes('#678') ? 'https://www.purebpm.com/@sandy-freeland' : nft.name?.includes('#588') ? 'https://www.purebpm.com/@pearce-resurgance' : nft.name?.includes('#606') ? 'https://www.purebpm.com/@blues-dandy' : nft.name?.includes('#676') ? 'https://www.purebpm.com/@delilah' : 'https://www.purebpm.com/@ghost-agent'} 
+              target="_blank" 
+              rel="noopener noreferrer"
+            >
+              <ExternalLink size={16} className="mr-2" />
+              <span className="font-bold">
+                {nft.name?.includes('#599') ? "🔊Virtual Artist – Forked" : nft.name?.includes('#697') ? "🔊Virtual Artist – Red Hammer" : nft.name?.includes('#678') ? "🔊Virtual Artist – Sandy Freeland" : nft.name?.includes('#588') ? "🔊Virtual Artist – Pearce Resurgance" : nft.name?.includes('#606') ? "🔊Virtual Artist – Blues Dandy" : nft.name?.includes('#676') ? "🔊Virtual Artist – Delilah" : "🔊Virtual Artist – Ghost Agent"}
+              </span>
+            </a>
+          </Button>
+        </div>
+
         {/* Sidecar Inspector trigger */}
         <div className="mt-4">
           <Button
@@ -194,7 +195,7 @@ export const NFTCard = ({ nft }: NFTCardProps) => {
             className="w-full bg-slate-950 border-slate-800 text-slate-100 hover:bg-slate-900 hover:text-white"
           >
             <Radar size={14} className="mr-2" />
-            Inspect Sidecar
+            Inspect Agent + SideCar
           </Button>
         </div>
       </div>
