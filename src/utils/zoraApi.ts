@@ -1,5 +1,5 @@
 import { supabase } from "@/integrations/supabase/client";
-import { getCoin } from "@zoralabs/coins-sdk";
+
 
 export const fetchZoraPrices = async (contractAddresses: string[]) => {
   const { data, error } = await supabase.functions.invoke('alchemy-api', {
@@ -35,21 +35,26 @@ export const fetchGoneGreenMarketCaps = async (
 
   for (const address of addresses) {
     try {
-      const res = await getCoin({ address });
-      const coin = (res as any)?.data?.zora20Token;
+      // Use Zora's public coin API directly (Base chain id = 8453) to avoid
+      // pulling in @zoralabs/coins-sdk, which fails to bundle in the browser.
+      const res = await fetch(
+        `https://api-sdk.zora.engineering/coin?address=${address}&chain=8453`
+      );
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+      const json: any = await res.json();
+      const coin = json?.zora20Token ?? json?.data?.zora20Token;
       const cap = coin?.marketCap;
       if (cap != null) {
         if (typeof cap === 'number') {
           caps[address] = cap.toFixed(2);
         } else if (typeof cap === 'string') {
-          // Strip any leading $ then keep numeric string
           caps[address] = cap.replace('$', '');
         } else {
           caps[address] = String(cap);
         }
       }
     } catch (e) {
-      console.warn(`Failed to fetch coin via SDK for ${address}`, e);
+      console.warn(`Failed to fetch coin for ${address}`, e);
     }
   }
 
