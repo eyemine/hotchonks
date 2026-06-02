@@ -169,6 +169,40 @@ export const SidecarDrawer = ({
     if (open && tokenId) writeLast(chain, tokenId, name);
   }, [open, tokenId, chain, name]);
 
+  // Cross-tab sync: when another tab updates the cache for this token,
+  // mirror the new rows into this drawer so HUDs stay consistent.
+  useEffect(() => {
+    if (!open || !tokenId) return;
+    const myKey = cacheKey(chain, tokenId);
+
+    const onStorage = (e: StorageEvent) => {
+      if (e.storageArea && e.storageArea !== localStorage) return;
+
+      // HUD payload changed in another tab for the same token.
+      if (e.key === myKey && e.newValue) {
+        try {
+          const next = JSON.parse(e.newValue) as CachedHud;
+          setRows(next.rows);
+          setFromCache(true);
+          setCacheAge(Date.now() - next.fetchedAt);
+          setError(null);
+          setLoading(false);
+        } catch {
+          /* ignore malformed payload */
+        }
+      }
+
+      // Raw-disclosure toggle changed elsewhere.
+      if (e.key === RAW_OPEN_KEY && e.newValue !== null) {
+        setRawOpen(e.newValue === "1");
+      }
+    };
+
+    window.addEventListener("storage", onStorage);
+    return () => window.removeEventListener("storage", onStorage);
+  }, [open, tokenId, chain]);
+
+
   // Hydrate from cache instantly, then refresh in background.
   const hydratedKey = useRef<string>("");
   useEffect(() => {
