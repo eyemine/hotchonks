@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
-import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetClose } from "@/components/ui/sheet";
+import { Sheet, SheetContent, SheetHeader, SheetTitle } from "@/components/ui/sheet";
 import { Button } from "@/components/ui/button";
-import { X, Loader2, AlertTriangle, RefreshCw, Database, Radio } from "lucide-react";
+import { Loader2, AlertTriangle, RefreshCw, Database, Radio } from "lucide-react";
 import { EnvioGraphQLRequestError, envioQuery, ENVIO_CONTRACT } from "@/utils/envioApi";
 
 interface SidecarDrawerProps {
