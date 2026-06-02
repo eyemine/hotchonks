@@ -62,8 +62,9 @@ function writeLast(chain: string, tokenId: string, name: string) {
 }
 
 const QUERY = /* GraphQL */ `
-  query GetSidecar($contract: String!, $id: BigInt!) {
-    Metadata(where: { tokenContract: { _eq: $contract }, tokenId: { _eq: $id } }) {
+  query GetSidecarMetadata($tokenIds: [BigInt!]) {
+    Metadata(where: { tokenId: { _in: $tokenIds } }) {
+      tokenId
       key
       value
     }
@@ -233,8 +234,7 @@ export const SidecarDrawer = ({
     if (refreshing) setLoading(true);
 
     envioQuery<MetadataResponse>(QUERY, {
-      contract: ENVIO_CONTRACT.toLowerCase(),
-      id: tokenId,
+      tokenIds: [tokenId],
     })
       .then((data) => {
         if (cancelled) return;
