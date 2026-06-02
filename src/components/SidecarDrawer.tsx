@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetClose } from "@/components/ui/sheet";
 import { Button } from "@/components/ui/button";
 import { X, Loader2, AlertTriangle, RefreshCw, Database, Radio } from "lucide-react";
-import { envioQuery, ENVIO_CONTRACT } from "@/utils/envioApi";
+import { EnvioGraphQLRequestError, envioQuery, ENVIO_CONTRACT } from "@/utils/envioApi";
 
 interface SidecarDrawerProps {
   open: boolean;
@@ -61,7 +61,7 @@ function writeLast(chain: string, tokenId: string, name: string) {
   }
 }
 
-const QUERY = /* GraphQL */ `
+const BIGINT_QUERY = /* GraphQL */ `
   query GetSidecarMetadata($tokenIds: [BigInt!]) {
     Metadata(where: { tokenId: { _in: $tokenIds } }) {
       tokenId
@@ -70,6 +70,38 @@ const QUERY = /* GraphQL */ `
     }
   }
 `;
+
+const NUMERIC_QUERY = /* GraphQL */ `
+  query GetSidecarMetadata($tokenIds: [numeric!]) {
+    Metadata(where: { tokenId: { _in: $tokenIds } }) {
+      tokenId
+      key
+      value
+    }
+  }
+`;
+
+async function fetchSidecarMetadata(tokenId: string) {
+  try {
+    return await envioQuery<MetadataResponse>(BIGINT_QUERY, {
+      tokenIds: [tokenId],
+    });
+  } catch (error) {
+    const isTypeMismatch =
+      error instanceof EnvioGraphQLRequestError &&
+      error.errors.some((entry) =>
+        /declared as '\[BigInt!\]'.*expected|declared as "\[BigInt!\]".*expected|\[numeric!\]/i.test(
+          entry.message,
+        ),
+      );
+
+    if (!isTypeMismatch) throw error;
+
+    return envioQuery<MetadataResponse>(NUMERIC_QUERY, {
+      tokenIds: [tokenId],
+    });
+  }
+}
 
 /** Normalize a hex value to an EVM address. Padded 32-byte words become the last 20 bytes. */
 function hexToAddress(value: string | undefined | null): string | undefined {
@@ -243,9 +275,7 @@ export const SidecarDrawer = ({
     const refreshing = !!cached && attemptCount === 0;
     if (refreshing) setLoading(true);
 
-    envioQuery<MetadataResponse>(QUERY, {
-      tokenIds: [tokenId],
-    })
+    fetchSidecarMetadata(tokenId)
       .then((data) => {
         if (cancelled) return;
         const fresh = data.Metadata ?? [];
@@ -282,6 +312,7 @@ export const SidecarDrawer = ({
   const vaultId = findValue("cdr[vault_id]");
 
   const iframeUrl = `https://ghostagent.ninja/agent/chonk.${tokenId}`;
+  const hasRows = !!rows;
   const hasData = !!rows && rows.length > 0;
 
   const statusLabel = loading
@@ -377,12 +408,10 @@ export const SidecarDrawer = ({
               <ErrorState message={error} onRetry={handleRetry} />
             )}
 
-            {!loading && !error && rows && rows.length === 0 && (
-              <EmptyState tokenId={tokenId} />
-            )}
-
-            {hasData && (
+             {!loading && !error && hasRows && (
               <>
+                 {!hasData && <EmptyState tokenId={tokenId} />}
+
                 {error && (
                   <div className="rounded border border-red-900/50 bg-red-950/20 p-2 flex items-center justify-between gap-2">
                     <span className="text-[10px] text-red-300">
@@ -432,7 +461,7 @@ export const SidecarDrawer = ({
                   onToggle={(e) => setRawOpen((e.currentTarget as HTMLDetailsElement).open)}
                 >
                   <summary className="cursor-pointer text-slate-500 hover:text-slate-300">
-                    Raw metadata ({rows!.length})
+                     Raw metadata ({rows!.length})
                   </summary>
                   <div className="mt-2 space-y-1 font-mono">
                     {rows!.map((r, i) => (
