@@ -234,8 +234,7 @@ export const SidecarDrawer = ({
     if (refreshing) setLoading(true);
 
     envioQuery<MetadataResponse>(QUERY, {
-      contract: ENVIO_CONTRACT.toLowerCase(),
-      id: tokenId,
+      tokenIds: [tokenId],
     })
       .then((data) => {
         if (cancelled) return;
