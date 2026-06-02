@@ -311,7 +311,14 @@ export const SidecarDrawer = ({
   const licenseId = findValue("story[license_id]");
   const vaultId = findValue("cdr[vault_id]");
 
-  const iframeUrl = `https://ghostagent.ninja/embed/agent/ghostagent`;
+  const agentSlug = (name || "")
+    .toLowerCase()
+    .replace(/#.*$/, "")
+    .replace(/[^a-z0-9]+/g, "")
+    .trim();
+  const iframeUrl = agentSlug
+    ? `https://ghostagent.ninja/embed/agent/${agentSlug}`
+    : null;
   const hasRows = !!rows;
   const hasData = !!rows && rows.length > 0;
 
