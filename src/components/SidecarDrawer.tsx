@@ -372,12 +372,18 @@ export const SidecarDrawer = ({
 
         <div className="flex flex-col md:flex-row h-[calc(100vh-3.25rem)]">
           {/* Left: Agent iframe */}
-          <div className="flex-1 bg-black border-r border-slate-900 min-h-[40vh] md:min-h-0">
+          <div className="flex-1 bg-black border-r border-slate-900 min-h-[40vh] md:min-h-0 overflow-hidden">
             {iframeUrl ? (
               <iframe
                 src={iframeUrl}
                 title={`${name} ${tokenId}`}
-                className="w-full h-full"
+                className="block border-0"
+                style={{
+                  width: "calc(100% / 0.77)",
+                  height: "calc(100% / 0.77)",
+                  transform: "scale(0.77)",
+                  transformOrigin: "top left",
+                }}
                 allow="clipboard-read; clipboard-write; web3"
                 sandbox="allow-scripts allow-same-origin allow-forms allow-popups allow-popups-to-escape-sandbox"
               />
