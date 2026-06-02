@@ -3,8 +3,9 @@ import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
-import { ExternalLink, ChevronDown } from "lucide-react";
+import { ExternalLink, ChevronDown, Radar } from "lucide-react";
 import { useState } from "react";
+import { SidecarDrawer } from "./SidecarDrawer";
 import { useZoraPrices } from "@/hooks/useZoraPrices";
 import { extractContractFromZoraUrl } from "@/utils/zoraApi";
 import { getGalleryUrl } from "@/utils/openSeaGalleries";
@@ -49,6 +50,10 @@ interface NFTCardProps {
 
 export const NFTCard = ({ nft }: NFTCardProps) => {
   const [isOpen, setIsOpen] = useState(false);
+  const [sidecarOpen, setSidecarOpen] = useState(false);
+  const tokenIdMatch = nft.name.match(/#(\d+)/);
+  const tokenId = tokenIdMatch ? tokenIdMatch[1] : nft.id;
+  
   
   const getENSName = (nftName: string): string => {
     const match = nftName.match(/Chonk #(\d+)/);
