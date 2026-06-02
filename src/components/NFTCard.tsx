@@ -3,8 +3,9 @@ import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
-import { ExternalLink, ChevronDown } from "lucide-react";
+import { ExternalLink, ChevronDown, Radar } from "lucide-react";
 import { useState } from "react";
+import { SidecarDrawer } from "./SidecarDrawer";
 import { useZoraPrices } from "@/hooks/useZoraPrices";
 import { extractContractFromZoraUrl } from "@/utils/zoraApi";
 import { getGalleryUrl } from "@/utils/openSeaGalleries";
@@ -49,6 +50,10 @@ interface NFTCardProps {
 
 export const NFTCard = ({ nft }: NFTCardProps) => {
   const [isOpen, setIsOpen] = useState(false);
+  const [sidecarOpen, setSidecarOpen] = useState(false);
+  const tokenIdMatch = nft.name.match(/#(\d+)/);
+  const tokenId = tokenIdMatch ? tokenIdMatch[1] : nft.id;
+  
   
   const getENSName = (nftName: string): string => {
     const match = nftName.match(/Chonk #(\d+)/);
@@ -179,7 +184,27 @@ export const NFTCard = ({ nft }: NFTCardProps) => {
             </div>
           )}
         </div>
+
+        {/* Sidecar Inspector trigger */}
+        <div className="mt-4">
+          <Button
+            variant="outline"
+            size="sm"
+            onClick={() => setSidecarOpen(true)}
+            className="w-full bg-slate-950 border-slate-800 text-slate-100 hover:bg-slate-900 hover:text-white"
+          >
+            <Radar size={14} className="mr-2" />
+            Inspect Sidecar
+          </Button>
+        </div>
       </div>
+
+      <SidecarDrawer
+        open={sidecarOpen}
+        onOpenChange={setSidecarOpen}
+        tokenId={tokenId}
+        name={nft.name}
+      />
 
       {/* Nested NFTs Collapsible */}
       {nft.nestedNFTs.length > 0 && (
