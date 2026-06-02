@@ -62,7 +62,7 @@ function writeLast(chain: string, tokenId: string, name: string) {
 }
 
 const QUERY = /* GraphQL */ `
-  query GetSidecarMetadata($tokenIds: [numeric!]) {
+  query GetSidecarMetadata($tokenIds: [BigInt!]) {
     Metadata(where: { tokenId: { _in: $tokenIds } }) {
       tokenId
       key
@@ -70,6 +70,16 @@ const QUERY = /* GraphQL */ `
     }
   }
 `;
+
+/** Normalize a hex value to an EVM address. Padded 32-byte words become the last 20 bytes. */
+function hexToAddress(value: string | undefined | null): string | undefined {
+  if (!value) return undefined;
+  const v = value.trim();
+  if (!v.startsWith("0x")) return v;
+  const hex = v.slice(2);
+  if (hex.length <= 40) return v.toLowerCase();
+  return ("0x" + hex.slice(-40)).toLowerCase();
+}
 
 function LoadingState() {
   return (
