@@ -184,7 +184,27 @@ export const NFTCard = ({ nft }: NFTCardProps) => {
             </div>
           )}
         </div>
+
+        {/* Sidecar Inspector trigger */}
+        <div className="mt-4">
+          <Button
+            variant="outline"
+            size="sm"
+            onClick={() => setSidecarOpen(true)}
+            className="w-full bg-slate-950 border-slate-800 text-slate-100 hover:bg-slate-900 hover:text-white"
+          >
+            <Radar size={14} className="mr-2" />
+            Inspect Sidecar
+          </Button>
+        </div>
       </div>
+
+      <SidecarDrawer
+        open={sidecarOpen}
+        onOpenChange={setSidecarOpen}
+        tokenId={tokenId}
+        name={nft.name}
+      />
 
       {/* Nested NFTs Collapsible */}
       {nft.nestedNFTs.length > 0 && (
