@@ -311,11 +311,15 @@ export const SidecarDrawer = ({
   const licenseId = findValue("story[license_id]");
   const vaultId = findValue("cdr[vault_id]");
 
-  const agentSlug = (name || "")
-    .toLowerCase()
-    .replace(/#.*$/, "")
-    .replace(/[^a-z0-9]+/g, "")
-    .trim();
+  const agentSlug = (() => {
+    const raw = (name || "").trim();
+    const parts = raw.match(/^([a-zA-Z\s]+)#(\d+)/);
+    if (parts) {
+      const base = parts[1].trim().toLowerCase().replace(/[^a-z0-9]/g, "");
+      return `${base}${parts[2]}`;
+    }
+    return raw.toLowerCase().replace(/[^a-z0-9]+/g, "");
+  })();
   const iframeUrl = agentSlug
     ? `https://ghostagent.ninja/embed/agent/${agentSlug}`
     : null;
