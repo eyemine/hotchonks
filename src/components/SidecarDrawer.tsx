@@ -379,9 +379,9 @@ export const SidecarDrawer = ({
                 title={`${name} ${tokenId}`}
                 className="block border-0"
                 style={{
-                  width: "calc(100% / 0.77)",
-                  height: "calc(100% / 0.77)",
-                  transform: "scale(0.77)",
+                  width: "calc(100% / 1.3)",
+                  height: "calc(100% / 1.3)",
+                  transform: "scale(1.3)",
                   transformOrigin: "top left",
                 }}
                 allow="clipboard-read; clipboard-write; web3"
