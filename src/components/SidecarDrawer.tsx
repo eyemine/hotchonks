@@ -372,13 +372,19 @@ export const SidecarDrawer = ({
         <div className="flex flex-col md:flex-row h-[calc(100vh-3.25rem)]">
           {/* Left: Agent iframe */}
           <div className="flex-1 bg-black border-r border-slate-900 min-h-[40vh] md:min-h-0">
-            <iframe
-              src={iframeUrl}
-              title={`ghostagent ${tokenId}`}
-              className="w-full h-full"
-              allow="clipboard-read; clipboard-write; web3"
-              sandbox="allow-scripts allow-same-origin allow-forms allow-popups allow-popups-to-escape-sandbox"
-            />
+            {iframeUrl ? (
+              <iframe
+                src={iframeUrl}
+                title={`${name} ${tokenId}`}
+                className="w-full h-full"
+                allow="clipboard-read; clipboard-write; web3"
+                sandbox="allow-scripts allow-same-origin allow-forms allow-popups allow-popups-to-escape-sandbox"
+              />
+            ) : (
+              <div className="w-full h-full flex items-center justify-center text-slate-500 text-xs">
+                No agent name available
+              </div>
+            )}
           </div>
 
           {/* Right: On-Chain HUD */}
