@@ -1,5 +1,6 @@
 
 
+import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Menu } from "lucide-react";
 
@@ -15,16 +16,19 @@ export const Header = () => {
         
         <div className="flex items-center gap-8">
           <nav className="hidden md:flex items-center gap-6">
-            <a href="#tba" className="text-muted-foreground hover:text-bio-light transition-colors">
+            <Link to="/artists" className="text-bio-light hover:text-bio-glow transition-colors font-semibold">
+              Virtual Artists
+            </Link>
+            <a href="/#tba" className="text-muted-foreground hover:text-bio-light transition-colors">
               Token Bound Account
             </a>
-            <a href="#klima" className="text-muted-foreground hover:text-bio-light transition-colors">
+            <a href="/#klima" className="text-muted-foreground hover:text-bio-light transition-colors">
               KlimaDAO
             </a>
-            <a href="#gallery" className="text-muted-foreground hover:text-bio-light transition-colors">
+            <a href="/#gallery" className="text-muted-foreground hover:text-bio-light transition-colors">
               TBA Bundle Shop
             </a>
-            <a href="#game" className="text-muted-foreground hover:text-bio-light transition-colors">
+            <a href="/#game" className="text-muted-foreground hover:text-bio-light transition-colors">
               Chonks Playground
             </a>
           </nav>
