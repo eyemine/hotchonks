@@ -117,7 +117,7 @@ const RosterCard = ({ artist }: { artist: Artist }) => {
 
   return (
     <div className="group relative overflow-hidden rounded-lg border border-border bg-card transition-all hover:border-bio-green/30">
-      <div className="aspect-square overflow-hidden bg-black">
+      <div className="relative aspect-square overflow-hidden bg-black">
         {img ? (
           <img
             src={img}
@@ -127,6 +127,13 @@ const RosterCard = ({ artist }: { artist: Artist }) => {
           />
         ) : (
           <div className="w-full h-full bg-carbon-medium animate-pulse" />
+        )}
+        {artist.artistImage && (
+          <img
+            src={artist.artistImage}
+            alt={`${artist.name} portrait`}
+            className="absolute bottom-3 right-3 w-16 h-16 rounded-full object-cover border-2 border-bio-light shadow-[0_0_16px_hsl(var(--bio-light)/0.7)]"
+          />
         )}
       </div>
 
