@@ -14,10 +14,14 @@ export interface Artist {
   handle: string;
   /** PureBPM profile URL */
   purebpmUrl: string;
+  /** GhostAgent agent URL */
+  agentUrl: string;
   /** Genre / musical descriptor */
   genre: string;
-  /** Optional hero portrait override (defaults to Chonk NFT image) */
-  heroImage?: string;
+  /** Inset portrait overlaid on the Chonk pixel image (drop file in /public/artists/) */
+  artistImage?: string;
+  /** Optional hero banner image (drop file in /public/artists/) */
+  bannerImage?: string;
   status: ArtistStatus;
   storyIpId?: string;
   cdrActive?: boolean;
@@ -37,7 +41,10 @@ export const ARTISTS: Artist[] = [
     name: "RED HAMMER",
     handle: "@red-hammer",
     purebpmUrl: "https://www.purebpm.com/@red-hammer",
+    agentUrl: "https://ghostagent.ninja/agent/chonk.697",
     genre: "Industrial Breakbeat / G Minor",
+    artistImage: "/artists/red-hammer.jpg",
+    bannerImage: "/artists/redhammer-banner.jpg",
     status: "active",
     storyIpId: "0x7832e3EC9c433D722A8bd659B0C0829Dc4910b21",
     cdrActive: true,
@@ -50,6 +57,7 @@ export const ARTISTS: Artist[] = [
     name: "DELILAH",
     handle: "@delilah",
     purebpmUrl: "https://www.purebpm.com/@delilah",
+    agentUrl: "https://ghostagent.ninja/agent/chonk.676",
     genre: "Dream Pop / Synth",
     status: "pending",
     email: "chonk.676_@nftmail.box",
@@ -60,6 +68,7 @@ export const ARTISTS: Artist[] = [
     name: "SANDY FREELAND",
     handle: "@sandy-freeland",
     purebpmUrl: "https://www.purebpm.com/@sandy-freeland",
+    agentUrl: "https://ghostagent.ninja/agent/chonk.678",
     genre: "Desert Folk",
     status: "pending",
     email: "chonk.678_@nftmail.box",
@@ -70,9 +79,43 @@ export const ARTISTS: Artist[] = [
     name: "FORKED",
     handle: "@forked",
     purebpmUrl: "https://www.purebpm.com/@forked",
+    agentUrl: "https://ghostagent.ninja/agent/chonk.599",
     genre: "Glitch / IDM",
     status: "pending",
     email: "chonk.599_@nftmail.box",
+  },
+  {
+    slug: "ruff",
+    tokenId: "601",
+    name: "RUFF",
+    handle: "@ruff",
+    purebpmUrl: "https://www.purebpm.com/@ruff",
+    agentUrl: "https://ghostagent.ninja/agent/chonk.601",
+    genre: "Lo-Fi Hip Hop",
+    status: "pending",
+    email: "chonk.601_@nftmail.box",
+  },
+  {
+    slug: "dolly",
+    tokenId: "681",
+    name: "DOLLY",
+    handle: "@dolly",
+    purebpmUrl: "https://www.purebpm.com/@dolly",
+    agentUrl: "https://ghostagent.ninja/agent/chonk.681",
+    genre: "Country Pop",
+    status: "pending",
+    email: "chonk.681_@nftmail.box",
+  },
+  {
+    slug: "kidman",
+    tokenId: "9534",
+    name: "KIDMAN",
+    handle: "@kidman",
+    purebpmUrl: "https://www.purebpm.com/@kidman",
+    agentUrl: "https://ghostagent.ninja/agent/chonk.9534",
+    genre: "Cinematic Ambient",
+    status: "pending",
+    email: "chonk.9534_@nftmail.box",
   },
   {
     slug: "pearce-resurgance",
@@ -80,6 +123,7 @@ export const ARTISTS: Artist[] = [
     name: "PEARCE RESURGANCE",
     handle: "@pearce-resurgance",
     purebpmUrl: "https://www.purebpm.com/@pearce-resurgance",
+    agentUrl: "https://ghostagent.ninja/agent/chonk.588",
     genre: "Post-Rock",
     status: "unregistered",
     email: "chonk.588_@nftmail.box",
@@ -90,6 +134,7 @@ export const ARTISTS: Artist[] = [
     name: "BLUES DANDY",
     handle: "@blues-dandy",
     purebpmUrl: "https://www.purebpm.com/@blues-dandy",
+    agentUrl: "https://ghostagent.ninja/agent/chonk.606",
     genre: "Electric Blues",
     status: "unregistered",
     email: "chonk.606_@nftmail.box",
