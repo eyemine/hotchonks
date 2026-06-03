@@ -1,0 +1,189 @@
+import { Link } from "react-router-dom";
+import { ArrowRight, Lock, Clock, Unlock, ExternalLink } from "lucide-react";
+import { Header } from "@/components/Header";
+import { Footer } from "@/components/Footer";
+import { Button } from "@/components/ui/button";
+import { useChonksData } from "@/hooks/useChonksData";
+import { ARTISTS, type Artist } from "@/data/artists";
+
+const useChonkImage = (tokenId: string): string | undefined => {
+  const { chonks } = useChonksData();
+  return chonks.find((c) => c.name.includes(`#${tokenId}`))?.image;
+};
+
+const StatusPill = ({ status }: { status: Artist["status"] }) => {
+  if (status === "active") {
+    return (
+      <span className="inline-flex items-center gap-1.5 rounded-full bg-bio-green/15 border border-bio-green/40 px-2.5 py-1 text-[10px] font-mono uppercase tracking-widest text-bio-light">
+        <span className="relative flex h-1.5 w-1.5">
+          <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-bio-light opacity-75" />
+          <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-bio-light" />
+        </span>
+        <Unlock className="h-3 w-3" /> Story Protocol Active
+      </span>
+    );
+  }
+  if (status === "pending") {
+    return (
+      <span className="inline-flex items-center gap-1.5 rounded-full bg-yellow-500/10 border border-yellow-500/30 px-2.5 py-1 text-[10px] font-mono uppercase tracking-widest text-yellow-500">
+        <Clock className="h-3 w-3" /> Agent Pending
+      </span>
+    );
+  }
+  return (
+    <span className="inline-flex items-center gap-1.5 rounded-full bg-muted border border-border px-2.5 py-1 text-[10px] font-mono uppercase tracking-widest text-muted-foreground">
+      <Lock className="h-3 w-3" /> Unregistered
+    </span>
+  );
+};
+
+const HeroCard = ({ artist }: { artist: Artist }) => {
+  const img = useChonkImage(artist.tokenId);
+  return (
+    <div className="md:col-span-3 group relative overflow-hidden rounded-xl border border-bio-green/40 bg-gradient-to-br from-carbon-dark via-carbon-medium to-black shadow-[0_0_60px_hsl(var(--bio-green)/0.15)] transition-all hover:shadow-[0_0_80px_hsl(var(--bio-green)/0.3)]">
+      {/* Hero portrait background */}
+      {img && (
+        <div className="absolute inset-0">
+          <img
+            src={img}
+            alt=""
+            className="w-full h-full object-cover opacity-60 group-hover:opacity-70 transition-opacity"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-black via-black/70 to-transparent" />
+        </div>
+      )}
+
+      <div className="relative p-8 md:p-12 min-h-[460px] flex flex-col justify-end">
+        <div className="absolute top-6 right-6">
+          <StatusPill status={artist.status} />
+        </div>
+
+        <div className="flex items-end gap-6">
+          {/* Pixel chonk badge inset */}
+          {img && (
+            <div className="hidden sm:block flex-shrink-0">
+              <div className="rounded-lg overflow-hidden border-2 border-bio-light shadow-[0_0_24px_hsl(var(--bio-light)/0.6)] bg-black p-1">
+                <img src={img} alt={artist.name} className="w-24 h-24 object-cover rounded" style={{ imageRendering: "pixelated" }} />
+              </div>
+            </div>
+          )}
+
+          <div className="flex-1 min-w-0">
+            <p className="text-[10px] font-mono uppercase tracking-[0.3em] text-bio-light mb-2">
+              Sovereign IP Pod · Chonk #{artist.tokenId}
+            </p>
+            <h2 className="text-4xl md:text-6xl font-black tracking-tight text-foreground mb-2 leading-none">
+              {artist.name}
+            </h2>
+            <p className="text-sm md:text-base text-muted-foreground font-mono mb-6">
+              {artist.genre}
+            </p>
+
+            <div className="flex flex-wrap gap-3">
+              <Button asChild size="lg" className="bg-bio-green text-primary-foreground hover:bg-bio-light font-bold uppercase tracking-widest shadow-[0_0_24px_hsl(var(--bio-green)/0.4)]">
+                <Link to={`/studio/${artist.slug}`}>
+                  Enter Studio <ArrowRight className="ml-2 h-4 w-4" />
+                </Link>
+              </Button>
+              <Button asChild variant="outline" size="lg" className="border-bio-green/40 text-bio-light hover:bg-bio-green/10">
+                <a href={artist.purebpmUrl} target="_blank" rel="noopener noreferrer">
+                  PureBPM <ExternalLink className="ml-2 h-3 w-3" />
+                </a>
+              </Button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+const RosterCard = ({ artist }: { artist: Artist }) => {
+  const img = useChonkImage(artist.tokenId);
+  const isActive = artist.status === "active";
+
+  return (
+    <div className="group relative overflow-hidden rounded-lg border border-border bg-card transition-all hover:border-bio-green/30">
+      <div className="aspect-square overflow-hidden bg-black">
+        {img ? (
+          <img
+            src={img}
+            alt={artist.name}
+            className="w-full h-full object-cover transition-transform group-hover:scale-105"
+            style={{ imageRendering: "pixelated" }}
+          />
+        ) : (
+          <div className="w-full h-full bg-carbon-medium animate-pulse" />
+        )}
+      </div>
+
+      <div className="p-4 space-y-3">
+        <div className="flex items-start justify-between gap-2">
+          <div className="min-w-0">
+            <h3 className="font-bold text-foreground truncate">{artist.name}</h3>
+            <p className="text-xs text-muted-foreground font-mono truncate">
+              Chonk #{artist.tokenId} · {artist.genre}
+            </p>
+          </div>
+        </div>
+
+        <StatusPill status={artist.status} />
+
+        <div className="flex gap-2 pt-1">
+          {isActive ? (
+            <Button asChild size="sm" className="flex-1 bg-bio-green text-primary-foreground hover:bg-bio-light">
+              <Link to={`/studio/${artist.slug}`}>Enter Studio</Link>
+            </Button>
+          ) : (
+            <Button disabled size="sm" variant="outline" className="flex-1 opacity-50">
+              Coming Soon
+            </Button>
+          )}
+          <Button asChild size="sm" variant="ghost" className="text-muted-foreground hover:text-bio-light">
+            <a href={artist.purebpmUrl} target="_blank" rel="noopener noreferrer" aria-label="PureBPM profile">
+              <ExternalLink className="h-4 w-4" />
+            </a>
+          </Button>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+const Artists = () => {
+  const featured = ARTISTS.filter((a) => a.featured);
+  const rest = ARTISTS.filter((a) => !a.featured);
+
+  return (
+    <div className="min-h-screen bg-background">
+      <Header />
+      <main className="pt-24 pb-16">
+        <div className="container mx-auto px-4">
+          <div className="mb-12 text-center">
+            <p className="text-[10px] font-mono uppercase tracking-[0.4em] text-bio-light mb-3">
+              ghostagent.ninja
+            </p>
+            <h1 className="text-4xl md:text-6xl font-black tracking-tight text-foreground mb-3">
+              VIRTUAL ARTISTS — Sovereign IP Pods
+            </h1>
+            <p className="text-lg text-muted-foreground">
+              Own the identity. Unlock the sound.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {featured.map((a) => (
+              <HeroCard key={a.slug} artist={a} />
+            ))}
+            {rest.map((a) => (
+              <RosterCard key={a.slug} artist={a} />
+            ))}
+          </div>
+        </div>
+      </main>
+      <Footer />
+    </div>
+  );
+};
+
+export default Artists;
