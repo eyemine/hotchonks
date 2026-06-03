@@ -34,7 +34,11 @@ async function ownerOf(tokenId: string, apiKey: string): Promise<string> {
 
   const res = await fetch(url, {
     method: "POST",
-    headers: { "Content-Type": "application/json" },
+    headers: {
+      "Content-Type": "application/json",
+      "Origin": "https://green-agent-chonks.lovable.app",
+      "Referer": "https://green-agent-chonks.lovable.app",
+    },
     body: JSON.stringify({
       jsonrpc: "2.0",
       id: 1,
