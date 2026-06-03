@@ -34,7 +34,11 @@ async function ownerOf(tokenId: string, apiKey: string): Promise<string> {
 
   const res = await fetch(url, {
     method: "POST",
-    headers: { "Content-Type": "application/json" },
+    headers: {
+      "Content-Type": "application/json",
+      "Origin": "https://ghostagent.ninja",
+      "Referer": "https://ghostagent.ninja",
+    },
     body: JSON.stringify({
       jsonrpc: "2.0",
       id: 1,
@@ -43,7 +47,13 @@ async function ownerOf(tokenId: string, apiKey: string): Promise<string> {
     }),
   });
 
-  const json = await res.json();
+  const text = await res.text();
+  let json: any;
+  try {
+    json = JSON.parse(text);
+  } catch {
+    throw new Error(`Alchemy non-JSON response (${res.status}): ${text.slice(0, 200)}`);
+  }
   if (json.error) throw new Error(json.error.message || "ownerOf failed");
   if (!json.result || json.result === "0x") throw new Error("Token does not exist");
   return decodeAddress(json.result);
