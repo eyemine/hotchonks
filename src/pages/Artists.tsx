@@ -38,16 +38,17 @@ const StatusPill = ({ status }: { status: Artist["status"] }) => {
 };
 
 const HeroCard = ({ artist }: { artist: Artist }) => {
-  const img = useChonkImage(artist.tokenId);
+  const chonkImg = useChonkImage(artist.tokenId);
+  const bannerImg = artist.bannerImage;
   return (
     <div className="md:col-span-3 group relative overflow-hidden rounded-xl border border-bio-green/40 bg-gradient-to-br from-carbon-dark via-carbon-medium to-black shadow-[0_0_60px_hsl(var(--bio-green)/0.15)] transition-all hover:shadow-[0_0_80px_hsl(var(--bio-green)/0.3)]">
-      {/* Hero portrait background */}
-      {img && (
+      {/* Hero banner background */}
+      {bannerImg && (
         <div className="absolute inset-0">
           <img
-            src={img}
+            src={bannerImg}
             alt=""
-            className="w-full h-full object-cover opacity-60 group-hover:opacity-70 transition-opacity"
+            className="w-full h-full object-cover opacity-80 group-hover:opacity-90 transition-opacity"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black via-black/70 to-transparent" />
         </div>
@@ -59,11 +60,18 @@ const HeroCard = ({ artist }: { artist: Artist }) => {
         </div>
 
         <div className="flex items-end gap-6">
-          {/* Pixel chonk badge inset */}
-          {img && (
+          {/* Pixel chonk badge with artist inset */}
+          {chonkImg && (
             <div className="hidden sm:block flex-shrink-0">
-              <div className="rounded-lg overflow-hidden border-2 border-bio-light shadow-[0_0_24px_hsl(var(--bio-light)/0.6)] bg-black p-1">
-                <img src={img} alt={artist.name} className="w-24 h-24 object-cover rounded" style={{ imageRendering: "pixelated" }} />
+              <div className="relative rounded-lg overflow-hidden border-2 border-bio-light shadow-[0_0_24px_hsl(var(--bio-light)/0.6)] bg-black p-1">
+                <img src={chonkImg} alt={artist.name} className="w-32 h-32 object-cover rounded" style={{ imageRendering: "pixelated" }} />
+                {artist.artistImage && (
+                  <img
+                    src={artist.artistImage}
+                    alt={`${artist.name} portrait`}
+                    className="absolute bottom-2 right-2 w-12 h-12 rounded-full object-cover border-2 border-bio-light shadow-[0_0_12px_hsl(var(--bio-light)/0.8)]"
+                  />
+                )}
               </div>
             </div>
           )}
@@ -90,6 +98,11 @@ const HeroCard = ({ artist }: { artist: Artist }) => {
                   PureBPM <ExternalLink className="ml-2 h-3 w-3" />
                 </a>
               </Button>
+              <Button asChild variant="outline" size="lg" className="border-bio-green/40 text-bio-light hover:bg-bio-green/10">
+                <a href={artist.agentUrl} target="_blank" rel="noopener noreferrer">
+                  GhostAgent <ExternalLink className="ml-2 h-3 w-3" />
+                </a>
+              </Button>
             </div>
           </div>
         </div>
@@ -104,7 +117,7 @@ const RosterCard = ({ artist }: { artist: Artist }) => {
 
   return (
     <div className="group relative overflow-hidden rounded-lg border border-border bg-card transition-all hover:border-bio-green/30">
-      <div className="aspect-square overflow-hidden bg-black">
+      <div className="relative aspect-square overflow-hidden bg-black">
         {img ? (
           <img
             src={img}
@@ -114,6 +127,13 @@ const RosterCard = ({ artist }: { artist: Artist }) => {
           />
         ) : (
           <div className="w-full h-full bg-carbon-medium animate-pulse" />
+        )}
+        {artist.artistImage && (
+          <img
+            src={artist.artistImage}
+            alt={`${artist.name} portrait`}
+            className="absolute bottom-3 right-3 w-16 h-16 rounded-full object-cover border-2 border-bio-light shadow-[0_0_16px_hsl(var(--bio-light)/0.7)]"
+          />
         )}
       </div>
 
