@@ -41,8 +41,20 @@ serve(async (req) => {
         const metadataUrl = `${baseUrl}/getNFTMetadata?contractAddress=${contractAddress}&tokenId=${tokenId}&refreshCache=false`;
         
         try {
-          const response = await fetch(metadataUrl);
-          const metadata = await response.json();
+          const response = await fetch(metadataUrl, {
+            headers: {
+              'Origin': 'https://ghostagent.ninja',
+              'Referer': 'https://ghostagent.ninja',
+            },
+          });
+          const text = await response.text();
+          let metadata: any;
+          try {
+            metadata = JSON.parse(text);
+          } catch {
+            throw new Error(`Alchemy non-JSON response (${response.status}): ${text.slice(0, 120)}`);
+          }
+
           
           // Get OpenSea pricing (listed price) if API key is available
           let pricingData: any = null;
