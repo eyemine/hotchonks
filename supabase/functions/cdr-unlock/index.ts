@@ -36,8 +36,8 @@ async function ownerOf(tokenId: string, apiKey: string): Promise<string> {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
-      "Origin": "https://green-agent-chonks.lovable.app",
-      "Referer": "https://green-agent-chonks.lovable.app",
+      "Origin": "https://ghostagent.ninja",
+      "Referer": "https://ghostagent.ninja",
     },
     body: JSON.stringify({
       jsonrpc: "2.0",
