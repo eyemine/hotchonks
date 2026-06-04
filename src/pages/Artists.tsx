@@ -146,7 +146,7 @@ const HeroCard = ({ artist }: { artist: Artist }) => {
         </div>
 
         <div className="relative p-8 md:p-10 flex flex-col justify-center">
-          <p className="text-[10px] font-mono uppercase tracking-[0.3em] text-bio-light mb-2">
+          <p className="text-[10px] font-mono uppercase tracking-[0.3em] mb-2" style={{ color: "#efede3" }}>
             Sovereign IP Agent
           </p>
           <h2 className="text-4xl md:text-5xl font-black tracking-tight text-foreground leading-none">
@@ -165,19 +165,19 @@ const HeroCard = ({ artist }: { artist: Artist }) => {
                 Enter Studio <ArrowRight className="ml-2 h-4 w-4" />
               </Link>
             </Button>
-            <Button asChild variant="outline" size="lg" className="border-bio-green/40 text-bio-light hover:bg-bio-green/10">
+            <Button asChild variant="outline" size="lg" className="bg-black border-white/50 text-white hover:bg-black/80 font-sans normal-case">
               <a href={artist.purebpmUrl} target="_blank" rel="noopener noreferrer">
                 PureBPM Artist Profile <ExternalLink className="ml-2 h-3 w-3" />
               </a>
             </Button>
             <Button
-              variant="outline"
               size="lg"
               onClick={() => setSidecarOpen(true)}
-              className="bg-slate-950 border-slate-800 text-slate-100 hover:bg-slate-900 hover:text-white"
+              className="font-mono"
+              style={{ backgroundColor: "#271208", color: "#efede3" }}
             >
               <Radar className="mr-2 h-4 w-4" />
-              Inspect Agent + SideCar
+              GhostAgent Profile
             </Button>
           </div>
         </div>
@@ -235,7 +235,7 @@ const RosterCard = ({ artist }: { artist: Artist }) => {
             href={artist.purebpmUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex w-full items-center justify-center gap-1.5 rounded-full bg-bio-green/10 border border-bio-green/30 px-4 py-1.5 text-[10px] font-mono uppercase tracking-widest text-bio-light hover:bg-bio-green/20 transition-colors"
+            className="inline-flex w-full items-center justify-center gap-1.5 rounded-md bg-black border border-white/50 px-4 py-1.5 text-xs font-sans text-white hover:bg-black/80 transition-colors"
           >
             PureBPM Artist Profile <ExternalLink className="h-3 w-3" />
           </a>
@@ -249,12 +249,12 @@ const RosterCard = ({ artist }: { artist: Artist }) => {
           ) : (
             <Button
               size="sm"
-              variant="outline"
               onClick={() => setSidecarOpen(true)}
-              className="flex-1 bg-slate-950 border-slate-800 text-slate-100 hover:bg-slate-900 hover:text-white"
+              className="flex-1 font-mono"
+              style={{ backgroundColor: "#271208", color: "#efede3" }}
             >
               <Radar size={14} className="mr-2" />
-              Inspect Agent + SideCar
+              GhostAgent Profile
             </Button>
           )}
         </div>
@@ -286,7 +286,7 @@ const Artists = () => {
             <h1 className="text-4xl md:text-6xl font-black tracking-tight text-foreground mb-1">
               Virtual Artists
             </h1>
-            <p className="text-xl md:text-2xl font-mono uppercase tracking-[0.3em] text-bio-light mb-3">
+            <p className="text-xl md:text-2xl font-mono uppercase tracking-[0.3em] mb-3" style={{ color: "#efede3" }}>
               Sovereign IP Agents
             </p>
             <p className="text-lg text-muted-foreground">
