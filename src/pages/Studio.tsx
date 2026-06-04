@@ -169,11 +169,11 @@ const Studio = () => {
             <div className="flex flex-col sm:flex-row items-start gap-6">
               {artist.artistImage && (
                 <div className="flex-shrink-0">
-                  <div className="rounded-lg overflow-hidden border-2 border-[#9b0840] shadow-[0_0_32px_rgba(155,8,64,0.6)] bg-black p-1">
+                  <div className="rounded-lg overflow-hidden bg-black p-1">
                     <img
                       src={artist.artistImage}
                       alt={artist.name}
-                      className="w-32 h-32 object-cover rounded"
+                      className="w-48 h-48 object-cover rounded"
                     />
                   </div>
                 </div>
@@ -349,7 +349,7 @@ const Badge = ({
     tone === "active"
       ? "bg-bio-green/15 border-bio-green/40 text-bio-light"
       : tone === "red"
-      ? "bg-[#9b0840]/20 border-[#9b0840] text-[#9b0840]"
+      ? "bg-black border-[#9b0840] text-[#9b0840]"
       : tone === "muted"
       ? "bg-muted border-border text-muted-foreground"
       : "bg-carbon-medium border-border text-foreground";
