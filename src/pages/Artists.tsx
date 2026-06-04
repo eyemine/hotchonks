@@ -235,7 +235,7 @@ const RosterCard = ({ artist }: { artist: Artist }) => {
             href={artist.purebpmUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex w-full items-center justify-center gap-1.5 rounded-full bg-bio-green/10 border border-bio-green/30 px-4 py-1.5 text-[10px] font-mono uppercase tracking-widest text-bio-light hover:bg-bio-green/20 transition-colors"
+            className="inline-flex w-full items-center justify-center gap-1.5 rounded-md bg-black border border-white/50 px-4 py-1.5 text-xs font-sans text-white hover:bg-black/80 transition-colors"
           >
             PureBPM Artist Profile <ExternalLink className="h-3 w-3" />
           </a>
@@ -249,12 +249,12 @@ const RosterCard = ({ artist }: { artist: Artist }) => {
           ) : (
             <Button
               size="sm"
-              variant="outline"
               onClick={() => setSidecarOpen(true)}
-              className="flex-1 bg-slate-950 border-slate-800 text-slate-100 hover:bg-slate-900 hover:text-white"
+              className="flex-1 font-mono"
+              style={{ backgroundColor: "#271208", color: "#efede3" }}
             >
               <Radar size={14} className="mr-2" />
-              Inspect Agent + SideCar
+              GhostAgent Profile
             </Button>
           )}
         </div>
