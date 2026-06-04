@@ -173,10 +173,10 @@ const HeroCard = ({ artist }: { artist: Artist }) => {
             <Button
               size="lg"
               onClick={() => setSidecarOpen(true)}
-              className="font-mono"
+              className="font-mono border border-[#b0805c]"
               style={{ backgroundColor: "#271208", color: "#efede3" }}
             >
-              <Radar className="mr-2 h-4 w-4" />
+              <img src="/ghostagent-profile.png" alt="GhostAgent" className="mr-2 h-5 w-5 rounded-full" />
               GhostAgent Profile
             </Button>
           </div>
