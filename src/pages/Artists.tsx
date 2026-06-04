@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { ArrowRight, Lock, Clock, Unlock, ExternalLink, X, Radar } from "lucide-react";
+import { ArrowRight, Lock, Clock, Unlock, ExternalLink, X } from "lucide-react";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { Button } from "@/components/ui/button";
@@ -93,10 +93,10 @@ const ChonkInset = ({
 const StatusPill = ({ status }: { status: Artist["status"] }) => {
   if (status === "active") {
     return (
-      <span className="inline-flex items-center gap-1.5 rounded-full bg-bio-green/15 border border-bio-green/40 px-2.5 py-1 text-[10px] font-mono uppercase tracking-widest text-bio-light">
+      <span className="inline-flex items-center gap-1.5 rounded-full bg-[#9b0840]/15 border border-[#9b0840]/40 px-2.5 py-1 text-[10px] font-mono uppercase tracking-widest text-[#9b0840]">
         <span className="relative flex h-1.5 w-1.5">
-          <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-bio-light opacity-75" />
-          <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-bio-light" />
+          <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[#9b0840] opacity-75" />
+          <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-[#9b0840]" />
         </span>
         <Unlock className="h-3 w-3" /> Story Protocol Active
       </span>
@@ -152,7 +152,7 @@ const HeroCard = ({ artist }: { artist: Artist }) => {
           <h2 className="text-4xl md:text-5xl font-black tracking-tight text-foreground leading-none">
             {artist.name}
           </h2>
-          <p className="text-sm font-mono text-bio-light mt-2">
+          <p className="text-sm font-mono text-[#9b0840] mt-2">
             CHONK #{artist.tokenId}
           </p>
           <p className="text-sm md:text-base text-muted-foreground font-mono mt-2 mb-6">
@@ -160,7 +160,7 @@ const HeroCard = ({ artist }: { artist: Artist }) => {
           </p>
 
           <div className="flex flex-wrap gap-3">
-            <Button asChild size="lg" className="bg-bio-green text-primary-foreground hover:bg-bio-light font-bold uppercase tracking-widest shadow-[0_0_24px_hsl(var(--bio-green)/0.4)]">
+            <Button asChild size="lg" className="bg-[#9b0840] text-white hover:bg-[#9b0840]/90 font-bold uppercase tracking-widest shadow-[0_0_24px_hsla(344,89%,31%,0.4)]">
               <Link to={`/studio/${artist.slug}`}>
                 Enter Studio <ArrowRight className="ml-2 h-4 w-4" />
               </Link>
@@ -173,10 +173,10 @@ const HeroCard = ({ artist }: { artist: Artist }) => {
             <Button
               size="lg"
               onClick={() => setSidecarOpen(true)}
-              className="font-mono"
+              className="font-mono border border-[#b0805c]"
               style={{ backgroundColor: "#271208", color: "#efede3" }}
             >
-              <Radar className="mr-2 h-4 w-4" />
+              <img src="/ghostagent-profile.png" alt="GhostAgent" className="mr-2 h-5 w-5 rounded-full" />
               GhostAgent Profile
             </Button>
           </div>
@@ -250,10 +250,10 @@ const RosterCard = ({ artist }: { artist: Artist }) => {
             <Button
               size="sm"
               onClick={() => setSidecarOpen(true)}
-              className="flex-1 font-mono"
+              className="flex-1 font-mono border border-[#b0805c]"
               style={{ backgroundColor: "#271208", color: "#efede3" }}
             >
-              <Radar size={14} className="mr-2" />
+              <img src="/ghostagent-profile.png" alt="GhostAgent" className="mr-2 h-4 w-4 rounded-full" />
               GhostAgent Profile
             </Button>
           )}
