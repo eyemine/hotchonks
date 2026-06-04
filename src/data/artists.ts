@@ -81,6 +81,7 @@ export const ARTISTS: Artist[] = [
     purebpmUrl: "https://www.purebpm.com/@forked",
     agentUrl: "https://ghostagent.ninja/agent/chonk.599",
     genre: "Glitch / IDM",
+    artistImage: "/artists/forked.jpg",
     status: "pending",
     email: "chonk.599_@nftmail.box",
   },
