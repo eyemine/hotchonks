@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button";
 import { SidecarDrawer } from "@/components/SidecarDrawer";
 import { useChonksData } from "@/hooks/useChonksData";
 import { ARTISTS, type Artist } from "@/data/artists";
+import ghostMaskIcon from "@/assets/GhostMaskGlowT.png.asset.json";
 
 const CHONKS_CONTRACT = "0xb1ab48c7e074086a91c1f0b12d35a2e2b22cd71b";
 
@@ -53,7 +54,7 @@ const ChonkInset = ({
           <div className="flex items-start justify-between">
             <div>
               <p className="text-[9px] font-mono uppercase tracking-[0.3em] text-bio-light">
-                Chonk NFT • HUD
+                Sovereign IP Agent • Governing NFT
               </p>
               <p className="text-lg font-black text-foreground">CHONK #{tokenId}</p>
             </div>
@@ -79,9 +80,9 @@ const ChonkInset = ({
               href={`https://opensea.io/assets/base/${CHONKS_CONTRACT}/${tokenId}`}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 rounded-full bg-bio-green/15 border border-bio-green/40 px-3 py-1.5 text-[10px] font-mono uppercase tracking-widest text-bio-light hover:bg-bio-green/25"
+              className="inline-flex items-center gap-1.5 rounded-full bg-blue-600 border border-blue-500 px-3 py-1.5 text-[10px] font-sans text-white hover:bg-blue-700"
             >
-              OpenSea <ExternalLink className="h-3 w-3" />
+              OPENSEA – Buy NFT, own Agent + IP <ExternalLink className="h-3 w-3" />
             </a>
           </div>
         </div>
@@ -123,7 +124,7 @@ const HeroCard = ({ artist }: { artist: Artist }) => {
   const [sidecarOpen, setSidecarOpen] = useState(false);
 
   return (
-    <div className="md:col-span-3 group relative overflow-hidden rounded-xl border border-bio-green/40 bg-gradient-to-br from-carbon-dark via-carbon-medium to-black shadow-[0_0_60px_hsl(var(--bio-green)/0.15)] transition-all hover:shadow-[0_0_80px_hsl(var(--bio-green)/0.3)]">
+    <div className="md:col-span-3 group relative overflow-hidden rounded-xl border border-violet-500/40 bg-gradient-to-br from-carbon-dark via-carbon-medium to-black shadow-[0_0_60px_rgba(139,92,246,0.25)] transition-all hover:shadow-[0_0_80px_rgba(139,92,246,0.45)]">
       <div className="grid md:grid-cols-2 gap-0">
         {/* Square image area — same format as roster cards */}
         <div className="relative aspect-square overflow-hidden bg-black">
@@ -176,7 +177,7 @@ const HeroCard = ({ artist }: { artist: Artist }) => {
               className="font-mono border border-[#b0805c]"
               style={{ backgroundColor: "#271208", color: "#efede3" }}
             >
-              <img src="/ghostagent-profile.png" alt="GhostAgent" className="mr-2 h-5 w-5 rounded-full" />
+              <img src={ghostMaskIcon.url} alt="GhostAgent" className="mr-2 h-5 w-5 object-contain" />
               GhostAgent Profile
             </Button>
           </div>
@@ -253,7 +254,7 @@ const RosterCard = ({ artist }: { artist: Artist }) => {
               className="flex-1 font-mono border border-[#b0805c]"
               style={{ backgroundColor: "#271208", color: "#efede3" }}
             >
-              <img src="/ghostagent-profile.png" alt="GhostAgent" className="mr-2 h-4 w-4 rounded-full" />
+              <img src={ghostMaskIcon.url} alt="GhostAgent" className="mr-2 h-4 w-4 object-contain" />
               GhostAgent Profile
             </Button>
           )}
