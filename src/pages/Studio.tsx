@@ -228,7 +228,7 @@ const Studio = () => {
 
           {/* MIDDLE — IP STATUS */}
           <section className="mb-8 rounded-lg border border-bio-green/30 bg-carbon-medium/60 p-5">
-            <p className="text-[10px] font-mono uppercase tracking-[0.3em] text-bio-light mb-3">
+            <p className="text-[10px] font-mono uppercase tracking-[0.3em] text-[#efede3] mb-3">
               Story Protocol IP Asset
             </p>
             {ipId ? (
