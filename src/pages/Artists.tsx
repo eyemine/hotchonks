@@ -124,7 +124,7 @@ const HeroCard = ({ artist }: { artist: Artist }) => {
   const [sidecarOpen, setSidecarOpen] = useState(false);
 
   return (
-    <div className="md:col-span-3 group relative overflow-hidden rounded-xl border border-bio-green/40 bg-gradient-to-br from-carbon-dark via-carbon-medium to-black shadow-[0_0_60px_hsl(var(--bio-green)/0.15)] transition-all hover:shadow-[0_0_80px_hsl(var(--bio-green)/0.3)]">
+    <div className="md:col-span-3 group relative overflow-hidden rounded-xl border border-violet-500/40 bg-gradient-to-br from-carbon-dark via-carbon-medium to-black shadow-[0_0_60px_rgba(139,92,246,0.25)] transition-all hover:shadow-[0_0_80px_rgba(139,92,246,0.45)]">
       <div className="grid md:grid-cols-2 gap-0">
         {/* Square image area — same format as roster cards */}
         <div className="relative aspect-square overflow-hidden bg-black">
