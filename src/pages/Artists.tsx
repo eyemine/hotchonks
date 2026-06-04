@@ -160,7 +160,7 @@ const HeroCard = ({ artist }: { artist: Artist }) => {
           </p>
 
           <div className="flex flex-wrap gap-3">
-            <Button asChild size="lg" className="bg-bio-green text-primary-foreground hover:bg-bio-light font-bold uppercase tracking-widest shadow-[0_0_24px_hsl(var(--bio-green)/0.4)]">
+            <Button asChild size="lg" className="bg-[#9b0840] text-white hover:bg-[#9b0840]/90 font-bold uppercase tracking-widest shadow-[0_0_24px_hsla(344,89%,31%,0.4)]">
               <Link to={`/studio/${artist.slug}`}>
                 Enter Studio <ArrowRight className="ml-2 h-4 w-4" />
               </Link>
