@@ -124,7 +124,7 @@ const Studio = () => {
           <Button asChild variant="outline">
             <Link to="/artists">
               <ArrowLeft className="h-4 w-4 mr-2" />
-              Back to Roster
+              Back to Gallery
             </Link>
           </Button>
         </div>
@@ -161,7 +161,7 @@ const Studio = () => {
             className="inline-flex items-center gap-2 text-xs font-mono text-muted-foreground hover:text-bio-light transition-colors mb-6"
           >
             <ArrowLeft className="h-3 w-3" />
-            Back to Roster
+            Back to Gallery
           </Link>
 
           {/* IDENTITY */}
@@ -349,7 +349,7 @@ const Badge = ({
     tone === "active"
       ? "bg-bio-green/15 border-bio-green/40 text-bio-light"
       : tone === "red"
-      ? "bg-black border-[#9b0840] text-[#9b0840]"
+      ? "bg-black border-[#d9165e] text-[#d9165e]"
       : tone === "muted"
       ? "bg-muted border-border text-muted-foreground"
       : "bg-carbon-medium border-border text-foreground";

@@ -1,11 +1,12 @@
 import { useEffect, useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Download, Lock, Unlock, Loader2, Wallet, AlertTriangle } from "lucide-react";
+import { Download, Lock, Unlock, Loader2, Wallet, AlertTriangle, ExternalLink } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { connectWallet, getConnectedAddress } from "@/lib/wallet";
 import { SpectrogramCanvas } from "./SpectrogramCanvas";
 import { PREVIEW_AUDIO_URL, type Artist } from "@/data/artists";
+import { CHONKS_CONTRACT } from "@/constants/chonks";
 
 interface Props {
   artist: Artist;
@@ -75,7 +76,7 @@ export const AudioTabs = ({ artist }: Props) => {
             Preview
           </TabsTrigger>
           <TabsTrigger value="studio" className="font-mono text-xs uppercase tracking-wider">
-            Studio
+            Own
           </TabsTrigger>
         </TabsList>
 
@@ -121,7 +122,15 @@ export const AudioTabs = ({ artist }: Props) => {
           </div>
 
           <p className="text-xs text-muted-foreground font-mono">
-            Owner-Verified Unlock — requires ownership of Base Chonk #{artist.tokenId}
+            Owner-Verified Unlock – requires ownership of Base CHONK #{artist.tokenId} NFT{" "}
+            <a
+              href={`https://opensea.io/item/base/${CHONKS_CONTRACT}/${artist.tokenId}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1 text-bio-light hover:underline"
+            >
+              <ExternalLink className="h-3 w-3" />
+            </a>
           </p>
 
           {!fullUrl && (
