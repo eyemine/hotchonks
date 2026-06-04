@@ -134,7 +134,7 @@ const Studio = () => {
 
   const findValue = (k: string) => rows?.find((r) => r.key === k)?.value;
   const ipIdFromChain = hexToAddress(findValue("story[ip_id]"));
-  const vaultId = findValue("cdr[vault_id]");
+  const vaultId = artist.cdrVaultId || findValue("cdr[vault_id]");
   const ipId = artist.storyIpId || ipIdFromChain;
 
   return (
