@@ -177,7 +177,7 @@ const HeroCard = ({ artist }: { artist: Artist }) => {
               className="font-mono border border-[#b0805c]"
               style={{ backgroundColor: "#271208", color: "#efede3" }}
             >
-              <img src={ghostMaskIcon.url} alt="GhostAgent" className="mr-2 h-10 w-10 object-contain" />
+              <img src={ghostMaskIcon.url} alt="GhostAgent" className="mr-2 h-[60px] w-[60px] object-contain" />
               GHOSTAGENT IP PROFILE
             </Button>
           </div>
@@ -254,7 +254,7 @@ const RosterCard = ({ artist }: { artist: Artist }) => {
               className="flex-1 font-mono border border-[#b0805c]"
               style={{ backgroundColor: "#271208", color: "#efede3" }}
             >
-              <img src={ghostMaskIcon.url} alt="GhostAgent" className="mr-2 h-8 w-8 object-contain" />
+              <img src={ghostMaskIcon.url} alt="GhostAgent" className="mr-2 h-12 w-12 object-contain" />
               GHOSTAGENT IP PROFILE
             </Button>
           )}
