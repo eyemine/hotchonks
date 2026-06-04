@@ -26,7 +26,9 @@ export interface Artist {
   bannerImage?: string;
   status: ArtistStatus;
   storyIpId?: string;
+  storyScanUrl?: string;
   cdrActive?: boolean;
+  cdrVaultId?: string;
   email: string;
   featured?: boolean;
   tba?: string;
@@ -47,7 +49,9 @@ export const ARTISTS: Artist[] = [
     bannerImage: redHammerBanner.url,
     status: "active",
     storyIpId: "0x7832e3EC9c433D722A8bd659B0C0829Dc4910b21",
+    storyScanUrl: "https://aeneid.storyscan.io/ipa/0x7832e3EC9c433D722A8bd659B0C0829Dc4910b21",
     cdrActive: true,
+    cdrVaultId: "6229",
     email: "chonk.697_@nftmail.box",
     featured: true,
   },

@@ -134,7 +134,7 @@ const Studio = () => {
 
   const findValue = (k: string) => rows?.find((r) => r.key === k)?.value;
   const ipIdFromChain = hexToAddress(findValue("story[ip_id]"));
-  const vaultId = findValue("cdr[vault_id]");
+  const vaultId = artist.cdrVaultId || findValue("cdr[vault_id]");
   const ipId = artist.storyIpId || ipIdFromChain;
 
   return (
@@ -233,7 +233,7 @@ const Studio = () => {
             </p>
             {ipId ? (
               <a
-                href={`https://aeneid.storyscan.io/address/${ipId}`}
+                href={artist.storyScanUrl || `https://aeneid.storyscan.io/ipa/${ipId}`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 font-mono text-foreground hover:text-bio-light break-all"
