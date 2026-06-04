@@ -39,71 +39,69 @@ const StatusPill = ({ status }: { status: Artist["status"] }) => {
 
 const HeroCard = ({ artist }: { artist: Artist }) => {
   const chonkImg = useChonkImage(artist.tokenId);
-  const bannerImg = artist.bannerImage;
+  const mainImg = artist.artistImage ?? chonkImg;
+  const insetImg = artist.artistImage ? chonkImg : undefined;
+
   return (
     <div className="md:col-span-3 group relative overflow-hidden rounded-xl border border-bio-green/40 bg-gradient-to-br from-carbon-dark via-carbon-medium to-black shadow-[0_0_60px_hsl(var(--bio-green)/0.15)] transition-all hover:shadow-[0_0_80px_hsl(var(--bio-green)/0.3)]">
-      {/* Hero banner background */}
-      {bannerImg && (
-        <div className="absolute inset-0">
-          <img
-            src={bannerImg}
-            alt=""
-            className="w-full h-full object-cover opacity-80 group-hover:opacity-90 transition-opacity"
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-black via-black/70 to-transparent" />
-        </div>
-      )}
-
-      <div className="relative p-8 md:p-12 min-h-[460px] flex flex-col justify-end">
-        <div className="absolute top-6 right-6">
-          <StatusPill status={artist.status} />
-        </div>
-
-        <div className="flex items-end gap-6">
-          {/* Pixel chonk badge with artist inset */}
-          {chonkImg && (
-            <div className="hidden sm:block flex-shrink-0">
-              <div className="relative rounded-lg overflow-hidden border-2 border-bio-light shadow-[0_0_24px_hsl(var(--bio-light)/0.6)] bg-black p-1">
-                <img src={chonkImg} alt={artist.name} className="w-32 h-32 object-cover rounded" style={{ imageRendering: "pixelated" }} />
-                {artist.artistImage && (
-                  <img
-                    src={artist.artistImage}
-                    alt={`${artist.name} portrait`}
-                    className="absolute bottom-2 right-2 w-12 h-12 rounded-full object-cover border-2 border-bio-light shadow-[0_0_12px_hsl(var(--bio-light)/0.8)]"
-                  />
-                )}
-              </div>
+      <div className="grid md:grid-cols-2 gap-0">
+        {/* Square image area — same format as roster cards */}
+        <div className="relative aspect-square overflow-hidden bg-black">
+          {mainImg ? (
+            <img
+              src={mainImg}
+              alt={artist.name}
+              className="w-full h-full object-cover transition-transform group-hover:scale-105"
+              style={artist.artistImage ? undefined : { imageRendering: "pixelated" }}
+            />
+          ) : (
+            <div className="w-full h-full bg-carbon-medium animate-pulse" />
+          )}
+          {insetImg && (
+            <div className="absolute bottom-4 right-4 w-[30%] aspect-square rounded-md overflow-hidden border-2 border-bio-light shadow-[0_0_16px_hsl(var(--bio-light)/0.7)] bg-black">
+              <img
+                src={insetImg}
+                alt={`Chonk #${artist.tokenId}`}
+                className="w-full h-full object-cover"
+                style={{ imageRendering: "pixelated" }}
+              />
             </div>
           )}
+          <div className="absolute top-4 right-4">
+            <StatusPill status={artist.status} />
+          </div>
+        </div>
 
-          <div className="flex-1 min-w-0">
-            <p className="text-[10px] font-mono uppercase tracking-[0.3em] text-bio-light mb-2">
-              Sovereign IP Pod · Chonk #{artist.tokenId}
-            </p>
-            <h2 className="text-4xl md:text-6xl font-black tracking-tight text-foreground mb-2 leading-none">
-              {artist.name}
-            </h2>
-            <p className="text-sm md:text-base text-muted-foreground font-mono mb-6">
-              {artist.genre}
-            </p>
+        <div className="relative p-8 md:p-10 flex flex-col justify-center">
+          <p className="text-[10px] font-mono uppercase tracking-[0.3em] text-bio-light mb-2">
+            Sovereign IP Agent
+          </p>
+          <h2 className="text-4xl md:text-5xl font-black tracking-tight text-foreground leading-none">
+            {artist.name}
+          </h2>
+          <p className="text-sm font-mono text-bio-light mt-2">
+            CHONK #{artist.tokenId}
+          </p>
+          <p className="text-sm md:text-base text-muted-foreground font-mono mt-2 mb-6">
+            {artist.genre}
+          </p>
 
-            <div className="flex flex-wrap gap-3">
-              <Button asChild size="lg" className="bg-bio-green text-primary-foreground hover:bg-bio-light font-bold uppercase tracking-widest shadow-[0_0_24px_hsl(var(--bio-green)/0.4)]">
-                <Link to={`/studio/${artist.slug}`}>
-                  Enter Studio <ArrowRight className="ml-2 h-4 w-4" />
-                </Link>
-              </Button>
-              <Button asChild variant="outline" size="lg" className="border-bio-green/40 text-bio-light hover:bg-bio-green/10">
-                <a href={artist.purebpmUrl} target="_blank" rel="noopener noreferrer">
-                  PureBPM <ExternalLink className="ml-2 h-3 w-3" />
-                </a>
-              </Button>
-              <Button asChild variant="outline" size="lg" className="border-bio-green/40 text-bio-light hover:bg-bio-green/10">
-                <a href={artist.agentUrl} target="_blank" rel="noopener noreferrer">
-                  GhostAgent <ExternalLink className="ml-2 h-3 w-3" />
-                </a>
-              </Button>
-            </div>
+          <div className="flex flex-wrap gap-3">
+            <Button asChild size="lg" className="bg-bio-green text-primary-foreground hover:bg-bio-light font-bold uppercase tracking-widest shadow-[0_0_24px_hsl(var(--bio-green)/0.4)]">
+              <Link to={`/studio/${artist.slug}`}>
+                Enter Studio <ArrowRight className="ml-2 h-4 w-4" />
+              </Link>
+            </Button>
+            <Button asChild variant="outline" size="lg" className="border-bio-green/40 text-bio-light hover:bg-bio-green/10">
+              <a href={artist.purebpmUrl} target="_blank" rel="noopener noreferrer">
+                PureBPM Artist Profile <ExternalLink className="ml-2 h-3 w-3" />
+              </a>
+            </Button>
+            <Button asChild variant="outline" size="lg" className="border-bio-green/40 text-bio-light hover:bg-bio-green/10">
+              <a href={artist.agentUrl} target="_blank" rel="noopener noreferrer">
+                GhostAgent <ExternalLink className="ml-2 h-3 w-3" />
+              </a>
+            </Button>
           </div>
         </div>
       </div>
@@ -147,7 +145,7 @@ const RosterCard = ({ artist }: { artist: Artist }) => {
           <div className="min-w-0">
             <h3 className="font-bold text-foreground truncate">{artist.name}</h3>
             <p className="text-xs text-muted-foreground font-mono truncate">
-              Chonk #{artist.tokenId} · {artist.genre}
+              CHONK #{artist.tokenId} · {artist.genre}
             </p>
           </div>
         </div>
@@ -156,12 +154,12 @@ const RosterCard = ({ artist }: { artist: Artist }) => {
           <StatusPill status={artist.status} />
         ) : (
           <a
-            href={artist.agentUrl}
+            href={artist.purebpmUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-1.5 rounded-full bg-bio-green/10 border border-bio-green/30 px-2.5 py-1 text-[10px] font-mono uppercase tracking-widest text-bio-light hover:bg-bio-green/20 transition-colors"
+            className="inline-flex w-full items-center justify-center gap-1.5 rounded-full bg-bio-green/10 border border-bio-green/30 px-4 py-1.5 text-[10px] font-mono uppercase tracking-widest text-bio-light hover:bg-bio-green/20 transition-colors"
           >
-            GhostAgent Profile <ExternalLink className="h-3 w-3" />
+            PureBPM Artist Profile <ExternalLink className="h-3 w-3" />
           </a>
         )}
 
@@ -172,8 +170,8 @@ const RosterCard = ({ artist }: { artist: Artist }) => {
             </Button>
           ) : (
             <Button asChild size="sm" variant="outline" className="flex-1 border-bio-green/40 text-bio-light hover:bg-bio-green/10">
-              <a href={artist.purebpmUrl} target="_blank" rel="noopener noreferrer">
-                Artist Profile <ExternalLink className="ml-2 h-3 w-3" />
+              <a href={artist.agentUrl} target="_blank" rel="noopener noreferrer">
+                GhostAgent Profile <ExternalLink className="ml-2 h-3 w-3" />
               </a>
             </Button>
           )}

@@ -38,7 +38,7 @@ export const ARTISTS: Artist[] = [
   {
     slug: "red-hammer",
     tokenId: "697",
-    name: "RED HAMMER",
+    name: "Red Hammer",
     handle: "@red-hammer",
     purebpmUrl: "https://www.purebpm.com/@red-hammer",
     agentUrl: "https://ghostagent.ninja/agent/chonk.697",
@@ -54,7 +54,7 @@ export const ARTISTS: Artist[] = [
   {
     slug: "delilah",
     tokenId: "676",
-    name: "DELILAH",
+    name: "Delilah",
     handle: "@delilah",
     purebpmUrl: "https://www.purebpm.com/@delilah",
     agentUrl: "https://ghostagent.ninja/agent/chonk.676",
@@ -66,7 +66,7 @@ export const ARTISTS: Artist[] = [
   {
     slug: "sandy-freeland",
     tokenId: "678",
-    name: "SANDY FREELAND",
+    name: "Sandy Freeland",
     handle: "@sandy-freeland",
     purebpmUrl: "https://www.purebpm.com/@sandy-freeland",
     agentUrl: "https://ghostagent.ninja/agent/chonk.678",
@@ -78,7 +78,7 @@ export const ARTISTS: Artist[] = [
   {
     slug: "forked",
     tokenId: "599",
-    name: "FORKED",
+    name: "Forked",
     handle: "@forked",
     purebpmUrl: "https://www.purebpm.com/@forked",
     agentUrl: "https://ghostagent.ninja/agent/chonk.599",
@@ -90,7 +90,7 @@ export const ARTISTS: Artist[] = [
   {
     slug: "ruff",
     tokenId: "601",
-    name: "RUFF",
+    name: "Ruff",
     handle: "@ruff",
     purebpmUrl: "https://www.purebpm.com/@ruff",
     agentUrl: "https://ghostagent.ninja/agent/chonk.601",
@@ -102,7 +102,7 @@ export const ARTISTS: Artist[] = [
   {
     slug: "dolly",
     tokenId: "681",
-    name: "DOLLY",
+    name: "Dolly",
     handle: "@dolly",
     purebpmUrl: "https://www.purebpm.com/@dolly",
     agentUrl: "https://ghostagent.ninja/agent/chonk.681",
@@ -114,7 +114,7 @@ export const ARTISTS: Artist[] = [
   {
     slug: "kidman",
     tokenId: "9534",
-    name: "KIDMAN",
+    name: "Kidman",
     handle: "@kidman",
     purebpmUrl: "https://www.purebpm.com/@kidman",
     agentUrl: "https://ghostagent.ninja/agent/chonk.9534",
@@ -126,7 +126,7 @@ export const ARTISTS: Artist[] = [
   {
     slug: "pearce-resurgance",
     tokenId: "588",
-    name: "PEARCE RESURGANCE",
+    name: "Pearce Resurgance",
     handle: "@pearce-resurgance",
     purebpmUrl: "https://www.purebpm.com/@pearce-resurgance",
     agentUrl: "https://ghostagent.ninja/agent/chonk.588",
@@ -138,7 +138,7 @@ export const ARTISTS: Artist[] = [
   {
     slug: "blues-dandy",
     tokenId: "606",
-    name: "BLUES DANDY",
+    name: "Blues Dandy",
     handle: "@blues-dandy",
     purebpmUrl: "https://www.purebpm.com/@blues-dandy",
     agentUrl: "https://ghostagent.ninja/agent/chonk.606",
