@@ -165,19 +165,19 @@ const HeroCard = ({ artist }: { artist: Artist }) => {
                 Enter Studio <ArrowRight className="ml-2 h-4 w-4" />
               </Link>
             </Button>
-            <Button asChild variant="outline" size="lg" className="border-bio-green/40 text-bio-light hover:bg-bio-green/10">
+            <Button asChild variant="outline" size="lg" className="bg-black border-white/50 text-white hover:bg-black/80 font-sans normal-case">
               <a href={artist.purebpmUrl} target="_blank" rel="noopener noreferrer">
                 PureBPM Artist Profile <ExternalLink className="ml-2 h-3 w-3" />
               </a>
             </Button>
             <Button
-              variant="outline"
               size="lg"
               onClick={() => setSidecarOpen(true)}
-              className="bg-slate-950 border-slate-800 text-slate-100 hover:bg-slate-900 hover:text-white"
+              className="font-mono"
+              style={{ backgroundColor: "#271208", color: "#efede3" }}
             >
               <Radar className="mr-2 h-4 w-4" />
-              Inspect Agent + SideCar
+              GhostAgent Profile
             </Button>
           </div>
         </div>
