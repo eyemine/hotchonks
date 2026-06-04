@@ -136,14 +136,7 @@ const HeroCard = ({ artist }: { artist: Artist }) => {
             <div className="w-full h-full bg-carbon-medium animate-pulse" />
           )}
           {insetImg && (
-            <div className="absolute bottom-4 right-4 w-[30%] aspect-square rounded-md overflow-hidden border-2 border-bio-light shadow-[0_0_16px_hsl(var(--bio-light)/0.7)] bg-black">
-              <img
-                src={insetImg}
-                alt={`Chonk #${artist.tokenId}`}
-                className="w-full h-full object-cover"
-                style={{ imageRendering: "pixelated" }}
-              />
-            </div>
+            <ChonkInset src={insetImg} tokenId={artist.tokenId} size="md" />
           )}
           <div className="absolute top-4 right-4">
             <StatusPill status={artist.status} />
