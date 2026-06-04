@@ -120,6 +120,7 @@ const HeroCard = ({ artist }: { artist: Artist }) => {
   const chonkImg = useChonkImage(artist.tokenId);
   const mainImg = artist.artistImage ?? chonkImg;
   const insetImg = artist.artistImage ? chonkImg : undefined;
+  const [sidecarOpen, setSidecarOpen] = useState(false);
 
   return (
     <div className="md:col-span-3 group relative overflow-hidden rounded-xl border border-bio-green/40 bg-gradient-to-br from-carbon-dark via-carbon-medium to-black shadow-[0_0_60px_hsl(var(--bio-green)/0.15)] transition-all hover:shadow-[0_0_80px_hsl(var(--bio-green)/0.3)]">
@@ -169,14 +170,25 @@ const HeroCard = ({ artist }: { artist: Artist }) => {
                 PureBPM Artist Profile <ExternalLink className="ml-2 h-3 w-3" />
               </a>
             </Button>
-            <Button asChild variant="outline" size="lg" className="border-bio-green/40 text-bio-light hover:bg-bio-green/10">
-              <a href={artist.agentUrl} target="_blank" rel="noopener noreferrer">
-                GhostAgent <ExternalLink className="ml-2 h-3 w-3" />
-              </a>
+            <Button
+              variant="outline"
+              size="lg"
+              onClick={() => setSidecarOpen(true)}
+              className="bg-slate-950 border-slate-800 text-slate-100 hover:bg-slate-900 hover:text-white"
+            >
+              <Radar className="mr-2 h-4 w-4" />
+              Inspect Agent + SideCar
             </Button>
           </div>
         </div>
       </div>
+      <SidecarDrawer
+        open={sidecarOpen}
+        onOpenChange={setSidecarOpen}
+        tokenId={artist.tokenId}
+        name={`Chonk #${artist.tokenId}`}
+        chain="Base"
+      />
     </div>
   );
 };
