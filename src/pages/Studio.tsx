@@ -167,22 +167,21 @@ const Studio = () => {
           {/* IDENTITY */}
           <section className="mb-10">
             <div className="flex flex-col sm:flex-row items-start gap-6">
-              {chonkImage && (
+              {artist.artistImage && (
                 <div className="flex-shrink-0">
-                  <div className="rounded-lg overflow-hidden border-2 border-bio-light shadow-[0_0_32px_hsl(var(--bio-light)/0.5)] bg-black p-1">
+                  <div className="rounded-lg overflow-hidden border-2 border-[#9b0840] shadow-[0_0_32px_rgba(155,8,64,0.6)] bg-black p-1">
                     <img
-                      src={chonkImage}
+                      src={artist.artistImage}
                       alt={artist.name}
                       className="w-32 h-32 object-cover rounded"
-                      style={{ imageRendering: "pixelated" }}
                     />
                   </div>
                 </div>
               )}
 
               <div className="flex-1 min-w-0">
-                <p className="text-[10px] font-mono uppercase tracking-[0.3em] text-bio-light mb-2">
-                  Sovereign IP Pod · Chonk #{artist.tokenId}
+                <p className="text-[10px] font-mono uppercase tracking-[0.3em] text-[#acacac] mb-2">
+                  Sovereign IP Agent · Chonk #{artist.tokenId}
                 </p>
                 <h1 className="text-5xl md:text-7xl font-black tracking-tight text-foreground leading-none mb-3">
                   {artist.name}
@@ -193,7 +192,7 @@ const Studio = () => {
                     href={artist.purebpmUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-bio-light hover:underline font-mono inline-flex items-center gap-1"
+                    className="text-white hover:underline font-mono inline-flex items-center gap-1"
                   >
                     {artist.handle}
                     <ExternalLink className="h-3 w-3" />
@@ -203,17 +202,17 @@ const Studio = () => {
 
                 <div className="flex flex-wrap gap-2">
                   <Badge>.agent.gno</Badge>
-                  <Badge tone={artist.storyIpId ? "active" : "muted"}>
+                  <Badge tone={artist.storyIpId ? "red" : "muted"}>
                     Story Protocol: {artist.storyIpId ? "Registered" : "Unregistered"}
                   </Badge>
-                  <Badge tone={artist.cdrActive ? "active" : "muted"}>
+                  <Badge tone={artist.cdrActive ? "red" : "muted"}>
                     CDR: {artist.cdrActive ? "Active" : "Inactive"}
                   </Badge>
                 </div>
 
                 {/* Protocol infrastructure accordion */}
                 <Collapsible className="mt-4">
-                  <CollapsibleTrigger className="text-[10px] font-mono uppercase tracking-widest text-muted-foreground hover:text-bio-light inline-flex items-center gap-1">
+                  <CollapsibleTrigger className="text-[10px] font-mono uppercase tracking-widest text-[#b0805c] hover:text-[#ffca92] inline-flex items-center gap-1">
                     Protocol Infrastructure
                     <ChevronDown className="h-3 w-3" />
                   </CollapsibleTrigger>
