@@ -152,7 +152,7 @@ const HeroCard = ({ artist }: { artist: Artist }) => {
           <h2 className="text-4xl md:text-5xl font-black tracking-tight text-foreground leading-none">
             {artist.name}
           </h2>
-          <p className="text-sm font-mono text-bio-light mt-2">
+          <p className="text-sm font-mono text-[#9b0840] mt-2">
             CHONK #{artist.tokenId}
           </p>
           <p className="text-sm md:text-base text-muted-foreground font-mono mt-2 mb-6">
