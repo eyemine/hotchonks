@@ -142,14 +142,14 @@ const Studio = () => {
       <Header />
 
       <main className="relative pt-20">
-        {/* Top zone — full-bleed hero portrait at 15% opacity */}
-        {chonkImage && (
+        {/* Top zone — full-bleed hero portrait at 15% opacity with red glow */}
+        {artist.artistImage && (
           <div className="absolute inset-x-0 top-16 h-[520px] overflow-hidden pointer-events-none">
+            <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(155,8,64,0.45),transparent_70%)]" />
             <img
-              src={chonkImage}
+              src={artist.artistImage}
               alt=""
-              className="w-full h-full object-cover opacity-[0.15]"
-              style={{ imageRendering: "pixelated" }}
+              className="w-full h-full object-cover opacity-[0.25] mix-blend-screen"
             />
             <div className="absolute inset-0 bg-gradient-to-b from-transparent via-background/80 to-background" />
           </div>
