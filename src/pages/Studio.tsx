@@ -343,11 +343,13 @@ const Badge = ({
   tone = "default",
 }: {
   children: React.ReactNode;
-  tone?: "default" | "active" | "muted";
+  tone?: "default" | "active" | "muted" | "red";
 }) => {
   const cls =
     tone === "active"
       ? "bg-bio-green/15 border-bio-green/40 text-bio-light"
+      : tone === "red"
+      ? "bg-[#9b0840]/20 border-[#9b0840] text-[#9b0840]"
       : tone === "muted"
       ? "bg-muted border-border text-muted-foreground"
       : "bg-carbon-medium border-border text-foreground";
