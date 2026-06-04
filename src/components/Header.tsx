@@ -16,10 +16,10 @@ export const Header = () => {
         
         <div className="flex items-center gap-8">
           <nav className="hidden md:flex items-center gap-6">
-            <Link to="/artists" className="text-bio-light hover:text-bio-glow transition-colors font-semibold">
+            <Link to="/artists" className="text-[#b0805c] hover:text-[#ffca92] transition-colors font-semibold">
               Virtual Artists
             </Link>
-            <a href="/#game" className="text-muted-foreground hover:text-bio-light transition-colors">
+            <a href="/#game" className="text-[#b0805c] hover:text-[#ffca92] transition-colors">
               Chonks Playground
             </a>
           </nav>
