@@ -198,6 +198,7 @@ const RosterCard = ({ artist }: { artist: Artist }) => {
   const isActive = artist.status === "active";
   const mainImg = artist.artistImage ?? chonkImg;
   const insetImg = artist.artistImage ? chonkImg : undefined;
+  const [sidecarOpen, setSidecarOpen] = useState(false);
 
   return (
     <div className="group relative overflow-hidden rounded-lg border border-border bg-card transition-all hover:border-bio-green/30">
@@ -246,14 +247,25 @@ const RosterCard = ({ artist }: { artist: Artist }) => {
               <Link to={`/studio/${artist.slug}`}>Enter Studio</Link>
             </Button>
           ) : (
-            <Button asChild size="sm" variant="outline" className="flex-1 border-bio-green/40 text-bio-light hover:bg-bio-green/10">
-              <a href={artist.agentUrl} target="_blank" rel="noopener noreferrer">
-                GhostAgent Profile <ExternalLink className="ml-2 h-3 w-3" />
-              </a>
+            <Button
+              size="sm"
+              variant="outline"
+              onClick={() => setSidecarOpen(true)}
+              className="flex-1 bg-slate-950 border-slate-800 text-slate-100 hover:bg-slate-900 hover:text-white"
+            >
+              <Radar size={14} className="mr-2" />
+              Inspect Agent + SideCar
             </Button>
           )}
         </div>
       </div>
+      <SidecarDrawer
+        open={sidecarOpen}
+        onOpenChange={setSidecarOpen}
+        tokenId={artist.tokenId}
+        name={`Chonk #${artist.tokenId}`}
+        chain="Base"
+      />
     </div>
   );
 };
