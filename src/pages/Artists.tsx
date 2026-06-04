@@ -153,7 +153,7 @@ const HeroCard = ({ artist }: { artist: Artist }) => {
           <h2 className="text-4xl md:text-5xl font-black tracking-tight text-foreground leading-none">
             {artist.name}
           </h2>
-          <p className="text-sm font-mono text-[#9b0840] mt-2">
+          <p className="text-2xl font-mono text-[#9b0840] mt-2">
             CHONK #{artist.tokenId}
           </p>
           <p className="text-sm md:text-base text-muted-foreground font-mono mt-2 mb-6">
@@ -177,8 +177,8 @@ const HeroCard = ({ artist }: { artist: Artist }) => {
               className="font-mono border border-[#b0805c]"
               style={{ backgroundColor: "#271208", color: "#efede3" }}
             >
-              <img src={ghostMaskIcon.url} alt="GhostAgent" className="mr-2 h-5 w-5 object-contain" />
-              GhostAgent Profile
+              <img src={ghostMaskIcon.url} alt="GhostAgent" className="mr-2 h-10 w-10 object-contain" />
+              GHOSTAGENT IP PROFILE
             </Button>
           </div>
         </div>
@@ -254,8 +254,8 @@ const RosterCard = ({ artist }: { artist: Artist }) => {
               className="flex-1 font-mono border border-[#b0805c]"
               style={{ backgroundColor: "#271208", color: "#efede3" }}
             >
-              <img src={ghostMaskIcon.url} alt="GhostAgent" className="mr-2 h-4 w-4 object-contain" />
-              GhostAgent Profile
+              <img src={ghostMaskIcon.url} alt="GhostAgent" className="mr-2 h-8 w-8 object-contain" />
+              GHOSTAGENT IP PROFILE
             </Button>
           )}
         </div>
@@ -281,13 +281,13 @@ const Artists = () => {
       <main className="pt-24 pb-16">
         <div className="container mx-auto px-4">
           <div className="mb-12 text-center">
-            <p className="text-[10px] font-mono uppercase tracking-[0.4em] text-bio-light mb-3">
+            <p className="text-[10px] font-mono uppercase tracking-[0.4em] text-[#ffca92] mb-3">
               ghostagent.ninja
             </p>
             <h1 className="text-4xl md:text-6xl font-black tracking-tight text-foreground mb-1">
               Virtual Artists
             </h1>
-            <p className="text-xl md:text-2xl font-mono uppercase tracking-[0.3em] mb-3" style={{ color: "#efede3" }}>
+            <p className="text-xl md:text-2xl font-mono uppercase tracking-[0.3em] mb-3" style={{ color: "#ffca92" }}>
               Sovereign IP Agents
             </p>
             <p className="text-lg text-muted-foreground">
