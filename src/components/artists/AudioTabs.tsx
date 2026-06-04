@@ -82,7 +82,7 @@ export const AudioTabs = ({ artist }: Props) => {
         {/* PREVIEW TAB */}
         <TabsContent value="preview" className="mt-4 space-y-3">
           <div className="flex items-center justify-between">
-            <span className="text-[10px] uppercase tracking-widest text-bio-light font-mono">
+            <span className="text-[10px] uppercase tracking-widest text-[#ffca92] font-mono">
               GhostAgent Preview · Watermarked 30s
             </span>
             <span className="text-[10px] font-mono text-muted-foreground">.wav · public</span>

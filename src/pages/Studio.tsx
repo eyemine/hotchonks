@@ -142,14 +142,14 @@ const Studio = () => {
       <Header />
 
       <main className="relative pt-20">
-        {/* Top zone — full-bleed hero portrait at 15% opacity */}
-        {chonkImage && (
+        {/* Top zone — full-bleed hero portrait at 15% opacity with red glow */}
+        {artist.artistImage && (
           <div className="absolute inset-x-0 top-16 h-[520px] overflow-hidden pointer-events-none">
+            <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(155,8,64,0.45),transparent_70%)]" />
             <img
-              src={chonkImage}
+              src={artist.artistImage}
               alt=""
-              className="w-full h-full object-cover opacity-[0.15]"
-              style={{ imageRendering: "pixelated" }}
+              className="w-full h-full object-cover opacity-[0.25] mix-blend-screen"
             />
             <div className="absolute inset-0 bg-gradient-to-b from-transparent via-background/80 to-background" />
           </div>
@@ -167,22 +167,21 @@ const Studio = () => {
           {/* IDENTITY */}
           <section className="mb-10">
             <div className="flex flex-col sm:flex-row items-start gap-6">
-              {chonkImage && (
+              {artist.artistImage && (
                 <div className="flex-shrink-0">
-                  <div className="rounded-lg overflow-hidden border-2 border-bio-light shadow-[0_0_32px_hsl(var(--bio-light)/0.5)] bg-black p-1">
+                  <div className="rounded-lg overflow-hidden border-2 border-[#9b0840] shadow-[0_0_32px_rgba(155,8,64,0.6)] bg-black p-1">
                     <img
-                      src={chonkImage}
+                      src={artist.artistImage}
                       alt={artist.name}
                       className="w-32 h-32 object-cover rounded"
-                      style={{ imageRendering: "pixelated" }}
                     />
                   </div>
                 </div>
               )}
 
               <div className="flex-1 min-w-0">
-                <p className="text-[10px] font-mono uppercase tracking-[0.3em] text-bio-light mb-2">
-                  Sovereign IP Pod · Chonk #{artist.tokenId}
+                <p className="text-[10px] font-mono uppercase tracking-[0.3em] text-[#acacac] mb-2">
+                  Sovereign IP Agent · Chonk #{artist.tokenId}
                 </p>
                 <h1 className="text-5xl md:text-7xl font-black tracking-tight text-foreground leading-none mb-3">
                   {artist.name}
@@ -193,7 +192,7 @@ const Studio = () => {
                     href={artist.purebpmUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-bio-light hover:underline font-mono inline-flex items-center gap-1"
+                    className="text-white hover:underline font-mono inline-flex items-center gap-1"
                   >
                     {artist.handle}
                     <ExternalLink className="h-3 w-3" />
@@ -203,17 +202,17 @@ const Studio = () => {
 
                 <div className="flex flex-wrap gap-2">
                   <Badge>.agent.gno</Badge>
-                  <Badge tone={artist.storyIpId ? "active" : "muted"}>
+                  <Badge tone={artist.storyIpId ? "red" : "muted"}>
                     Story Protocol: {artist.storyIpId ? "Registered" : "Unregistered"}
                   </Badge>
-                  <Badge tone={artist.cdrActive ? "active" : "muted"}>
+                  <Badge tone={artist.cdrActive ? "red" : "muted"}>
                     CDR: {artist.cdrActive ? "Active" : "Inactive"}
                   </Badge>
                 </div>
 
                 {/* Protocol infrastructure accordion */}
                 <Collapsible className="mt-4">
-                  <CollapsibleTrigger className="text-[10px] font-mono uppercase tracking-widest text-muted-foreground hover:text-bio-light inline-flex items-center gap-1">
+                  <CollapsibleTrigger className="text-[10px] font-mono uppercase tracking-widest text-[#b0805c] hover:text-[#ffca92] inline-flex items-center gap-1">
                     Protocol Infrastructure
                     <ChevronDown className="h-3 w-3" />
                   </CollapsibleTrigger>
@@ -229,7 +228,7 @@ const Studio = () => {
 
           {/* MIDDLE — IP STATUS */}
           <section className="mb-8 rounded-lg border border-bio-green/30 bg-carbon-medium/60 p-5">
-            <p className="text-[10px] font-mono uppercase tracking-[0.3em] text-bio-light mb-3">
+            <p className="text-[10px] font-mono uppercase tracking-[0.3em] text-[#efede3] mb-3">
               Story Protocol IP Asset
             </p>
             {ipId ? (
@@ -251,7 +250,7 @@ const Studio = () => {
                 href={`https://ghostagent.ninja/ip-portal?agent=chonk-${artist.tokenId}&sld=agent`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-xs font-mono text-bio-light hover:underline inline-flex items-center gap-1"
+                className="text-xs font-mono text-[#b0805c] hover:underline inline-flex items-center gap-1"
               >
                 Open IP Portal <ExternalLink className="h-3 w-3" />
               </a>
@@ -344,11 +343,13 @@ const Badge = ({
   tone = "default",
 }: {
   children: React.ReactNode;
-  tone?: "default" | "active" | "muted";
+  tone?: "default" | "active" | "muted" | "red";
 }) => {
   const cls =
     tone === "active"
       ? "bg-bio-green/15 border-bio-green/40 text-bio-light"
+      : tone === "red"
+      ? "bg-[#9b0840]/20 border-[#9b0840] text-[#9b0840]"
       : tone === "muted"
       ? "bg-muted border-border text-muted-foreground"
       : "bg-carbon-medium border-border text-foreground";
