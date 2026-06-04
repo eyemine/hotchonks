@@ -194,11 +194,14 @@ const Artists = () => {
             <p className="text-[10px] font-mono uppercase tracking-[0.4em] text-bio-light mb-3">
               ghostagent.ninja
             </p>
-            <h1 className="text-4xl md:text-6xl font-black tracking-tight text-foreground mb-3">
-              VIRTUAL ARTISTS — Sovereign IP Pods
+            <h1 className="text-4xl md:text-6xl font-black tracking-tight text-foreground mb-1">
+              Sovereign IP Agents
             </h1>
+            <p className="text-xl md:text-2xl font-mono uppercase tracking-[0.3em] text-bio-light mb-3">
+              Virtual Artists
+            </p>
             <p className="text-lg text-muted-foreground">
-              Own the identity. Unlock the sound.
+              Own the artist identity. Unlock the catalogue.
             </p>
           </div>
 
