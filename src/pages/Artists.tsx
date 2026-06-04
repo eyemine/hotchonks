@@ -200,14 +200,7 @@ const RosterCard = ({ artist }: { artist: Artist }) => {
           <div className="w-full h-full bg-carbon-medium animate-pulse" />
         )}
         {insetImg && (
-          <div className="absolute bottom-3 right-3 w-[30%] aspect-square rounded-md overflow-hidden border-2 border-bio-light shadow-[0_0_16px_hsl(var(--bio-light)/0.7)] bg-black">
-            <img
-              src={insetImg}
-              alt={`Chonk #${artist.tokenId}`}
-              className="w-full h-full object-cover"
-              style={{ imageRendering: "pixelated" }}
-            />
-          </div>
+          <ChonkInset src={insetImg} tokenId={artist.tokenId} size="sm" />
         )}
       </div>
 
