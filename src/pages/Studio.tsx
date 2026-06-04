@@ -250,7 +250,7 @@ const Studio = () => {
                 href={`https://ghostagent.ninja/ip-portal?agent=chonk-${artist.tokenId}&sld=agent`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-xs font-mono text-bio-light hover:underline inline-flex items-center gap-1"
+                className="text-xs font-mono text-[#b0805c] hover:underline inline-flex items-center gap-1"
               >
                 Open IP Portal <ExternalLink className="h-3 w-3" />
               </a>
