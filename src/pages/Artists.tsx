@@ -1,14 +1,92 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
-import { ArrowRight, Lock, Clock, Unlock, ExternalLink } from "lucide-react";
+import { ArrowRight, Lock, Clock, Unlock, ExternalLink, X } from "lucide-react";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { useChonksData } from "@/hooks/useChonksData";
 import { ARTISTS, type Artist } from "@/data/artists";
 
+const CHONKS_CONTRACT = "0xb1ab48c7e074086a91c1f0b12d35a2e2b22cd71b";
+
 const useChonkImage = (tokenId: string): string | undefined => {
   const { chonks } = useChonksData();
   return chonks.find((c) => c.name.includes(`#${tokenId}`))?.image;
+};
+
+const ChonkInset = ({
+  src,
+  tokenId,
+  size = "md",
+}: {
+  src: string;
+  tokenId: string;
+  size?: "sm" | "md";
+}) => {
+  const [open, setOpen] = useState(false);
+  const pos = size === "md" ? "bottom-4 right-4" : "bottom-3 right-3";
+  return (
+    <>
+      <button
+        type="button"
+        onClick={(e) => {
+          e.stopPropagation();
+          setOpen(true);
+        }}
+        className={`absolute ${pos} w-[30%] aspect-square rounded-md overflow-hidden border-2 border-bio-light bg-black opacity-50 hover:opacity-100 shadow-[0_0_16px_hsl(var(--bio-light)/0.35)] hover:shadow-[0_0_24px_hsl(var(--bio-light)/0.9)] transition-all duration-200 cursor-pointer`}
+        aria-label={`Open Chonk #${tokenId} HUD`}
+      >
+        <img
+          src={src}
+          alt={`Chonk #${tokenId}`}
+          className="w-full h-full object-cover"
+          style={{ imageRendering: "pixelated" }}
+        />
+      </button>
+
+      {open && (
+        <div
+          className="absolute inset-0 z-20 bg-black/85 backdrop-blur-sm p-4 flex flex-col"
+          onClick={(e) => e.stopPropagation()}
+        >
+          <div className="flex items-start justify-between">
+            <div>
+              <p className="text-[9px] font-mono uppercase tracking-[0.3em] text-bio-light">
+                Chonk NFT • HUD
+              </p>
+              <p className="text-lg font-black text-foreground">CHONK #{tokenId}</p>
+            </div>
+            <button
+              type="button"
+              onClick={() => setOpen(false)}
+              className="text-bio-light hover:text-foreground"
+              aria-label="Close HUD"
+            >
+              <X className="h-4 w-4" />
+            </button>
+          </div>
+          <div className="flex-1 grid place-items-center my-3">
+            <img
+              src={src}
+              alt={`Chonk #${tokenId}`}
+              className="max-h-full max-w-[60%] rounded-md border border-bio-light/60 shadow-[0_0_30px_hsl(var(--bio-light)/0.6)]"
+              style={{ imageRendering: "pixelated" }}
+            />
+          </div>
+          <div className="flex flex-wrap gap-2">
+            <a
+              href={`https://opensea.io/assets/base/${CHONKS_CONTRACT}/${tokenId}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1.5 rounded-full bg-bio-green/15 border border-bio-green/40 px-3 py-1.5 text-[10px] font-mono uppercase tracking-widest text-bio-light hover:bg-bio-green/25"
+            >
+              OpenSea <ExternalLink className="h-3 w-3" />
+            </a>
+          </div>
+        </div>
+      )}
+    </>
+  );
 };
 
 const StatusPill = ({ status }: { status: Artist["status"] }) => {
@@ -58,14 +136,7 @@ const HeroCard = ({ artist }: { artist: Artist }) => {
             <div className="w-full h-full bg-carbon-medium animate-pulse" />
           )}
           {insetImg && (
-            <div className="absolute bottom-4 right-4 w-[30%] aspect-square rounded-md overflow-hidden border-2 border-bio-light shadow-[0_0_16px_hsl(var(--bio-light)/0.7)] bg-black">
-              <img
-                src={insetImg}
-                alt={`Chonk #${artist.tokenId}`}
-                className="w-full h-full object-cover"
-                style={{ imageRendering: "pixelated" }}
-              />
-            </div>
+            <ChonkInset src={insetImg} tokenId={artist.tokenId} size="md" />
           )}
           <div className="absolute top-4 right-4">
             <StatusPill status={artist.status} />
@@ -129,14 +200,7 @@ const RosterCard = ({ artist }: { artist: Artist }) => {
           <div className="w-full h-full bg-carbon-medium animate-pulse" />
         )}
         {insetImg && (
-          <div className="absolute bottom-3 right-3 w-[30%] aspect-square rounded-md overflow-hidden border-2 border-bio-light shadow-[0_0_16px_hsl(var(--bio-light)/0.7)] bg-black">
-            <img
-              src={insetImg}
-              alt={`Chonk #${artist.tokenId}`}
-              className="w-full h-full object-cover"
-              style={{ imageRendering: "pixelated" }}
-            />
-          </div>
+          <ChonkInset src={insetImg} tokenId={artist.tokenId} size="sm" />
         )}
       </div>
 
@@ -194,11 +258,14 @@ const Artists = () => {
             <p className="text-[10px] font-mono uppercase tracking-[0.4em] text-bio-light mb-3">
               ghostagent.ninja
             </p>
-            <h1 className="text-4xl md:text-6xl font-black tracking-tight text-foreground mb-3">
-              VIRTUAL ARTISTS — Sovereign IP Pods
+            <h1 className="text-4xl md:text-6xl font-black tracking-tight text-foreground mb-1">
+              Sovereign IP Agents
             </h1>
+            <p className="text-xl md:text-2xl font-mono uppercase tracking-[0.3em] text-bio-light mb-3">
+              Virtual Artists
+            </p>
             <p className="text-lg text-muted-foreground">
-              Own the identity. Unlock the sound.
+              Own the artist identity. Unlock the catalogue.
             </p>
           </div>
 
