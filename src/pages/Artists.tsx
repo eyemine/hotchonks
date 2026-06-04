@@ -112,28 +112,33 @@ const HeroCard = ({ artist }: { artist: Artist }) => {
 };
 
 const RosterCard = ({ artist }: { artist: Artist }) => {
-  const img = useChonkImage(artist.tokenId);
+  const chonkImg = useChonkImage(artist.tokenId);
   const isActive = artist.status === "active";
+  const mainImg = artist.artistImage ?? chonkImg;
+  const insetImg = artist.artistImage ? chonkImg : undefined;
 
   return (
     <div className="group relative overflow-hidden rounded-lg border border-border bg-card transition-all hover:border-bio-green/30">
       <div className="relative aspect-square overflow-hidden bg-black">
-        {img ? (
+        {mainImg ? (
           <img
-            src={img}
+            src={mainImg}
             alt={artist.name}
             className="w-full h-full object-cover transition-transform group-hover:scale-105"
-            style={{ imageRendering: "pixelated" }}
+            style={artist.artistImage ? undefined : { imageRendering: "pixelated" }}
           />
         ) : (
           <div className="w-full h-full bg-carbon-medium animate-pulse" />
         )}
-        {artist.artistImage && (
-          <img
-            src={artist.artistImage}
-            alt={`${artist.name} portrait`}
-            className="absolute bottom-3 right-3 w-16 h-16 rounded-full object-cover border-2 border-bio-light shadow-[0_0_16px_hsl(var(--bio-light)/0.7)]"
-          />
+        {insetImg && (
+          <div className="absolute bottom-3 right-3 w-[30%] aspect-square rounded-md overflow-hidden border-2 border-bio-light shadow-[0_0_16px_hsl(var(--bio-light)/0.7)] bg-black">
+            <img
+              src={insetImg}
+              alt={`Chonk #${artist.tokenId}`}
+              className="w-full h-full object-cover"
+              style={{ imageRendering: "pixelated" }}
+            />
+          </div>
         )}
       </div>
 
@@ -147,7 +152,18 @@ const RosterCard = ({ artist }: { artist: Artist }) => {
           </div>
         </div>
 
-        <StatusPill status={artist.status} />
+        {isActive ? (
+          <StatusPill status={artist.status} />
+        ) : (
+          <a
+            href={artist.agentUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-1.5 rounded-full bg-bio-green/10 border border-bio-green/30 px-2.5 py-1 text-[10px] font-mono uppercase tracking-widest text-bio-light hover:bg-bio-green/20 transition-colors"
+          >
+            GhostAgent Profile <ExternalLink className="h-3 w-3" />
+          </a>
+        )}
 
         <div className="flex gap-2 pt-1">
           {isActive ? (
@@ -155,15 +171,12 @@ const RosterCard = ({ artist }: { artist: Artist }) => {
               <Link to={`/studio/${artist.slug}`}>Enter Studio</Link>
             </Button>
           ) : (
-            <Button disabled size="sm" variant="outline" className="flex-1 opacity-50">
-              Coming Soon
+            <Button asChild size="sm" variant="outline" className="flex-1 border-bio-green/40 text-bio-light hover:bg-bio-green/10">
+              <a href={artist.purebpmUrl} target="_blank" rel="noopener noreferrer">
+                Artist Profile <ExternalLink className="ml-2 h-3 w-3" />
+              </a>
             </Button>
           )}
-          <Button asChild size="sm" variant="ghost" className="text-muted-foreground hover:text-bio-light">
-            <a href={artist.purebpmUrl} target="_blank" rel="noopener noreferrer" aria-label="PureBPM profile">
-              <ExternalLink className="h-4 w-4" />
-            </a>
-          </Button>
         </div>
       </div>
     </div>
