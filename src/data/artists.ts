@@ -143,6 +143,7 @@ export const ARTISTS: Artist[] = [
     purebpmUrl: "https://www.purebpm.com/@blues-dandy",
     agentUrl: "https://ghostagent.ninja/agent/chonk.606",
     genre: "Electric Blues",
+    artistImage: bluesDandyImg.url,
     status: "unregistered",
     email: "chonk.606_@nftmail.box",
   },
