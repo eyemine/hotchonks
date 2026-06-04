@@ -254,7 +254,7 @@ const RosterCard = ({ artist }: { artist: Artist }) => {
               className="flex-1 font-mono border border-[#b0805c]"
               style={{ backgroundColor: "#271208", color: "#efede3" }}
             >
-              <img src="/ghostagent-profile.png" alt="GhostAgent" className="mr-2 h-4 w-4 rounded-full" />
+              <img src={ghostMaskIcon.url} alt="GhostAgent" className="mr-2 h-4 w-4 object-contain" />
               GhostAgent Profile
             </Button>
           )}
