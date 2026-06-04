@@ -9,6 +9,8 @@ import sandyImg from "@/assets/artists/SandyFreeland.jpg.asset.json";
 import ruffImg from "@/assets/artists/Ruff.jpg.asset.json";
 import redHammerImg from "@/assets/artists/red_hammer.jpg.asset.json";
 import redHammerBanner from "@/assets/artists/redhammer-banner.jpg.asset.json";
+import delilahImg from "@/assets/artists/Delilah.jpg.asset.json";
+import bluesDandyImg from "@/assets/artists/BluesDandy.jpg.asset.json";
 
 export type ArtistStatus = "active" | "pending" | "unregistered";
 
@@ -57,6 +59,7 @@ export const ARTISTS: Artist[] = [
     purebpmUrl: "https://www.purebpm.com/@delilah",
     agentUrl: "https://ghostagent.ninja/agent/chonk.676",
     genre: "Dream Pop / Synth",
+    artistImage: delilahImg.url,
     status: "pending",
     email: "chonk.676_@nftmail.box",
   },
@@ -140,6 +143,7 @@ export const ARTISTS: Artist[] = [
     purebpmUrl: "https://www.purebpm.com/@blues-dandy",
     agentUrl: "https://ghostagent.ninja/agent/chonk.606",
     genre: "Electric Blues",
+    artistImage: bluesDandyImg.url,
     status: "unregistered",
     email: "chonk.606_@nftmail.box",
   },
