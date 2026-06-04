@@ -59,6 +59,7 @@ export const ARTISTS: Artist[] = [
     purebpmUrl: "https://www.purebpm.com/@delilah",
     agentUrl: "https://ghostagent.ninja/agent/chonk.676",
     genre: "Dream Pop / Synth",
+    artistImage: delilahImg.url,
     status: "pending",
     email: "chonk.676_@nftmail.box",
   },
