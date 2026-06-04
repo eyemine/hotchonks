@@ -41,7 +41,7 @@ export const processAPIData = (apiResult: any): ChonkNFT[] => {
       chonksData.push({
         id: tokenId.toString(),
         name: `Chonk #${tokenId}`,
-        image: metadata?.image?.cachedUrl || metadata?.image?.pngUrl || metadata?.image?.thumbnailUrl || (tokenId === 599 ? '/chonk-599.webp' : `https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=400&h=400&fit=crop&seed=${tokenId}`),
+        image: tokenId === 599 ? '/chonk-599.webp' : (metadata?.image?.cachedUrl || metadata?.image?.pngUrl || metadata?.image?.thumbnailUrl || `https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=400&h=400&fit=crop&seed=${tokenId}`),
         collection: 'Chonks',
         price: price,
         chain: 'Base',
