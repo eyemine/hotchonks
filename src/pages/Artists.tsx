@@ -77,7 +77,7 @@ const ChonkInset = ({
           </div>
           <div className="flex flex-wrap gap-2">
             <a
-              href={`https://opensea.io/assets/base/${CHONKS_CONTRACT}/${tokenId}`}
+              href={`https://opensea.io/item/base/${CHONKS_CONTRACT}/${tokenId}`}
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-1.5 rounded-full bg-blue-600 border border-blue-500 px-3 py-1.5 text-[10px] font-sans text-white hover:bg-blue-700"
