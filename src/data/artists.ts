@@ -26,7 +26,9 @@ export interface Artist {
   bannerImage?: string;
   status: ArtistStatus;
   storyIpId?: string;
+  storyScanUrl?: string;
   cdrActive?: boolean;
+  cdrVaultId?: string;
   email: string;
   featured?: boolean;
   tba?: string;
