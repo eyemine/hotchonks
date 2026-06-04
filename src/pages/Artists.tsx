@@ -93,10 +93,10 @@ const ChonkInset = ({
 const StatusPill = ({ status }: { status: Artist["status"] }) => {
   if (status === "active") {
     return (
-      <span className="inline-flex items-center gap-1.5 rounded-full bg-bio-green/15 border border-bio-green/40 px-2.5 py-1 text-[10px] font-mono uppercase tracking-widest text-bio-light">
+      <span className="inline-flex items-center gap-1.5 rounded-full bg-[#9b0840]/15 border border-[#9b0840]/40 px-2.5 py-1 text-[10px] font-mono uppercase tracking-widest text-[#9b0840]">
         <span className="relative flex h-1.5 w-1.5">
-          <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-bio-light opacity-75" />
-          <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-bio-light" />
+          <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[#9b0840] opacity-75" />
+          <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-[#9b0840]" />
         </span>
         <Unlock className="h-3 w-3" /> Story Protocol Active
       </span>
