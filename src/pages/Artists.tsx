@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button";
 import { SidecarDrawer } from "@/components/SidecarDrawer";
 import { useChonksData } from "@/hooks/useChonksData";
 import { ARTISTS, type Artist } from "@/data/artists";
+import ghostMaskIcon from "@/assets/GhostMaskGlowT.png.asset.json";
 
 const CHONKS_CONTRACT = "0xb1ab48c7e074086a91c1f0b12d35a2e2b22cd71b";
 
