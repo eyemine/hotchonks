@@ -177,7 +177,7 @@ const HeroCard = ({ artist }: { artist: Artist }) => {
               className="font-mono border border-[#b0805c]"
               style={{ backgroundColor: "#271208", color: "#efede3" }}
             >
-              <img src="/ghostagent-profile.png" alt="GhostAgent" className="mr-2 h-5 w-5 rounded-full" />
+              <img src={ghostMaskIcon.url} alt="GhostAgent" className="mr-2 h-5 w-5 object-contain" />
               GhostAgent Profile
             </Button>
           </div>
