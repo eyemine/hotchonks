@@ -259,10 +259,10 @@ const Artists = () => {
               ghostagent.ninja
             </p>
             <h1 className="text-4xl md:text-6xl font-black tracking-tight text-foreground mb-1">
-              Sovereign IP Agents
+              Virtual Artists
             </h1>
             <p className="text-xl md:text-2xl font-mono uppercase tracking-[0.3em] text-bio-light mb-3">
-              Virtual Artists
+              Sovereign IP Agents
             </p>
             <p className="text-lg text-muted-foreground">
               Own the artist identity. Unlock the catalogue.
