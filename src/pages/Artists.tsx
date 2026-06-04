@@ -286,7 +286,7 @@ const Artists = () => {
             <h1 className="text-4xl md:text-6xl font-black tracking-tight text-foreground mb-1">
               Virtual Artists
             </h1>
-            <p className="text-xl md:text-2xl font-mono uppercase tracking-[0.3em] text-bio-light mb-3">
+            <p className="text-xl md:text-2xl font-mono uppercase tracking-[0.3em] mb-3" style={{ color: "#efede3" }}>
               Sovereign IP Agents
             </p>
             <p className="text-lg text-muted-foreground">
