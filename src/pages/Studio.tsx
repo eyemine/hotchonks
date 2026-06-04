@@ -233,7 +233,7 @@ const Studio = () => {
             </p>
             {ipId ? (
               <a
-                href={`https://aeneid.storyscan.io/address/${ipId}`}
+                href={artist.storyScanUrl || `https://aeneid.storyscan.io/ipa/${ipId}`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 font-mono text-foreground hover:text-bio-light break-all"
