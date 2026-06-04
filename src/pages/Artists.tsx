@@ -250,10 +250,10 @@ const RosterCard = ({ artist }: { artist: Artist }) => {
             <Button
               size="sm"
               onClick={() => setSidecarOpen(true)}
-              className="flex-1 font-mono"
+              className="flex-1 font-mono border border-[#b0805c]"
               style={{ backgroundColor: "#271208", color: "#efede3" }}
             >
-              <Radar size={14} className="mr-2" />
+              <img src="/ghostagent-profile.png" alt="GhostAgent" className="mr-2 h-4 w-4 rounded-full" />
               GhostAgent Profile
             </Button>
           )}
