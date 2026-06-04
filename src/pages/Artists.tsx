@@ -1,9 +1,10 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { ArrowRight, Lock, Clock, Unlock, ExternalLink, X } from "lucide-react";
+import { ArrowRight, Lock, Clock, Unlock, ExternalLink, X, Radar } from "lucide-react";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { Button } from "@/components/ui/button";
+import { SidecarDrawer } from "@/components/SidecarDrawer";
 import { useChonksData } from "@/hooks/useChonksData";
 import { ARTISTS, type Artist } from "@/data/artists";
 
@@ -119,6 +120,7 @@ const HeroCard = ({ artist }: { artist: Artist }) => {
   const chonkImg = useChonkImage(artist.tokenId);
   const mainImg = artist.artistImage ?? chonkImg;
   const insetImg = artist.artistImage ? chonkImg : undefined;
+  const [sidecarOpen, setSidecarOpen] = useState(false);
 
   return (
     <div className="md:col-span-3 group relative overflow-hidden rounded-xl border border-bio-green/40 bg-gradient-to-br from-carbon-dark via-carbon-medium to-black shadow-[0_0_60px_hsl(var(--bio-green)/0.15)] transition-all hover:shadow-[0_0_80px_hsl(var(--bio-green)/0.3)]">
@@ -168,14 +170,25 @@ const HeroCard = ({ artist }: { artist: Artist }) => {
                 PureBPM Artist Profile <ExternalLink className="ml-2 h-3 w-3" />
               </a>
             </Button>
-            <Button asChild variant="outline" size="lg" className="border-bio-green/40 text-bio-light hover:bg-bio-green/10">
-              <a href={artist.agentUrl} target="_blank" rel="noopener noreferrer">
-                GhostAgent <ExternalLink className="ml-2 h-3 w-3" />
-              </a>
+            <Button
+              variant="outline"
+              size="lg"
+              onClick={() => setSidecarOpen(true)}
+              className="bg-slate-950 border-slate-800 text-slate-100 hover:bg-slate-900 hover:text-white"
+            >
+              <Radar className="mr-2 h-4 w-4" />
+              Inspect Agent + SideCar
             </Button>
           </div>
         </div>
       </div>
+      <SidecarDrawer
+        open={sidecarOpen}
+        onOpenChange={setSidecarOpen}
+        tokenId={artist.tokenId}
+        name={`Chonk #${artist.tokenId}`}
+        chain="Base"
+      />
     </div>
   );
 };
@@ -185,6 +198,7 @@ const RosterCard = ({ artist }: { artist: Artist }) => {
   const isActive = artist.status === "active";
   const mainImg = artist.artistImage ?? chonkImg;
   const insetImg = artist.artistImage ? chonkImg : undefined;
+  const [sidecarOpen, setSidecarOpen] = useState(false);
 
   return (
     <div className="group relative overflow-hidden rounded-lg border border-border bg-card transition-all hover:border-bio-green/30">
@@ -233,14 +247,25 @@ const RosterCard = ({ artist }: { artist: Artist }) => {
               <Link to={`/studio/${artist.slug}`}>Enter Studio</Link>
             </Button>
           ) : (
-            <Button asChild size="sm" variant="outline" className="flex-1 border-bio-green/40 text-bio-light hover:bg-bio-green/10">
-              <a href={artist.agentUrl} target="_blank" rel="noopener noreferrer">
-                GhostAgent Profile <ExternalLink className="ml-2 h-3 w-3" />
-              </a>
+            <Button
+              size="sm"
+              variant="outline"
+              onClick={() => setSidecarOpen(true)}
+              className="flex-1 bg-slate-950 border-slate-800 text-slate-100 hover:bg-slate-900 hover:text-white"
+            >
+              <Radar size={14} className="mr-2" />
+              Inspect Agent + SideCar
             </Button>
           )}
         </div>
       </div>
+      <SidecarDrawer
+        open={sidecarOpen}
+        onOpenChange={setSidecarOpen}
+        tokenId={artist.tokenId}
+        name={`Chonk #${artist.tokenId}`}
+        chain="Base"
+      />
     </div>
   );
 };
@@ -259,10 +284,10 @@ const Artists = () => {
               ghostagent.ninja
             </p>
             <h1 className="text-4xl md:text-6xl font-black tracking-tight text-foreground mb-1">
-              Sovereign IP Agents
+              Virtual Artists
             </h1>
             <p className="text-xl md:text-2xl font-mono uppercase tracking-[0.3em] text-bio-light mb-3">
-              Virtual Artists
+              Sovereign IP Agents
             </p>
             <p className="text-lg text-muted-foreground">
               Own the artist identity. Unlock the catalogue.
