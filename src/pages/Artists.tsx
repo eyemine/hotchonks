@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { ArrowRight, Lock, Clock, Unlock, ExternalLink, X, Radar } from "lucide-react";
+import { ArrowRight, Lock, Clock, Unlock, ExternalLink, X } from "lucide-react";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { Button } from "@/components/ui/button";
