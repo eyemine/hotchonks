@@ -54,7 +54,7 @@ const ChonkInset = ({
           <div className="flex items-start justify-between">
             <div>
               <p className="text-[9px] font-mono uppercase tracking-[0.3em] text-bio-light">
-                Chonk NFT • HUD
+                Sovereign IP Agent • Governing NFT
               </p>
               <p className="text-lg font-black text-foreground">CHONK #{tokenId}</p>
             </div>
@@ -80,9 +80,9 @@ const ChonkInset = ({
               href={`https://opensea.io/assets/base/${CHONKS_CONTRACT}/${tokenId}`}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 rounded-full bg-bio-green/15 border border-bio-green/40 px-3 py-1.5 text-[10px] font-mono uppercase tracking-widest text-bio-light hover:bg-bio-green/25"
+              className="inline-flex items-center gap-1.5 rounded-full bg-blue-600 border border-blue-500 px-3 py-1.5 text-[10px] font-sans text-white hover:bg-blue-700"
             >
-              OpenSea <ExternalLink className="h-3 w-3" />
+              OPENSEA – Buy NFT, own Agent + IP <ExternalLink className="h-3 w-3" />
             </a>
           </div>
         </div>
