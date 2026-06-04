@@ -155,5 +155,6 @@ export const getArtistBySlug = (slug: string) =>
 export const truncateAddress = (addr?: string) =>
   addr ? `${addr.slice(0, 6)}…${addr.slice(-4)}` : "—";
 
-export const PREVIEW_AUDIO_URL =
-  "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-7.mp3";
+import previewMisbehaved from "@/assets/audio/preview_misbehaved.wav.asset.json";
+
+export const PREVIEW_AUDIO_URL = previewMisbehaved.url;
