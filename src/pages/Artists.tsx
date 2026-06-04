@@ -146,7 +146,7 @@ const HeroCard = ({ artist }: { artist: Artist }) => {
         </div>
 
         <div className="relative p-8 md:p-10 flex flex-col justify-center">
-          <p className="text-[10px] font-mono uppercase tracking-[0.3em] text-bio-light mb-2">
+          <p className="text-[10px] font-mono uppercase tracking-[0.3em] mb-2" style={{ color: "#efede3" }}>
             Sovereign IP Agent
           </p>
           <h2 className="text-4xl md:text-5xl font-black tracking-tight text-foreground leading-none">
