@@ -9,6 +9,8 @@ import sandyImg from "@/assets/artists/SandyFreeland.jpg.asset.json";
 import ruffImg from "@/assets/artists/Ruff.jpg.asset.json";
 import redHammerImg from "@/assets/artists/red_hammer.jpg.asset.json";
 import redHammerBanner from "@/assets/artists/redhammer-banner.jpg.asset.json";
+import delilahImg from "@/assets/artists/Delilah.jpg.asset.json";
+import bluesDandyImg from "@/assets/artists/BluesDandy.jpg.asset.json";
 
 export type ArtistStatus = "active" | "pending" | "unregistered";
 
