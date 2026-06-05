@@ -11,18 +11,19 @@ import { extractContractFromZoraUrl } from "@/utils/zoraApi";
 import { getGalleryUrl } from "@/utils/openSeaGalleries";
 import openSeaLogo from "@/assets/opensea-logo.png";
 import ghostMaskIcon from "@/assets/GhostMaskGlowT.png.asset.json";
+import { ARTISTS } from "@/data/artists";
 
-const AGENT_LINKS: Record<string, { purebpm: string; ghostagent: string; artistName: string }> = {
-  '588': { purebpm: 'https://www.purebpm.com/@pearce-resurgance', ghostagent: 'https://ghostagent.ninja/agent/chonk.588', artistName: 'Pearce Resurgance' },
-  '599': { purebpm: 'https://www.purebpm.com/@forked', ghostagent: 'https://ghostagent.ninja/agent/chonk.599', artistName: 'Forked' },
-  '601': { purebpm: 'https://www.purebpm.com/@ruff', ghostagent: 'https://ghostagent.ninja/agent/chonk.601', artistName: 'Ruff' },
-  '606': { purebpm: 'https://www.purebpm.com/@blues-dandy', ghostagent: 'https://ghostagent.ninja/agent/chonk.606', artistName: 'Blues Dandy' },
-  '676': { purebpm: 'https://www.purebpm.com/@delilah', ghostagent: 'https://ghostagent.ninja/agent/chonk.676', artistName: 'Delilah' },
-  '678': { purebpm: 'https://www.purebpm.com/@sandy-freeland', ghostagent: 'https://ghostagent.ninja/agent/chonk.678', artistName: 'Sandy Freeland' },
-  '681': { purebpm: 'https://www.purebpm.com/@dolly', ghostagent: 'https://ghostagent.ninja/agent/chonk.681', artistName: 'Dolly' },
-  '697': { purebpm: 'https://www.purebpm.com/@red-hammer', ghostagent: 'https://ghostagent.ninja/agent/chonk.697', artistName: 'Red Hammer' },
-  '9534': { purebpm: 'https://www.purebpm.com/@kidman', ghostagent: 'https://ghostagent.ninja/agent/chonk.9534', artistName: 'Kidman' },
-};
+const AGENT_LINKS: Record<string, { purebpm: string; ghostagent: string; artistName: string; artistImage?: string }> = Object.fromEntries(
+  ARTISTS.map((a) => [
+    a.tokenId,
+    {
+      purebpm: a.purebpmUrl,
+      ghostagent: a.agentUrl,
+      artistName: a.name,
+      artistImage: a.artistImage,
+    },
+  ])
+);
 
 // Helper function to format ETH prices by removing trailing zeros
 const formatEthPrice = (price: string): string => {
