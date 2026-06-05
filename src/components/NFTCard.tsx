@@ -11,18 +11,19 @@ import { extractContractFromZoraUrl } from "@/utils/zoraApi";
 import { getGalleryUrl } from "@/utils/openSeaGalleries";
 import openSeaLogo from "@/assets/opensea-logo.png";
 import ghostMaskIcon from "@/assets/GhostMaskGlowT.png.asset.json";
+import { ARTISTS } from "@/data/artists";
 
-const AGENT_LINKS: Record<string, { purebpm: string; ghostagent: string; artistName: string }> = {
-  '588': { purebpm: 'https://www.purebpm.com/@pearce-resurgance', ghostagent: 'https://ghostagent.ninja/agent/chonk.588', artistName: 'Pearce Resurgance' },
-  '599': { purebpm: 'https://www.purebpm.com/@forked', ghostagent: 'https://ghostagent.ninja/agent/chonk.599', artistName: 'Forked' },
-  '601': { purebpm: 'https://www.purebpm.com/@ruff', ghostagent: 'https://ghostagent.ninja/agent/chonk.601', artistName: 'Ruff' },
-  '606': { purebpm: 'https://www.purebpm.com/@blues-dandy', ghostagent: 'https://ghostagent.ninja/agent/chonk.606', artistName: 'Blues Dandy' },
-  '676': { purebpm: 'https://www.purebpm.com/@delilah', ghostagent: 'https://ghostagent.ninja/agent/chonk.676', artistName: 'Delilah' },
-  '678': { purebpm: 'https://www.purebpm.com/@sandy-freeland', ghostagent: 'https://ghostagent.ninja/agent/chonk.678', artistName: 'Sandy Freeland' },
-  '681': { purebpm: 'https://www.purebpm.com/@dolly', ghostagent: 'https://ghostagent.ninja/agent/chonk.681', artistName: 'Dolly' },
-  '697': { purebpm: 'https://www.purebpm.com/@red-hammer', ghostagent: 'https://ghostagent.ninja/agent/chonk.697', artistName: 'Red Hammer' },
-  '9534': { purebpm: 'https://www.purebpm.com/@kidman', ghostagent: 'https://ghostagent.ninja/agent/chonk.9534', artistName: 'Kidman' },
-};
+const AGENT_LINKS: Record<string, { purebpm: string; ghostagent: string; artistName: string; artistImage?: string }> = Object.fromEntries(
+  ARTISTS.map((a) => [
+    a.tokenId,
+    {
+      purebpm: a.purebpmUrl,
+      ghostagent: a.agentUrl,
+      artistName: a.name,
+      artistImage: a.artistImage,
+    },
+  ])
+);
 
 // Helper function to format ETH prices by removing trailing zeros
 const formatEthPrice = (price: string): string => {
@@ -64,6 +65,8 @@ interface NFTCardProps {
 export const NFTCard = ({ nft }: NFTCardProps) => {
   const [isOpen, setIsOpen] = useState(false);
   const [sidecarOpen, setSidecarOpen] = useState(false);
+  const [agentOpen, setAgentOpen] = useState(false);
+  const agent = AGENT_LINKS[nft.name.match(/Chonk #(\d+)/)?.[1] ?? ''];
   const tokenIdMatch = nft.name.match(/#(\d+)/);
   const tokenId = tokenIdMatch ? tokenIdMatch[1] : nft.id;
   
@@ -147,7 +150,25 @@ export const NFTCard = ({ nft }: NFTCardProps) => {
               </Badge>
             </div>
           )}
+
+          {/* Virtual Artist inset — acts as the accordion trigger (inverse of Virtual Artist page) */}
+          {agent?.artistImage && (
+            <button
+              type="button"
+              onClick={(e) => { e.stopPropagation(); e.preventDefault(); setAgentOpen((v) => !v); }}
+              aria-expanded={agentOpen}
+              aria-label={`Toggle Virtual Artist links for ${agent.artistName}`}
+              className="absolute bottom-3 right-3 z-10 w-[30%] aspect-square rounded-md overflow-hidden border-2 border-bio-light bg-black opacity-50 hover:opacity-100 shadow-[0_0_16px_hsl(var(--bio-light)/0.35)] hover:shadow-[0_0_24px_hsl(var(--bio-light)/0.9)] transition-all duration-200 cursor-pointer"
+            >
+              <img
+                src={agent.artistImage}
+                alt={agent.artistName}
+                className="w-full h-full object-cover"
+              />
+            </button>
+          )}
         </div>
+
 
         {/* NFT Info */}
         <div className="space-y-3">
@@ -178,15 +199,11 @@ export const NFTCard = ({ nft }: NFTCardProps) => {
           )}
         </div>
 
-        {/* Virtual Artist + GhostAgent buttons — only for the 9 sovereign IP agent chonks. Empty placeholder keeps grid regular. */}
-        <div className="mt-4 flex flex-col gap-2 min-h-[112px]">
-          {(() => {
-            const m = nft.name.match(/Chonk #(\d+)/);
-            const id = m ? m[1] : '';
-            const agent = AGENT_LINKS[id];
-            if (!agent) return null;
-            return (
-              <>
+        {/* Virtual Artist + GhostAgent accordion — opened by the artist inset on the main image */}
+        {agent && (
+          <Collapsible open={agentOpen} onOpenChange={setAgentOpen}>
+            <CollapsibleContent className="overflow-hidden data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down">
+              <div className="mt-4 flex flex-col gap-2">
                 <Button
                   asChild
                   variant="outline"
@@ -209,10 +226,11 @@ export const NFTCard = ({ nft }: NFTCardProps) => {
                     GHOSTAGENT IP PROFILE
                   </a>
                 </Button>
-              </>
-            );
-          })()}
-        </div>
+              </div>
+            </CollapsibleContent>
+          </Collapsible>
+        )}
+
 
       </div>
 
