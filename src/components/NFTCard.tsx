@@ -218,12 +218,12 @@ export const NFTCard = ({ nft }: NFTCardProps) => {
                 <Button
                   asChild
                   size="sm"
-                  className="w-full font-mono border border-[#b0805c]"
+                  className="w-full font-mono border border-[#b0805c] text-[11px] sm:text-sm px-2"
                   style={{ backgroundColor: "#271208", color: "#efede3" }}
                 >
-                  <a href={agent.ghostagent} target="_blank" rel="noopener noreferrer" className="min-w-0">
+                  <a href={agent.ghostagent} target="_blank" rel="noopener noreferrer" className="min-w-0 inline-flex items-center justify-center">
                     <img src={ghostMaskIcon.url} alt="GhostAgent" className="mr-2 h-6 w-6 sm:h-8 sm:w-8 object-contain flex-shrink-0" />
-                    <span className="truncate">GHOSTAGENT IP PROFILE</span>
+                    <span className="whitespace-nowrap">GHOSTAGENT IP PROFILE</span>
                   </a>
                 </Button>
               </div>
