@@ -150,7 +150,25 @@ export const NFTCard = ({ nft }: NFTCardProps) => {
               </Badge>
             </div>
           )}
+
+          {/* Virtual Artist inset — acts as the accordion trigger (inverse of Virtual Artist page) */}
+          {agent?.artistImage && (
+            <button
+              type="button"
+              onClick={(e) => { e.stopPropagation(); e.preventDefault(); setAgentOpen((v) => !v); }}
+              aria-expanded={agentOpen}
+              aria-label={`Toggle Virtual Artist links for ${agent.artistName}`}
+              className="absolute bottom-3 right-3 z-10 w-[30%] aspect-square rounded-md overflow-hidden border-2 border-bio-light bg-black opacity-50 hover:opacity-100 shadow-[0_0_16px_hsl(var(--bio-light)/0.35)] hover:shadow-[0_0_24px_hsl(var(--bio-light)/0.9)] transition-all duration-200 cursor-pointer"
+            >
+              <img
+                src={agent.artistImage}
+                alt={agent.artistName}
+                className="w-full h-full object-cover"
+              />
+            </button>
+          )}
         </div>
+
 
         {/* NFT Info */}
         <div className="space-y-3">
