@@ -221,9 +221,9 @@ export const NFTCard = ({ nft }: NFTCardProps) => {
                   className="w-full font-mono border border-[#b0805c]"
                   style={{ backgroundColor: "#271208", color: "#efede3" }}
                 >
-                  <a href={agent.ghostagent} target="_blank" rel="noopener noreferrer">
-                    <img src={ghostMaskIcon.url} alt="GhostAgent" className="mr-2 h-10 w-10 object-contain" />
-                    GHOSTAGENT IP PROFILE
+                  <a href={agent.ghostagent} target="_blank" rel="noopener noreferrer" className="min-w-0">
+                    <img src={ghostMaskIcon.url} alt="GhostAgent" className="mr-2 h-6 w-6 sm:h-8 sm:w-8 object-contain flex-shrink-0" />
+                    <span className="truncate">GHOSTAGENT IP PROFILE</span>
                   </a>
                 </Button>
               </div>
