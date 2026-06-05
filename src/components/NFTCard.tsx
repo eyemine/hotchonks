@@ -199,15 +199,11 @@ export const NFTCard = ({ nft }: NFTCardProps) => {
           )}
         </div>
 
-        {/* Virtual Artist + GhostAgent buttons — only for the 9 sovereign IP agent chonks. Empty placeholder keeps grid regular. */}
-        <div className="mt-4 flex flex-col gap-2 min-h-[112px]">
-          {(() => {
-            const m = nft.name.match(/Chonk #(\d+)/);
-            const id = m ? m[1] : '';
-            const agent = AGENT_LINKS[id];
-            if (!agent) return null;
-            return (
-              <>
+        {/* Virtual Artist + GhostAgent accordion — opened by the artist inset on the main image */}
+        {agent && (
+          <Collapsible open={agentOpen} onOpenChange={setAgentOpen}>
+            <CollapsibleContent className="overflow-hidden data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down">
+              <div className="mt-4 flex flex-col gap-2">
                 <Button
                   asChild
                   variant="outline"
@@ -230,10 +226,11 @@ export const NFTCard = ({ nft }: NFTCardProps) => {
                     GHOSTAGENT IP PROFILE
                   </a>
                 </Button>
-              </>
-            );
-          })()}
-        </div>
+              </div>
+            </CollapsibleContent>
+          </Collapsible>
+        )}
+
 
       </div>
 
