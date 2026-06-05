@@ -65,6 +65,8 @@ interface NFTCardProps {
 export const NFTCard = ({ nft }: NFTCardProps) => {
   const [isOpen, setIsOpen] = useState(false);
   const [sidecarOpen, setSidecarOpen] = useState(false);
+  const [agentOpen, setAgentOpen] = useState(false);
+  const agent = AGENT_LINKS[nft.name.match(/Chonk #(\d+)/)?.[1] ?? ''];
   const tokenIdMatch = nft.name.match(/#(\d+)/);
   const tokenId = tokenIdMatch ? tokenIdMatch[1] : nft.id;
   
