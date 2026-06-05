@@ -19,9 +19,12 @@ export const Header = () => {
             <Link to="/artists" className="text-[#b0805c] hover:text-[#ffca92] transition-colors font-semibold">
               Virtual Artists
             </Link>
-            <a href="/#game" className="text-[#b0805c] hover:text-[#ffca92] transition-colors">
+            <Link to="/#gallery" className="text-[#b0805c] hover:text-[#ffca92] transition-colors">
+              NFT Bundle Shop
+            </Link>
+            <Link to="/playground" className="text-[#b0805c] hover:text-[#ffca92] transition-colors">
               Chonks Playground
-            </a>
+            </Link>
           </nav>
           
           <div className="flex items-center gap-4">

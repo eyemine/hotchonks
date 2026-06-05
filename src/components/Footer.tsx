@@ -7,33 +7,16 @@ export const Footer = () => {
       <div className="container mx-auto max-w-6xl">
         <div className="text-center">
           <p className="text-[#acacac]">
-            Site made by{" "}
-            <a 
-              href="https://www.x.com/ghostagent_og" 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="text-[#acacac] hover:text-[#ffca92] transition-colors"
-            >
-              @ghostagent_og
-            </a>
-            {" "}&{" "}
-            <a 
-              href="https://www.x.com/bitpixi" 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="text-[#acacac] hover:text-[#ffca92] transition-colors"
-            >
-              @bitpixi
-            </a>
-            {" "}| Learn more about{" "}
-            <a 
-              href="https://eips.ethereum.org/EIPS/eip-6551" 
-              target="_blank" 
+            a{" "}
+            <a
+              href="https://ghostagent.ninja"
+              target="_blank"
               rel="noopener noreferrer"
               className="text-[#acacac] hover:text-[#ffca92] transition-colors underline"
             >
-              ERC-6551
+              GhostAgent Ninja
             </a>
+            {" "}project
           </p>
         </div>
       </div>
