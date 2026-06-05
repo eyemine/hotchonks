@@ -158,7 +158,7 @@ export const NFTCard = ({ nft }: NFTCardProps) => {
               onClick={(e) => { e.stopPropagation(); e.preventDefault(); setAgentOpen((v) => !v); }}
               aria-expanded={agentOpen}
               aria-label={`Toggle Virtual Artist links for ${agent.artistName}`}
-              className="absolute bottom-3 right-3 z-10 w-[30%] aspect-square rounded-md overflow-hidden border-2 border-bio-light bg-black opacity-50 hover:opacity-100 shadow-[0_0_16px_hsl(var(--bio-light)/0.35)] hover:shadow-[0_0_24px_hsl(var(--bio-light)/0.9)] transition-all duration-200 cursor-pointer"
+              className="absolute bottom-4 right-4 z-10 w-[38%] sm:w-[30%] aspect-square min-w-[56px] min-h-[56px] rounded-lg overflow-hidden border-[3px] border-bio-light bg-black opacity-50 hover:opacity-100 shadow-[0_0_16px_hsl(var(--bio-light)/0.35)] hover:shadow-[0_0_24px_hsl(var(--bio-light)/0.9)] transition-all duration-200 cursor-pointer touch-manipulation"
             >
               <img
                 src={agent.artistImage}
