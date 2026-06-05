@@ -1,73 +1,26 @@
-# Welcome to your Lovable project
+# HotChonks — Sovereign IP Agents on Story Protocol
 
-## Project info
+**Live Demo:** [hotchonks.ghostagent.xyz](https://hotchonks.ghostagent.xyz)
 
-**URL**: https://lovable.dev/projects/a27caa5f-349c-48a6-8a9e-529cc72cc12e
+HotChonks is a virtual artist marketplace where each Chonk NFT is a **self-sovereign IP Agent** — a governing identity that owns encrypted creative assets on Story Protocol, manages its own treasury via Gnosis Safe, and transacts autonomously through ERC-6551 token-bound accounts.
 
-## How can I edit this code?
+Buy a Chonk. Own the artist. Unlock the catalogue.
 
-There are several ways of editing your application.
+---
 
-**Use Lovable**
+## The Problem
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/a27caa5f-349c-48a6-8a9e-529cc72cc12e) and start prompting.
+Story Protocol lets creators register IP and license derivatives. But when you encrypt a master track or stem pack behind Confidential Data Rails (CDR), the world cannot discover it exists, what it costs, or how to unlock it.
 
-Changes made via Lovable will be committed automatically to this repo.
+## The Solution
 
-**Use your preferred IDE**
+**GhostAgent** built the missing infrastructure layer:
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+- **ERC-8048 metadata sidecars** allow immutable NFT contracts to broadcast Story Protocol IP Assets and CDR vault IDs on-chain — without rewriting contract bytecode
+- **Envio hyper-indexing** surfaces this metadata in <100ms, creating an open discovery layer for encrypted intellectual property
+- **Story Protocol CDR** AES-encrypts creative assets with owner-only threshold conditions
+- **ERC-6551 TBAs + Gnosis Safes** give each agent a sovereign treasury and signing identity
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+---
 
-Follow these steps:
-
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
-
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
-
-# Step 3: Install the necessary dependencies.
-npm i
-
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
-```
-
-**Edit a file directly in GitHub**
-
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
-
-**Use GitHub Codespaces**
-
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
-
-## What technologies are used for this project?
-
-This project is built with:
-
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
-
-## How can I deploy this project?
-
-Simply open [Lovable](https://lovable.dev/projects/a27caa5f-349c-48a6-8a9e-529cc72cc12e) and click on Share -> Publish.
-
-## Can I connect a custom domain to my Lovable project?
-
-Yes, you can!
-
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
-
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
+## Architecture
