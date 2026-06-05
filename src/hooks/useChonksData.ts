@@ -7,7 +7,7 @@ import { processAPIData, createFallbackData } from '@/utils/chonkDataProcessor';
 // ---- Shared module-level cache ----
 // Prevents every component that calls useChonksData() from firing its own
 // Alchemy request (which was triggering 429 "concurrent requests exceeded").
-const CACHE_KEY = 'chonksData:v1';
+const CACHE_KEY = 'chonksData:v2';
 const CACHE_TTL_MS = 1000 * 60 * 60 * 6; // 6h — chonk art is static, prices can be slightly stale
 
 let memoryCache: ChonkNFT[] | null = null;
