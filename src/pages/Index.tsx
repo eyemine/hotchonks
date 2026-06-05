@@ -3,7 +3,6 @@ import { Header } from "@/components/Header";
 import { Hero } from "@/components/Hero";
 import { TokenBoundSection } from "@/components/TokenBoundSection";
 import { NFTGallery } from "@/components/NFTGallery";
-import { GameEmbed } from "@/components/GameEmbed";
 import { KlimaSection } from "@/components/KlimaSection";
 import { Footer } from "@/components/Footer";
 
@@ -16,7 +15,6 @@ const Index = () => {
         <TokenBoundSection />
         <KlimaSection />
         <NFTGallery />
-        <GameEmbed />
       </main>
       <Footer />
     </div>
