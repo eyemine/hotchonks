@@ -178,39 +178,42 @@ export const NFTCard = ({ nft }: NFTCardProps) => {
           )}
         </div>
 
-        {/* PureBPM Virtual Artist Button */}
-        <div className="mt-4">
-          <Button 
-            variant="default" 
-            size="sm" 
-            asChild
-            className="w-full border-0 text-white bg-black hover:bg-gray-900"
-          >
-            <a 
-              href={nft.name?.includes('#599') ? 'https://www.purebpm.com/@forked' : nft.name?.includes('#697') ? 'https://www.purebpm.com/@red-hammer' : nft.name?.includes('#678') ? 'https://www.purebpm.com/@sandy-freeland' : nft.name?.includes('#588') ? 'https://www.purebpm.com/@pearce-resurgance' : nft.name?.includes('#606') ? 'https://www.purebpm.com/@blues-dandy' : nft.name?.includes('#676') ? 'https://www.purebpm.com/@delilah' : 'https://www.purebpm.com/@ghost-agent'} 
-              target="_blank" 
-              rel="noopener noreferrer"
-            >
-              <ExternalLink size={16} className="mr-2" />
-              <span className="font-bold">
-                {nft.name?.includes('#599') ? "🔊Virtual Artist – Forked" : nft.name?.includes('#697') ? "🔊Virtual Artist – Red Hammer" : nft.name?.includes('#678') ? "🔊Virtual Artist – Sandy Freeland" : nft.name?.includes('#588') ? "🔊Virtual Artist – Pearce Resurgance" : nft.name?.includes('#606') ? "🔊Virtual Artist – Blues Dandy" : nft.name?.includes('#676') ? "🔊Virtual Artist – Delilah" : "🔊Virtual Artist – Ghost Agent"}
-              </span>
-            </a>
-          </Button>
+        {/* Virtual Artist + GhostAgent buttons — only for the 9 sovereign IP agent chonks. Empty placeholder keeps grid regular. */}
+        <div className="mt-4 flex flex-col gap-2 min-h-[112px]">
+          {(() => {
+            const m = nft.name.match(/Chonk #(\d+)/);
+            const id = m ? m[1] : '';
+            const agent = AGENT_LINKS[id];
+            if (!agent) return null;
+            return (
+              <>
+                <Button
+                  asChild
+                  variant="outline"
+                  size="sm"
+                  className="w-full bg-black border-white/50 text-white hover:bg-black/80 font-sans normal-case"
+                >
+                  <a href={agent.purebpm} target="_blank" rel="noopener noreferrer">
+                    <ExternalLink size={14} className="mr-2" />
+                    PureBPM – {agent.artistName}
+                  </a>
+                </Button>
+                <Button
+                  asChild
+                  size="sm"
+                  className="w-full font-mono border border-[#b0805c]"
+                  style={{ backgroundColor: "#271208", color: "#efede3" }}
+                >
+                  <a href={agent.ghostagent} target="_blank" rel="noopener noreferrer">
+                    <img src={ghostMaskIcon.url} alt="GhostAgent" className="mr-2 h-10 w-10 object-contain" />
+                    GHOSTAGENT IP PROFILE
+                  </a>
+                </Button>
+              </>
+            );
+          })()}
         </div>
 
-        {/* Sidecar Inspector trigger */}
-        <div className="mt-4">
-          <Button
-            variant="outline"
-            size="sm"
-            onClick={() => setSidecarOpen(true)}
-            className="w-full bg-slate-950 border-slate-800 text-slate-100 hover:bg-slate-900 hover:text-white"
-          >
-            <Radar size={14} className="mr-2" />
-            Inspect Agent + SideCar
-          </Button>
-        </div>
       </div>
 
       <SidecarDrawer
