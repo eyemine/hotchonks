@@ -43,8 +43,7 @@ export const Header = () => {
               aria-label="Toggle menu"
               aria-expanded={open}
             >
-              {open ? <Menu size={20} /> : <Menu size={20} />}
-              {open ? <X size={20} className="hidden" /> : null}
+              {open ? <X size={20} /> : <Menu size={20} />}
             </Button>
           </div>
         </div>
