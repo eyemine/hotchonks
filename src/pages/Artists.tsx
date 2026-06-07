@@ -36,7 +36,7 @@ const ChonkInset = ({
           setOpen(true);
         }}
         className={`absolute ${pos} w-[30%] aspect-square rounded-md overflow-hidden border-2 border-bio-light bg-black opacity-50 hover:opacity-100 shadow-[0_0_16px_hsl(var(--bio-light)/0.35)] hover:shadow-[0_0_24px_hsl(var(--bio-light)/0.9)] transition-all duration-200 cursor-pointer`}
-        aria-label={`Open Chonk #${tokenId} HUD`}
+        aria-label={`Open ${tokenId === "ghostagent" ? "ghostagent" : `Chonk #${tokenId}`} HUD`}
       >
         <img
           src={src}
