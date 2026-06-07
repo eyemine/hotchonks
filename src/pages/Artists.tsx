@@ -198,7 +198,7 @@ const RosterCard = ({ artist }: { artist: Artist }) => {
   const chonkImg = useChonkImage(artist.tokenId);
   const isActive = artist.status === "active";
   const mainImg = artist.artistImage ?? chonkImg;
-  const insetImg = artist.artistImage ? chonkImg : undefined;
+  const insetImg = artist.insetImage ?? (artist.artistImage ? chonkImg : undefined);
   const [sidecarOpen, setSidecarOpen] = useState(false);
 
   return (
