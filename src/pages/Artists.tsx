@@ -224,7 +224,7 @@ const RosterCard = ({ artist }: { artist: Artist }) => {
           <div className="min-w-0">
             <h3 className="font-bold text-foreground truncate">{artist.name}</h3>
             <p className="text-xs text-muted-foreground font-mono truncate">
-              CHONK #{artist.tokenId} · {artist.genre}
+              {/^\d+$/.test(artist.tokenId) ? `CHONK #${artist.tokenId} · ${artist.genre}` : artist.genre}
             </p>
           </div>
         </div>
