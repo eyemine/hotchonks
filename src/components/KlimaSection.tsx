@@ -33,17 +33,17 @@ export const KlimaSection = () => {
           </div>
 
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            On October 15th, Klima marks the beginning of a new chapter. Fair Launch concludes with the deployment of two new tokens, $kVCM and $K2
+            Each Chonk's ERC-6551 Token Bound Account (TBA) now holds a locked, value-backed asset bundle natively.
             <br /><br />
-            Green Chonk holders can claim their $kVCM, (*at a projected rate of 1.33:1 staked $Klima). Their $K2 which will be assigned proportional to the period staked will be vested at protocol launch, will be claimable over a 48 month period.
+            Embedded Vault Assets
             <br /><br />
-            Klima 2.0, creates an open, transparent infrastructure layer for environmental real-world assets. Klima aims to grow a rational, liquid, and trusted market for carbon.
+            Active $K2 Vesting: Proportional $K2 allocations are locked directly within the TBA, actively vesting over a 48-month stream.
             <br /><br />
-            At the core of Klima 2.0 is the Autonomous Asset Manager (AAM) that acquires, prices, and curates carbon credits. These credits are then made available for retirement; the true measure of climate impact within the market.
+            Staked $kVCM LPs: Embedded $kVCM staked Liquidity Provider positions (nominal value) are initialized and attached to the agent identity.
             <br /><br />
-            Klima 2.0 is built on a simple principle: carbon markets should reward the people and projects that create climate impact and participate in the curation of the market.
+            Verified Environmental Impact
             <br /><br />
-            Each Chonk also virtue signals their green credentials with carbon offset certificates via carbonmark.com. With an average of 7.75 tonnes CO₂ retired per NFT. Here is the green impact of this collection:
+            Every Chonk securely anchors its green credentials via automated carbon offset certificates retired through carbonmark.com (averaging 7.75 tonnes CO₂ per NFT).
           </p>
         </div>
 
