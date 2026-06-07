@@ -25,6 +25,7 @@ export interface Artist {
   agentUrl: string;
   genre: string;
   artistImage?: string;
+  insetImage?: string;
   bannerImage?: string;
   status: ArtistStatus;
   storyIpId?: string;
