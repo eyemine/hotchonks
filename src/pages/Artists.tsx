@@ -78,14 +78,26 @@ const ChonkInset = ({
             />
           </div>
           <div className="flex flex-wrap gap-2">
-            <a
-              href={`https://opensea.io/item/base/${CHONKS_CONTRACT}/${tokenId}`}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 rounded-full bg-blue-600 border border-blue-500 px-3 py-1.5 text-[10px] font-sans text-white hover:bg-blue-700"
-            >
-              OPENSEA – Buy NFT, own Agent + IP <ExternalLink className="h-3 w-3" />
-            </a>
+            {tokenId === "ghostagent" ? (
+              <a
+                href="https://ghostagent.ninja/dashboard/marketplace"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1.5 rounded-full border border-[#b0805c] px-3 py-1.5 text-[10px] font-sans text-[#efede3] hover:brightness-110"
+                style={{ backgroundColor: "#271208" }}
+              >
+                MARKETPLACE – Buy NFT, own Agent + IP <ExternalLink className="h-3 w-3" />
+              </a>
+            ) : (
+              <a
+                href={`https://opensea.io/item/base/${CHONKS_CONTRACT}/${tokenId}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1.5 rounded-full bg-blue-600 border border-blue-500 px-3 py-1.5 text-[10px] font-sans text-white hover:bg-blue-700"
+              >
+                OPENSEA – Buy NFT, own Agent + IP <ExternalLink className="h-3 w-3" />
+              </a>
+            )}
           </div>
         </div>
       )}
