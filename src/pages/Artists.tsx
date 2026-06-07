@@ -36,7 +36,7 @@ const ChonkInset = ({
           setOpen(true);
         }}
         className={`absolute ${pos} w-[30%] aspect-square rounded-md overflow-hidden border-2 border-bio-light bg-black opacity-50 hover:opacity-100 shadow-[0_0_16px_hsl(var(--bio-light)/0.35)] hover:shadow-[0_0_24px_hsl(var(--bio-light)/0.9)] transition-all duration-200 cursor-pointer`}
-        aria-label={`Open Chonk #${tokenId} HUD`}
+        aria-label={`Open ${tokenId === "ghostagent" ? "ghostagent" : `Chonk #${tokenId}`} HUD`}
       >
         <img
           src={src}
@@ -56,7 +56,9 @@ const ChonkInset = ({
               <p className="text-[9px] font-mono uppercase tracking-[0.3em] text-bio-light">
                 Sovereign IP Agent • Governing NFT
               </p>
-              <p className="text-lg font-black text-foreground">CHONK #{tokenId}</p>
+              <p className="text-lg font-black text-foreground">
+                {tokenId === "ghostagent" ? "ghostagent.molt.gno" : `CHONK #${tokenId}`}
+              </p>
             </div>
             <button
               type="button"
@@ -76,14 +78,26 @@ const ChonkInset = ({
             />
           </div>
           <div className="flex flex-wrap gap-2">
-            <a
-              href={`https://opensea.io/item/base/${CHONKS_CONTRACT}/${tokenId}`}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 rounded-full bg-blue-600 border border-blue-500 px-3 py-1.5 text-[10px] font-sans text-white hover:bg-blue-700"
-            >
-              OPENSEA – Buy NFT, own Agent + IP <ExternalLink className="h-3 w-3" />
-            </a>
+            {tokenId === "ghostagent" ? (
+              <a
+                href="https://ghostagent.ninja/dashboard/marketplace"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1.5 rounded-full border border-[#b0805c] px-3 py-1.5 text-[10px] font-sans text-[#efede3] hover:brightness-110"
+                style={{ backgroundColor: "#271208" }}
+              >
+                MARKETPLACE – Buy NFT, own Agent + IP <ExternalLink className="h-3 w-3" />
+              </a>
+            ) : (
+              <a
+                href={`https://opensea.io/item/base/${CHONKS_CONTRACT}/${tokenId}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1.5 rounded-full bg-blue-600 border border-blue-500 px-3 py-1.5 text-[10px] font-sans text-white hover:bg-blue-700"
+              >
+                OPENSEA – Buy NFT, own Agent + IP <ExternalLink className="h-3 w-3" />
+              </a>
+            )}
           </div>
         </div>
       )}
