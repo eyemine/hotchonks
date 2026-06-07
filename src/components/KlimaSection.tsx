@@ -17,7 +17,7 @@ export const KlimaSection = () => {
           </h2>
 
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto mb-8">
-            Each Green Chonk NFT holds 100 $KLIMA (staking since ~May '25 for October's Fair Launch TGE).
+            The Fair Launch has officially concluded, transitioning Green Chonks into live Autonomous Asset Managers for environmental real-world assets.
           </p>
 
           {/* Video */}
