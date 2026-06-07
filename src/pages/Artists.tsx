@@ -247,7 +247,7 @@ const RosterCard = ({ artist }: { artist: Artist }) => {
             <Button asChild size="sm" className="flex-1 bg-bio-green text-primary-foreground hover:bg-bio-light">
               <Link to={`/studio/${artist.slug}`}>Enter Studio</Link>
             </Button>
-          ) : (
+          ) : /^\d+$/.test(artist.tokenId) ? (
             <Button
               size="sm"
               onClick={() => setSidecarOpen(true)}
@@ -257,6 +257,17 @@ const RosterCard = ({ artist }: { artist: Artist }) => {
               <img src={ghostMaskIcon.url} alt="GhostAgent" className="mr-2 h-12 w-12 object-contain" />
               GHOSTAGENT IP PROFILE
             </Button>
+          ) : (
+            <a
+              href={artist.agentUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex-1 inline-flex items-center justify-center rounded-md font-mono border border-[#b0805c] px-3 h-9 text-sm"
+              style={{ backgroundColor: "#271208", color: "#efede3" }}
+            >
+              <img src={ghostMaskIcon.url} alt="GhostAgent" className="mr-2 h-12 w-12 object-contain" />
+              GHOSTAGENT IP PROFILE
+            </a>
           )}
         </div>
       </div>
