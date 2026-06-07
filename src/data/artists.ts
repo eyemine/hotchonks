@@ -154,6 +154,19 @@ export const ARTISTS: Artist[] = [
     status: "unregistered",
     email: "chonk.606_@nftmail.box",
   },
+  {
+    slug: "ghost-agent",
+    tokenId: "ghostagent",
+    name: "Ghost Agent",
+    handle: "@ghost-agent",
+    purebpmUrl: "https://www.purebpm.com/@ghost-agent",
+    agentUrl: "https://ghostagent.ninja/agent/ghostagent",
+    genre: "The Human",
+    artistImage: eyeomineImg.url,
+    insetImage: moltGnoImg.url,
+    status: "unregistered",
+    email: "ghostagent@nftmail.box",
+  },
 ];
 
 export const getArtistBySlug = (slug: string) =>
