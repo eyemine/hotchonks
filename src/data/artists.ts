@@ -11,6 +11,8 @@ import redHammerImg from "@/assets/artists/red_hammer.jpg.asset.json";
 import redHammerBanner from "@/assets/artists/redhammer-banner.jpg.asset.json";
 import delilahImg from "@/assets/artists/Delilah.jpg.asset.json";
 import bluesDandyImg from "@/assets/artists/BluesDandy.jpg.asset.json";
+import eyeomineImg from "@/assets/artists/eyeomine2.png.asset.json";
+import moltGnoImg from "@/assets/artists/molt-gno.png.asset.json";
 
 export type ArtistStatus = "active" | "pending" | "unregistered";
 
@@ -23,6 +25,7 @@ export interface Artist {
   agentUrl: string;
   genre: string;
   artistImage?: string;
+  insetImage?: string;
   bannerImage?: string;
   status: ArtistStatus;
   storyIpId?: string;
@@ -150,6 +153,19 @@ export const ARTISTS: Artist[] = [
     artistImage: bluesDandyImg.url,
     status: "unregistered",
     email: "chonk.606_@nftmail.box",
+  },
+  {
+    slug: "ghost-agent",
+    tokenId: "ghostagent",
+    name: "Ghost Agent",
+    handle: "@ghost-agent",
+    purebpmUrl: "https://www.purebpm.com/@ghost-agent",
+    agentUrl: "https://ghostagent.ninja/agent/ghostagent",
+    genre: "The Human",
+    artistImage: eyeomineImg.url,
+    insetImage: moltGnoImg.url,
+    status: "unregistered",
+    email: "ghostagent@nftmail.box",
   },
 ];
 

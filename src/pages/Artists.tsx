@@ -198,7 +198,7 @@ const RosterCard = ({ artist }: { artist: Artist }) => {
   const chonkImg = useChonkImage(artist.tokenId);
   const isActive = artist.status === "active";
   const mainImg = artist.artistImage ?? chonkImg;
-  const insetImg = artist.artistImage ? chonkImg : undefined;
+  const insetImg = artist.insetImage ?? (artist.artistImage ? chonkImg : undefined);
   const [sidecarOpen, setSidecarOpen] = useState(false);
 
   return (
@@ -224,7 +224,7 @@ const RosterCard = ({ artist }: { artist: Artist }) => {
           <div className="min-w-0">
             <h3 className="font-bold text-foreground truncate">{artist.name}</h3>
             <p className="text-xs text-muted-foreground font-mono truncate">
-              CHONK #{artist.tokenId} · {artist.genre}
+              {/^\d+$/.test(artist.tokenId) ? `CHONK #${artist.tokenId} · ${artist.genre}` : artist.genre}
             </p>
           </div>
         </div>
@@ -247,7 +247,7 @@ const RosterCard = ({ artist }: { artist: Artist }) => {
             <Button asChild size="sm" className="flex-1 bg-bio-green text-primary-foreground hover:bg-bio-light">
               <Link to={`/studio/${artist.slug}`}>Enter Studio</Link>
             </Button>
-          ) : (
+          ) : /^\d+$/.test(artist.tokenId) ? (
             <Button
               size="sm"
               onClick={() => setSidecarOpen(true)}
@@ -257,6 +257,17 @@ const RosterCard = ({ artist }: { artist: Artist }) => {
               <img src={ghostMaskIcon.url} alt="GhostAgent" className="mr-2 h-12 w-12 object-contain" />
               GHOSTAGENT IP PROFILE
             </Button>
+          ) : (
+            <a
+              href={artist.agentUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex-1 inline-flex items-center justify-center rounded-md font-mono border border-[#b0805c] px-3 h-9 text-sm"
+              style={{ backgroundColor: "#271208", color: "#efede3" }}
+            >
+              <img src={ghostMaskIcon.url} alt="GhostAgent" className="mr-2 h-12 w-12 object-contain" />
+              GHOSTAGENT IP PROFILE
+            </a>
           )}
         </div>
       </div>
