@@ -56,7 +56,9 @@ const ChonkInset = ({
               <p className="text-[9px] font-mono uppercase tracking-[0.3em] text-bio-light">
                 Sovereign IP Agent • Governing NFT
               </p>
-              <p className="text-lg font-black text-foreground">CHONK #{tokenId}</p>
+              <p className="text-lg font-black text-foreground">
+                {tokenId === "ghostagent" ? "ghostagent.molt.gno" : `CHONK #${tokenId}`}
+              </p>
             </div>
             <button
               type="button"
