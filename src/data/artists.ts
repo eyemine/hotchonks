@@ -13,6 +13,7 @@ import delilahImg from "@/assets/artists/Delilah.jpg.asset.json";
 import bluesDandyImg from "@/assets/artists/BluesDandy.jpg.asset.json";
 import eyeomineImg from "@/assets/artists/eyeomine2.png.asset.json";
 import moltGnoImg from "@/assets/artists/molt-gno.png.asset.json";
+import chonk676Svg from "@/assets/chonk-676.svg";
 
 export type ArtistStatus = "active" | "pending" | "unregistered";
 
