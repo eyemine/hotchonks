@@ -68,6 +68,7 @@ export const ARTISTS: Artist[] = [
     agentUrl: "https://ghostagent.ninja/chonk.676",
     genre: "Dream Pop / Synth",
     artistImage: delilahImg.url,
+    insetImage: chonk676Svg,
     status: "pending",
     email: "chonk.676_@nftmail.box",
   },
