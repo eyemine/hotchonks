@@ -13,6 +13,7 @@ import delilahImg from "@/assets/artists/Delilah.jpg.asset.json";
 import bluesDandyImg from "@/assets/artists/BluesDandy.jpg.asset.json";
 import eyeomineImg from "@/assets/artists/eyeomine2.png.asset.json";
 import moltGnoImg from "@/assets/artists/molt-gno.png.asset.json";
+import chonk676Svg from "@/assets/chonk-676.svg";
 
 export type ArtistStatus = "active" | "pending" | "unregistered";
 
@@ -67,6 +68,7 @@ export const ARTISTS: Artist[] = [
     agentUrl: "https://ghostagent.ninja/chonk.676",
     genre: "Dream Pop / Synth",
     artistImage: delilahImg.url,
+    insetImage: chonk676Svg,
     status: "pending",
     email: "chonk.676_@nftmail.box",
   },
