@@ -7,12 +7,18 @@ import { processAPIData, createFallbackData } from '@/utils/chonkDataProcessor';
 // ---- Shared module-level cache ----
 // Prevents every component that calls useChonksData() from firing its own
 // Alchemy request (which was triggering 429 "concurrent requests exceeded").
-const CACHE_KEY = 'chonksData:v2';
+const CACHE_KEY = 'chonksData:v3';
 const CACHE_TTL_MS = 1000 * 60 * 60 * 6; // 6h — chonk art is static, prices can be slightly stale
 
 let memoryCache: ChonkNFT[] | null = null;
 let inflight: Promise<ChonkNFT[]> | null = null;
 const subscribers = new Set<(data: ChonkNFT[]) => void>();
+
+const isValidChonkSet = (data: ChonkNFT[] | null | undefined): data is ChonkNFT[] => {
+  if (!data || !data.length) return false;
+  // Reject cached payloads that contain placeholder/unsplash fallback images
+  return data.every(d => d.image && !d.image.includes('unsplash'));
+};
 
 const readLocalStorage = (): ChonkNFT[] | null => {
   try {
@@ -20,9 +26,11 @@ const readLocalStorage = (): ChonkNFT[] | null => {
     if (!raw) return null;
     const parsed = JSON.parse(raw) as { ts: number; data: ChonkNFT[] };
     if (Date.now() - parsed.ts > CACHE_TTL_MS) return null;
+    if (!isValidChonkSet(parsed.data)) return null;
     return parsed.data;
   } catch { return null; }
 };
+
 
 const writeLocalStorage = (data: ChonkNFT[]) => {
   try { localStorage.setItem(CACHE_KEY, JSON.stringify({ ts: Date.now(), data })); } catch {}
