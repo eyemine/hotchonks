@@ -1,13 +1,14 @@
 import { useState, useEffect } from 'react';
 import { ChonkNFT } from '@/types/chonk';
 import { BASE_CHONKS } from '@/constants/chonks';
+import { getBufferedChonkImage } from '@/constants/chonkImages';
 import { fetchNFTDataFromAPI } from '@/utils/nftApi';
 import { processAPIData, createFallbackData } from '@/utils/chonkDataProcessor';
 
 // ---- Shared module-level cache ----
 // Prevents every component that calls useChonksData() from firing its own
 // Alchemy request (which was triggering 429 "concurrent requests exceeded").
-const CACHE_KEY = 'chonksData:v3';
+const CACHE_KEY = 'chonksData:v4';
 const CACHE_TTL_MS = 1000 * 60 * 60 * 6; // 6h — chonk art is static, prices can be slightly stale
 
 let memoryCache: ChonkNFT[] | null = null;
@@ -16,8 +17,8 @@ const subscribers = new Set<(data: ChonkNFT[]) => void>();
 
 const isValidChonkSet = (data: ChonkNFT[] | null | undefined): data is ChonkNFT[] => {
   if (!data || !data.length) return false;
-  // Reject cached payloads that contain placeholder/unsplash fallback images
-  return data.every(d => d.image && !d.image.includes('unsplash'));
+  // Reject cached payloads that contain placeholder/fallback images or missing buffered Chonk art.
+  return data.every(d => d.image && !d.image.includes('unsplash') && d.image === getBufferedChonkImage(d.id));
 };
 
 const readLocalStorage = (): ChonkNFT[] | null => {
@@ -51,10 +52,16 @@ const loadChonks = (): Promise<ChonkNFT[]> => {
     try {
       const result = await fetchNFTDataFromAPI(BASE_CHONKS);
       let data = processAPIData(result);
-      // If API returned errors for everything (e.g. 429), keep any previous LS data
+      // If API returned errors for everything (e.g. 429), use buffered local Chonk art instead of placeholders.
       const valid = data.filter(d => d.image && !d.image.includes('unsplash'));
       if (valid.length === 0) {
-        const stale = (() => { try { const r = localStorage.getItem(CACHE_KEY); return r ? (JSON.parse(r).data as ChonkNFT[]) : null; } catch { return null; } })();
+        const stale = (() => {
+          try {
+            const r = localStorage.getItem(CACHE_KEY);
+            const parsed = r ? (JSON.parse(r).data as ChonkNFT[]) : null;
+            return isValidChonkSet(parsed) ? parsed : null;
+          } catch { return null; }
+        })();
         if (stale && stale.length) data = stale;
         else data = createFallbackData(BASE_CHONKS);
       } else {

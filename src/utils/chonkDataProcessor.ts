@@ -1,7 +1,19 @@
 
 import { ChonkNFT } from "@/types/chonk";
 import { CHONKS_CONTRACT } from "@/constants/chonks";
+import { getBufferedChonkImage } from "@/constants/chonkImages";
 import { getNestedNFTs } from "./nestedNFTs";
+
+const getChonkImage = (tokenId: number, metadata?: any): string => {
+  return getBufferedChonkImage(tokenId)
+    || metadata?.image?.cachedUrl
+    || metadata?.image?.pngUrl
+    || metadata?.image?.thumbnailUrl
+    || metadata?.image?.originalUrl
+    || metadata?.image_url
+    || metadata?.image
+    || "";
+};
 
 export const processAPIData = (apiResult: any): ChonkNFT[] => {
   const chonksData: ChonkNFT[] = [];
@@ -41,7 +53,7 @@ export const processAPIData = (apiResult: any): ChonkNFT[] => {
       chonksData.push({
         id: tokenId.toString(),
         name: `Chonk #${tokenId}`,
-        image: metadata?.image?.cachedUrl || metadata?.image?.pngUrl || metadata?.image?.thumbnailUrl || `https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=400&h=400&fit=crop&seed=${tokenId}`,
+        image: getChonkImage(tokenId, metadata),
         collection: 'Chonks',
         price: price,
         chain: 'Base',
@@ -76,7 +88,7 @@ export const createFallbackData = (tokenIds: number[]): ChonkNFT[] => {
     return {
       id: tokenId.toString(),
       name: `Chonk #${tokenId}`,
-      image: `https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=400&h=400&fit=crop&seed=${tokenId}`,
+      image: getBufferedChonkImage(tokenId) || "",
       collection: 'Chonks',
       price: tokenId === 596 ? 'SOLD' : (Math.random() * 0.1 + 0.001).toFixed(4),
       chain: 'Base' as const,
